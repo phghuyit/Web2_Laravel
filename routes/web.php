@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\frontend\HomeController;
     use App\Http\Controllers\frontend\ProductController;
     use App\Http\Controllers\frontend\ContactController;
+    use App\Http\Controllers\frontend\CartController;
+    use App\Http\Controllers\frontend\UserController;
 //BackEndImports
     use App\Http\Controllers\backend\DashboardController;
     use App\Http\Controllers\backend\BEProductController;
@@ -26,6 +28,13 @@ use Illuminate\Support\Facades\Route;
         Route::get('contact',[ContactController::class,'index'])->name('site.contact.index');
         Route::post('contact',[ContactController::class,'store'])->name('site.contact.store');
 
+        //Cart- Giỏ hàng
+
+        Route::get('cart',[CartController::class,'index'])->name('site.cart.index');
+
+        //Login - Đăng nhập
+
+        Route::get('login',[UserController::class,'index'])->name('site.user.login');
 //BackendAdmin-Quản lý admin
 
     Route::prefix('admin')->group(function(){

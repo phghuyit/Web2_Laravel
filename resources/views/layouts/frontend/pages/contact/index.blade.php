@@ -1,5 +1,5 @@
 @extends('layouts.frontend.layout')
 
 @section('content')
-<h1>contact</h1>
+<h1>this is contact</h1>
 @endsection

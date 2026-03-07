@@ -1,6 +1,3 @@
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,11 +7,13 @@
     <title>Document</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="flex flex-col min-h-screen">
 
     @include('layouts.frontend.partials.header')
 
-    @yield('content')
+    <main class="flex-1">
+        @yield('content')
+    </main>
 
     @include('layouts.frontend.partials.footer')  
     
