@@ -20,7 +20,7 @@ use Illuminate\Support\Facades\Route;
     
         //Product-Sản Phẩm
 
-        Route::get('/product', [ProductController::class,'index'])->name('site.product.index');
+        Route::get('product', [ProductController::class,'index'])->name('site.product.index');
         Route::get('/product/{slug}', [ProductController::class,'detail'])->name('site.product.detail');
     
         //Contact-Liên hệ

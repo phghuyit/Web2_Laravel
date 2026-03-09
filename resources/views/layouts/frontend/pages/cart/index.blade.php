@@ -1,6 +1,5 @@
-@extends('layouts.frontend.layout')
-
-@section('content')
+<x-frontend.layout>
+    <x-slot:title>Giỏ Hàng</x-slot:title>
     <main class="text-[#0f1111] mt-6 w-[95%] mx-auto ">
         <div class="flex flex-col lg:flex-row gap-10">
             <div class="flex-[4] rounded-xs shadow p-6">
@@ -34,4 +33,4 @@
         
         
     </main>
-@endsection
+</x-frontend.layout>

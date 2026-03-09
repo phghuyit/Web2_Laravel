@@ -1,23 +1,19 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\backend;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class btn extends Component
+class layout extends Component
 {
-    public $content,$url,$bgcolor;
     /**
      * Create a new component instance.
      */
-    public function __construct($url="",$content="",$bgcolor="bg-orange-400")
+    public function __construct()
     {
         //
-        $this->bgcolor=$bgcolor;
-        $this->url=$url;
-        $this->content=$content;
     }
 
     /**
@@ -25,6 +21,6 @@ class btn extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.btn');
+        return view('components.backend.layout');
     }
 }

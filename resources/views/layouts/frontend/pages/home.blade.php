@@ -1,9 +1,8 @@
-@extends('layouts.frontend.layout')
-
-@section('content')
-
-    <div class="text-[#0f1111] mt-6">
-        
+<x-frontend.layout>
+<x-slot:title>
+    Trang chủ
+</x-slot:title>
+<div class="text-[#0f1111] mt-6">
         <div class="my-12">
             <p class="capitalize text-3xl font-bold mb-6 ml-3">Sách Bán Chạy</p>
 
@@ -44,5 +43,4 @@
             <x-product-card title="Nhà Giả Kim" price="151000" author="Paulo Coelho" year=2020/>
         </div>
     </div>
-
-@endsection
+</x-frontend.layout>
