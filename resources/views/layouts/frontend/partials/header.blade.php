@@ -1,4 +1,4 @@
-<header class=" text-white">
+<header class="text-white">
     <div class="bg-[#131921] mx-auto px-4 flex items-center gap-4 py-3">
 
         <!-- Logo -->

@@ -23,10 +23,10 @@
                 <p class="text-2xl font-semibold">Đăng nhập hoặc tạo tài khoản</p>
                 <p class="font-bold text-xl">Nhập địa chỉ email</p>
                 <form action="" class="">
-                    <input type="text" placeholder="example@mail.com" class="border rounded-lg border-[#d3d3d3] w-[90%] mx-auto h-10 p-3">
+                    <input type="text" placeholder="example@mail.com" class="border rounded-lg border-[#d3d3d3] w-full mx-auto h-10 p-3">
                 </form>
                 <x-btn content="Tiếp tục"/>
-                <div class="border border-[#d3d3d3] my-3"></div>
+                <div class="border-[0.5px] border-[#d3d3d3] my-3"></div>
                 <p>Sau nhúng login bằng fb,google</p>
             </div>
         </div>
