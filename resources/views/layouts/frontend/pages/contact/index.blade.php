@@ -19,6 +19,16 @@
                     <option value="">Tác giả</option>
                 </select>
 
+                <label for="">Email</label>
+                <br>
+                <label for="" class="text-sm text-gray-500">Vui lòng cung cấp email (đã xác minh) mà bạn đã đăng ký trên tài khoản Amazin</label>
+                <br>
+                <input type="text" class="border w-full px-6 py-3 mb-6">
+
+                <label for="">Xác nhận Email</label>
+                <br>
+                <input type="text" class="border w-full px-6 py-3 mb-6">
+
                 <label for="">Bạn thắc mắc về vấn đề nào?</label>
                 <br>
                 <select name="" id="" class="border w-full px-6 py-3 mb-6">

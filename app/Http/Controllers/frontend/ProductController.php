@@ -10,6 +10,7 @@ class ProductController extends Controller
     public function index(){
         return view('layouts.frontend.pages.products.index');
     }
+    
     public function detail(){
         return view('layouts.frontend.pages.products.detail');
     }

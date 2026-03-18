@@ -39,12 +39,10 @@ use Illuminate\Support\Facades\Route;
 
     Route::prefix('admin')->group(function(){
         Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
+
         Route::prefix('product')->group(function(){
-            Route::get('/',[BEProductController::class,'index'])->name('admin.product.index');
-            Route::get('/create',[BEProductController::class,'create'])->name('admin.product.create');
-            Route::post('store',[BEProductController::class,'store'])->name('admin.product.store');
-            Route::get('edit/{id}',[BEProductController::class,'edit'])->name('admin.product.edit');
-            Route::put('update/{id}',[BEProductController::class,'update'])->name('admin.product.update');
-            Route::delete('delete/{id}',[BEProductController::class,'delete'])->name('admin.product.delete');
+            Route::get('/',[ProductAdminController::class,'index'])->name('admin.product.index');
+            Route::get('edit/{id}',[ProductAdminController::class,'edit'])->name('admin.product.edit');
         });
+        Route::resource('products', ProductAdminController::class);
     });

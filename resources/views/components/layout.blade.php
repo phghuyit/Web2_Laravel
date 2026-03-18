@@ -10,14 +10,14 @@
 </head>
 <body class="flex flex-col min-h-screen">
 
-    @include('layouts.backend.partials.header') 
+    @include('')
 
     <main class="flex-1">
         <div class="grid grid-cols-[25%_1fr] ">
-            @include('layouts.backend.partials.sidebar')
+            <x-backend.partials.sidebar/>
             <div class="bg-gray-200">
                 {{$slot}}
-                 @include('layouts.backend.partials.footer')
+                <x-backend.partials.footer/>
             </div>
         </div>
     </main>
