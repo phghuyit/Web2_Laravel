@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\backend\BrandController;
 use Illuminate\Support\Facades\Route;
 //FrontEndImports
     use App\Http\Controllers\frontend\HomeController;
@@ -9,7 +10,7 @@ use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\frontend\UserController;
 //BackEndImports
     use App\Http\Controllers\backend\DashboardController;
-    use App\Http\Controllers\backend\BEProductController;
+    use App\Http\Controllers\backend\ProductAdminController;
 
 
 //FrontEndRoutes
@@ -17,12 +18,12 @@ use Illuminate\Support\Facades\Route;
 
         Route::get('/', [HomeController::class,'index'])->name('site.home');
         Route::redirect('/home', '/phghuy_ltw2/public');
-    
+
         //Product-Sản Phẩm
 
         Route::get('product', [ProductController::class,'index'])->name('site.product.index');
         Route::get('/product/{slug}', [ProductController::class,'detail'])->name('site.product.detail');
-    
+
         //Contact-Liên hệ
 
         Route::get('contact',[ContactController::class,'index'])->name('site.contact.index');
@@ -41,8 +42,12 @@ use Illuminate\Support\Facades\Route;
         Route::get('/',[DashboardController::class,'index'])->name('admin.dashboard');
 
         Route::prefix('product')->group(function(){
-            Route::get('/',[ProductAdminController::class,'index'])->name('admin.product.index');
             Route::get('edit/{id}',[ProductAdminController::class,'edit'])->name('admin.product.edit');
         });
-        Route::resource('products', ProductAdminController::class);
+        Route::resource('product', ProductAdminController::class);
+
+        Route::prefix('brand')->group(function(){
+            Route::get('edit/{id}',[BrandController::class,'edit'])->name('admin.brand.edit');
+        });
+        Route::resource('brand', BrandController::class);
     });

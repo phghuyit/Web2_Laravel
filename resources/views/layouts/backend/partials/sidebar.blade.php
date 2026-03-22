@@ -3,28 +3,28 @@
         <p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">homes</p>
 
             <a href="./index.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
-                <i class="fa-solid fa-chart-pie mr-2"></i>                
+                <i class="fa-solid fa-chart-pie mr-2"></i>
                 Analytics dashboard
             </a>
-            
+
             <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px] mb-3">
                 <i class="fa-solid fa-shopping-cart mr-2"></i>
                 ecommerce dashboard
             </a>
 
         <p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">Products</p>
-            
-            <a href="./index.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
-                <i class="fa-solid fa-book mr-2"></i>                
+
+            <a href="{{ route('product.index') }}" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
+                <i class="fa-solid fa-book mr-2"></i>
                 Toàn bộ sách
             </a>
-            
+
             <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
                 <i class="fa-solid fa-layer-group mr-2"></i>
                 Thể loại sách
             </a>
 
-            <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
+            <a href="{{ route('brand.index') }}" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
                 <i class="fa-solid fa-user-pen mr-2"></i>
                 Tác giả
             </a>
@@ -51,6 +51,6 @@
             </a>
              <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-red-500 transition ease-in-out duration-500 text-[15px]">
                 <i class="fa-solid fa-truck mr-2"></i>
-                Thùng rác 
+                Thùng rác
             </a>
     </div>

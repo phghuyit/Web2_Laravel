@@ -4,6 +4,9 @@ namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
+use App\Models\Brand;
+use App\Models\Category;
 
 class ProductAdminController extends Controller
 {
@@ -13,24 +16,24 @@ class ProductAdminController extends Controller
     public function index(Request $request)
     {
         //
-        $query= ProductAdminController::query();
+        $query= Product::query();
         $query->with(['category:id,name','brand:id,name']);
-        $query->select('id','name','image','price_buy','category_id','brand_id','created_at');
+        $query->select('id','name','image','price_buy','category_id','brand_id','created_at','qty','status');
 
         if($request->filled('name')){
-            $query->where('name','like','%'.$request->get('name').'%');
+            $query->where('name','like','%'.$request->input('name').'%');
         }
 
         if($request->filled('brand_id')){
-            $query->where('brand_id',$request->get('brand_id'));
+            $query->where('brand_id',$request->input('brand_id'));
         }
 
         if($request->filled('cat_id')){
-            $query->where('category_id',$request->get('cat_id'));
+            $query->where('category_id',$request->input('cat_id'));
         }
 
         if($request->filled('sort_by')){
-            $sort=$request->filled('sort_by');
+            $sort=$request->input('sort_by');
             switch($sort){
                 case 'price_asc':
                     $query->orderBy('price_buy','asc');
@@ -51,7 +54,12 @@ class ProductAdminController extends Controller
         }
 
         $products=$query->paginate(5);
-        return view('')
+
+        $brands=Brand::select('id','name')->get();
+        $cats=Category::select('id','name')->get();
+
+
+        return view('layouts.backend.pages.product.index',compact('products','brands','cats'));
     }
 
     /**
@@ -100,5 +108,6 @@ class ProductAdminController extends Controller
     public function destroy(string $id)
     {
         //
+
     }
 }

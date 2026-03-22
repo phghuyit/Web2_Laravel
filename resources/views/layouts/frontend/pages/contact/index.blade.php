@@ -44,7 +44,7 @@
 Nhập giá trị ở đây
                 </textarea>
             </form>
-            <p class="font-bold mt-3">Bằng việc nhấn "Gửi/Submit", tôi đồng ý cho Shopee thu thập và xử lý dữ liệu cá nhân của tôi theo Chính sách bảo mật của Shopee.</p>
+            <p class="font-bold mt-3">Bằng việc nhấn "Gửi/Submit", tôi đồng ý cho Amazin thu thập và xử lý dữ liệu cá nhân của tôi theo Chính sách bảo mật của Amazin.</p>
             <div class="mt-2">
                 <input type="checkbox"><span class="ml-2">Tôi đồng ý</span></div>
             </div>

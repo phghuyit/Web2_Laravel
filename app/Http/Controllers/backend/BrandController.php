@@ -5,14 +5,27 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
+use App\Models\Brand;
+
 class BrandController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //
+        $query = Brand::query();
+        $query->select('id','name','description','image','status');
+
+        if($request->filled('name')){
+            $query->where('name','like','%'.$request->input('auth-name').'%');
+        }
+        if($request->filled('id')){
+            $query->where('id',$request->input('auth-id'));
+        }
+        $brands=$query->paginate(5);
+        return view('layouts.backend.pages.brand.index',compact('brands'));
     }
 
     /**
@@ -62,4 +75,5 @@ class BrandController extends Controller
     {
         //
     }
+
 }

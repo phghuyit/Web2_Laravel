@@ -9,18 +9,17 @@
     {{$header??""}}
 </head>
 <body class="flex flex-col min-h-screen">
-
-    @include('layouts.backend.partials.header') 
-
-    <main class="flex-1">
-        <div class="grid grid-cols-[25%_1fr] ">
-            @include('layouts.backend.partials.sidebar')
-            <div class="bg-gray-200">
+    <div class="grid grid-cols-[30%_1fr] transition-all duration-300
+    lg:grid-cols-[25%_1fr]
+    xl:grid-cols-[15%_1fr] ">
+        @include('layouts.backend.partials.sidebar')
+        <div class="bg-gray-200">
+            @include('layouts.backend.partials.header')
+            <main class="flex-1">
                 {{$slot}}
-                 @include('layouts.backend.partials.footer')
-            </div>
+            </main>
         </div>
-    </main>
+    </div>
     {{$footer??""}}
 </body>
 </html>
