@@ -52,7 +52,6 @@ class ProductAdminController extends Controller
                     break;
             }
         }
-
         $products=$query->paginate(5);
 
         $brands=Brand::select('id','name')->get();

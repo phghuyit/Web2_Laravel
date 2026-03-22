@@ -8,7 +8,7 @@
             <a href="#" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
         </div>
 
-        <form method="GET" action="{{ route('product.index') }}">
+        <form method="GET" action="{{ route('brand.index') }}">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input
@@ -21,25 +21,15 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
-
-                <div class="flex-1">
-                    <select name="brand_id" class="border bg-white px-4 py-2 rounded-lg w-full" onchange="this.form.submit()">
-                        <option value="" class="text-sm">Tác giả: All</option>
-                            @foreach ($brands as $brand)
-                                <option value="{{ $brand->id }}" class="text-sm" {{ request('brand_id')== $brand->id?'selected':'' }}>{{ $brand->name }}</option>
-                            @endforeach
-                    </select>
-                </div>
-                <div class="flex-1">
-                    <select name="cat_id" class="border bg-white px-4 py-2 rounded-lg flex-1 w-full" onchange="this.form.submit()">
-                        <option value="" >Thể loại: All</option>
-                        @foreach ($cats as $cat)
-                            <option value="{{ $cat->id }}" class="text-sm" {{ request('cat_id')==$cat->id?'selected':'' }}>{{ $cat->name }}</option>
-                        @endforeach
-                    </select>
-                </div>
                 <div class="border-l border-black h-6 self-center"></div>
-                <a href="{{ route('product.index') }}" class="rounded-lg py-1 px-3 bg-white self-center px-4 py-2">Reset</a>
+                <div class="flex-1">
+                    <select name="sort_by" class="border bg-white px-4 py-2 rounded-lg flex-1 w-full" onchange="this.form.submit()">
+                        <option value="" >Sắp Xếp</option>
+                        <option value="name_asc" {{request('sort_by')=='name_asc'?'selected':''}}>Tên Tăng Dần</option>
+                        <option value="name_desc" {{request('sort_by')=='name_desc'?'selected':''}}>Tên Giảm Dần</option>
+                    </select>
+                </div>
+                <a href="{{ route('brand.index') }}" class="rounded-lg py-1 px-3 bg-white self-center px-4 py-2">Reset</a>
             </div>
         </form>
 
@@ -57,7 +47,7 @@
                 </tr>
             </thead>
             <tbody >
-                @foreach ($products as $product)
+                @foreach ($brands as $product)
                     <tr class="border-t-3 border-gray-200 hover:bg-gray-50 text-center ">
                         <td class="py-3 px-1">{{$product->id}}</td>
                         <td class="py-3 px-1 w-[10%]"><img src="{{$product->image}}" alt="{{$product->name}}" class=""></td>
@@ -82,7 +72,7 @@
             </tbody>
         </table>
         <div class="mt-4 ">
-            {{ $products->links() }}
+            {{ $brands->links() }}
         </div>
     </div>
 </x-backend.layout>

@@ -24,6 +24,20 @@ class BrandController extends Controller
         if($request->filled('id')){
             $query->where('id',$request->input('auth-id'));
         }
+        if($request->filled('sort_by')){
+            $sort=$request->input('sort_by');
+            switch($sort){
+                case 'name_asc':
+                    $query->orderBy('name','asc');
+                    break;
+                case 'name_desc':
+                    $query->orderBy('name','desc');
+                    break;
+                default:
+                    $query->orderBy('created_at','desc');
+                    break;
+            }
+        }
         $brands=$query->paginate(5);
         return view('layouts.backend.pages.brand.index',compact('brands'));
     }
