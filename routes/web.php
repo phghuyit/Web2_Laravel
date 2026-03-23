@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 //BackEndImports
     use App\Http\Controllers\backend\DashboardController;
     use App\Http\Controllers\backend\ProductAdminController;
+    use App\Http\Controllers\backend\CategoriesController;
 
 
 //FrontEndRoutes
@@ -50,4 +51,9 @@ use Illuminate\Support\Facades\Route;
             Route::get('edit/{id}',[BrandController::class,'edit'])->name('admin.brand.edit');
         });
         Route::resource('brand', BrandController::class);
+
+        Route::prefix('cate')->group(function(){
+            Route::get('edit/{id}',[CategoriesController::class,'edit'])->name('cate.edit');
+        });
+        Route::resource('cate', CategoriesController::class);
     });

@@ -5,9 +5,9 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-use App\Models\Brand;
+use App\Models\Category;
 
-class BrandController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,15 +15,14 @@ class BrandController extends Controller
     public function index(Request $request)
     {
         //
-        $query = Brand::query();
-        $query->select('id','name','description','image','status','slug');
+        $query = Category::query();
+        $query->select('id','name','description','parent_id','status','slug');
 
         if($request->filled('name')){
-            $query->where('name','like','%'.$request->input('name').'%')
-            ->orwhere('slug','like','%'.$request->input('name').'%');
+            $query->where('name','like','%'.$request->input('auth-name').'%');
         }
         if($request->filled('id')){
-            $query->where('id',$request->input('id'));
+            $query->where('id',$request->input('auth-id'));
         }
         if($request->filled('sort_by')){
             $sort=$request->input('sort_by');
@@ -39,8 +38,8 @@ class BrandController extends Controller
                     break;
             }
         }
-        $brands=$query->paginate(5);
-        return view('layouts.backend.pages.brand.index',compact('brands'));
+        $cates=$query->paginate(5);
+        return view('layouts.backend.pages.categories.index',compact('cates'));
     }
 
     /**
@@ -90,5 +89,4 @@ class BrandController extends Controller
     {
         //
     }
-
 }

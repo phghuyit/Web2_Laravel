@@ -1,20 +1,20 @@
 <x-backend.layout>
-    <x-slot:title>Sản phẩm</x-slot:title>
+    <x-slot:titlle>Danh mục</x-slot:titlle>
     <div class="p-3
     xl:p-6">
 
         <div class="flex justify-between items-center mt-1 mb-6">
-            <p class="text-xl font-bold uppercase">quản lý tác giả</p>
+            <p class="text-xl font-bold uppercase">quản lý sản phẩm</p>
             <a href="#" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
         </div>
 
-        <form method="GET" action="{{route('brand.index')}}">
+        <form method="GET" action="">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input
                         type="text"
                         name="name"
-                        placeholder="Search Tên Tác Giả"
+                        placeholder="Search Kindle eBooks"
                         class="w-full px-4 py-2 text-black rounded-l-md focus:outline-none bg-white"
                     >
                     <button class="bg-orange-400 hover:bg-orange-500 px-5 rounded-r-md text-black font-semibold">
@@ -22,7 +22,7 @@
                     </button>
                 </div>
                 <div class="border-l border-black h-6 self-center"></div>
-                <a href="{{route('brand.index')}}" class="rounded-lg py-1 px-3 bg-white self-center px-4 py-2">Reset</a>
+                <a href="#" class="rounded-lg py-1 px-3 bg-white self-center px-4 py-2">Reset</a>
             </div>
         </form>
 
@@ -63,7 +63,3 @@
         </div>
     </div>
 </x-backend.layout>
-
-
-
-

@@ -6,16 +6,14 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class ProductCard extends Component
+class Slider extends Component
 {
     /**
      * Create a new component instance.
      */
-    public $product ;
-    public function __construct($product)
+    public function __construct()
     {
         //
-        $this->product=$product;
     }
 
     /**
@@ -23,7 +21,6 @@ class ProductCard extends Component
      */
     public function render(): View|Closure|string
     {
-        
-        return view('components.product-card');
+        return view('components.slider');
     }
 }

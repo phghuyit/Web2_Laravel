@@ -19,7 +19,7 @@
                 Toàn bộ sách
             </a>
 
-            <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
+            <a href="{{ route('cate.index') }}" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
                 <i class="fa-solid fa-layer-group mr-2"></i>
                 Thể loại sách
             </a>
@@ -30,7 +30,7 @@
             </a>
 
         <p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">Users</p>
-            <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
+            <a href="#" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
                 <i class="fa-solid fa-user mr-2"></i>
                 Toàn bộ người dùng
             </a>
@@ -41,7 +41,7 @@
             </a>
 
         <p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">Orders</p>
-            <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
+            <a href="#" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
                 <i class="fa-solid fa-truck-fast mr-2"></i>
                 Toàn bộ đơn hàng
             </a>
