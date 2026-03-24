@@ -25,14 +25,14 @@
                 <form action="" class="">
                     <input type="text" placeholder="example@mail.com" class="border rounded-lg border-[#d3d3d3] w-full mx-auto h-10 p-3">
                 </form>
-                <x-btn content="Tiếp tục"/>
+                <x-ui.btn content="Tiếp tục"/>
                 <div class="border-[0.5px] border-[#d3d3d3] my-3"></div>
                 <p>Sau nhúng login bằng fb,google</p>
             </div>
         </div>
     </main>
     <footer class="border-t border-gray-300 py-6 text-center text-sm text-gray-600">
-    
+
         <div class="space-x-6">
             <a href="#" class="text-blue-600 hover:underline">Conditions of Use</a>
             <a href="#" class="text-blue-600 hover:underline">Privacy Notice</a>

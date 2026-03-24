@@ -27,10 +27,10 @@
                 {{-- <div class="rounded-xl bg-orange-400 p-3 text-center my-3">
                     <a href="#"><p class="">Tiến hành thanh toán</p></a>
                 </div> --}}
-                <x-btn content="Tiến hành thanh toán"/>
+                <x-ui.btn content="Tiến hành thanh toán"/>
             </div>
         </div>
-        
-        
+
+
     </main>
 </x-frontend.layout>

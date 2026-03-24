@@ -5,8 +5,8 @@
     <div class="text-[#0f1111] w-[95%] mx-auto mt-6 grid grid-cols-4 gap-3">
         <div class="object-contain">
            <img src="https://m.media-amazon.com/images/I/71UbrOC7TwL._SY342_.jpg" alt="Judge Stone Bìa Sách" class="justify-self-center">
-           <x-btn content="Đọc thử" bgcolor="border border-[#888c8c]"/>
-           <x-btn content="Nghe audio thử" bgcolor="border border-[#888c8c]"/>
+           <x-ui.btn content="Đọc thử" bgcolor="border border-[#888c8c]"/>
+           <x-ui.btn content="Nghe audio thử" bgcolor="border border-[#888c8c]"/>
         </div>
 
         <div class="col-span-2 space-y-2">
@@ -29,12 +29,12 @@
                 <x-detail-card/>
             </div>
 
-        </div> 
+        </div>
 
         <div class="col-span-3 border-t border-[#d3d3d3] ">
             <p class="text-xl text-bold mt-3 font-bold">Những thể loại liên quan mà bạn có thể thấy thú vị</p>
             <div class="flex flex-col gap-2">
-                
+
             </div>
         </div>
 
@@ -42,7 +42,7 @@
             <div class="border border-[#d3d3d3] p-6">
                 <p class="text-2xl"><span class="text-red-500 hidden lg:inline lg:text-5xl font-light mr-2">-53%</span>133,333 vnđ</p>
                 <p>Giá bìa cứng: <span class="line-through">150000 vnđ</span></p>
-                <x-btn content="Mua ngay"/>
+                <x-ui.btn content="Mua ngay"/>
                 <p class="text-sm">Bằng việc đặt hàng,<span class="font-bold text-sm">bạn đồng ý với <a href="#" class="text-blue-400 underline hover:text-orange-400">Điều khoản dịch vụ và Chính sách quyền riêng tư của chúng tôi</a></span></p>
                 <p class="text-gray-500 text-xs mt-1">Đại diện thương mại bởi Amazin.com Services LLC.</p>
                 <div class="mt-2">
@@ -55,6 +55,6 @@
                 <a href="#" class="hover:text-orange-400 hover:underline"><p class="text-blue-400 hover:text-orange-400">Xem thêm tại đây <i class="fa-solid fa-angle-down"></i></i></p></a>
             </div>
         </div>
-        
+
     </div>
 </x-frontend.layout>

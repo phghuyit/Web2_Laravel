@@ -27,7 +27,7 @@
                         </span>
                         Doanh thu <span class="text-green-500">giảm 3%</span> so với tháng trước
                     </p>
-                    <x-btn content="Xem chi tiết"/>
+                    <x-ui.btn content="Xem chi tiết"/>
                 </div>
             </div>
             <p>//Chỗ này chèn chart</p>

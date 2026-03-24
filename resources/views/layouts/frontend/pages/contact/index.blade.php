@@ -50,7 +50,7 @@ Nhập giá trị ở đây
             </div>
         </div>
         <div class="mt-5 w-[80%] mx-auto flex justify-end">
-            <x-btn content="Gửi"/>
+            <x-ui.btn content="Gửi"/>
         </div>
     </div>
 </x-frontend.layout>

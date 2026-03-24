@@ -1,12 +1,12 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class reportCard extends Component
+class DetailCard extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class reportCard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.report-card');
+        return view('components.ui.detail-card');
     }
 }

@@ -1,19 +1,21 @@
 <?php
 
-namespace App\View\Components;
+namespace App\View\Components\ui;
 
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class detail-card extends Component
+class ProductCard extends Component
 {
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public $product ;
+    public function __construct($product)
     {
         //
+        $this->product=$product;
     }
 
     /**
@@ -21,6 +23,7 @@ class detail-card extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.detail-card');
+
+        return view('components.ui.product-card');
     }
 }
