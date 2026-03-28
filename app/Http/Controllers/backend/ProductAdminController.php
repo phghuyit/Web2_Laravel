@@ -18,10 +18,11 @@ class ProductAdminController extends Controller
         //
         $query= Product::query();
         $query->with(['category:id,name','brand:id,name']);
-        $query->select('id','name','image','price_buy','category_id','brand_id','created_at','qty','status');
-
+        $query->select('id','name','slug','image','price_buy','category_id','brand_id','created_at','qty','status');
+        $query->whereNull('deleted_at');
         if($request->filled('name')){
-            $query->where('name','like','%'.$request->input('name').'%');
+            $query->where([ ['name','like','%'.$request->input('name').'%'],
+                            ['slug','like','%'.$request->input('name').'%']]);
         }
 
         if($request->filled('brand_id')){
@@ -52,7 +53,7 @@ class ProductAdminController extends Controller
                     break;
             }
         }
-        $products=$query->paginate(5);
+        $products=$query->paginate(5)->withQueryString();
 
         $brands=Brand::select('id','name')->get();
         $cats=Category::select('id','name')->get();
@@ -108,5 +109,14 @@ class ProductAdminController extends Controller
     {
         //
 
+    }
+
+    public function trash()
+    {
+        //
+        $products=Product::onlyTrashed()->paginate(5);
+        $brands=Brand::select('id','name')->get();
+        $cats=Category::select('id','name')->get();
+        return view('layouts.backend.pages.product.trash',compact('products','brands','cats'));
     }
 }

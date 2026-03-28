@@ -17,20 +17,18 @@ class CategoriesController extends Controller
         //
         $query = Category::query();
         $query->select('id','name','description','parent_id','status','slug');
-
+        $query->whereNull('deleted_at');
         if($request->filled('name')){
-            $query->where('name','like','%'.$request->input('auth-name').'%');
+            $query->where('name','like','%'.$request->input('name').'%');
         }
-        if($request->filled('id')){
-            $query->where('id',$request->input('auth-id'));
-        }
+
         if($request->filled('sort_by')){
             $sort=$request->input('sort_by');
             switch($sort){
-                case 'name_asc':
+                case 'asc':
                     $query->orderBy('name','asc');
                     break;
-                case 'name_desc':
+                case 'desc':
                     $query->orderBy('name','desc');
                     break;
                 default:
@@ -38,7 +36,7 @@ class CategoriesController extends Controller
                     break;
             }
         }
-        $cates=$query->paginate(5);
+        $cates=$query->paginate(5)->withQueryString();
         return view('layouts.backend.pages.categories.index',compact('cates'));
     }
 

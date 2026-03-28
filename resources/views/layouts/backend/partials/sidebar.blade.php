@@ -49,8 +49,7 @@
                 <i class="fa-solid fa-truck-fast mr-2"></i>
                 Đơn hàng hoàn thành
             </a>
-             <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-red-500 transition ease-in-out duration-500 text-[15px]">
-                <i class="fa-solid fa-truck mr-2"></i>
-                Thùng rác
-            </a>
+        <a href="">
+            <p class="uppercase text-lg text-gray-600 tracking-wider font-semibold hover:text-red-500 transition-[color] duration-300">thùng rác</p>
+        </a>
     </div>

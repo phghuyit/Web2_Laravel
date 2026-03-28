@@ -21,6 +21,13 @@
                         <i class="fa-solid fa-magnifying-glass"></i>
                     </button>
                 </div>
+                <div class="">
+                    <select name="sort_by" class="border bg-white px-4 py-2 rounded-lg flex-1 w-full" onchange="this.form.submit()">
+                        <option value="" >Sắp xếp</option>
+                        <option value="asc" {{ request("sort_by")=="asc"?"selected":"" }}>Tên tăng dần</option>
+                        <option value="desc" {{ request("sort_by")=="desc"?"selected":"" }}>Tên giảm dần</option>
+                    </select>
+                </div>
                 <div class="border-l border-black h-6 self-center"></div>
                 <a href="{{route('brand.index')}}" class="rounded-lg py-1 px-3 bg-white self-center px-4 py-2">Reset</a>
             </div>

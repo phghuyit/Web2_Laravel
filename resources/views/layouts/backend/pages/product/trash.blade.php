@@ -10,7 +10,7 @@
 
         <form method="GET" action="">
             <div class="flex gap-3">
-                <div class="flex flex-2 lg:flex-3">
+                <div class="flex flex-3">
                     <input
                         type="text"
                         name="name"
@@ -39,7 +39,7 @@
                     </select>
                 </div>
                 <div class="border-l border-black h-6 self-center"></div>
-                <div class="flex-1">
+                <div class="">
                     <select name="sort_by" class="border bg-white px-4 py-2 rounded-lg flex-1 w-full" onchange="this.form.submit()">
                         <option value="" >Sắp xếp</option>
                         <option value="name_asc" >Tên tăng dần</option>

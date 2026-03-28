@@ -1,9 +1,9 @@
 <x-backend.layout>
     <div class="grid xl:grid-cols-4 m-3 gap-3 ">
-        <x-report-card></x-report-card>
-        <x-report-card></x-report-card>
-        <x-report-card></x-report-card>
-        <x-report-card></x-report-card>
+        <x-ui.report-card></x-ui.report-card>
+        <x-ui.report-card></x-ui.report-card>
+        <x-ui.report-card></x-ui.report-card>
+        <x-ui.report-card></x-ui.report-card>
     </div>
 
     <div class="border-1 border-[#c8c8c8] rounded-lg m-3 bg-white">
