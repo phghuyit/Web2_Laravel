@@ -1,5 +1,5 @@
 <x-backend.layout>
-    <x-slot:title>Edit Product</x-slot:title>
+    <x-slot:title>Create Product</x-slot:title>
 
     <div class="p-3 xl:p-6">
         <div class="mb-6 flex flex-col gap-2">
@@ -9,38 +9,27 @@
                 </a>
                 <span>Products</span>
                 <span>/</span>
-                <span>Edit Product</span>
+                <span>Create Product</span>
             </div>
-            <h1 class="text-2xl font-bold text-gray-800 capitalize">Chỉnh sửa thông tin sách</h1>
+            <h1 class="text-2xl font-bold text-gray-800 capitalize">Thêm sản phẩm mới</h1>
         </div>
 
         <form
             method="POST"
-            action="{{ isset($product) ? route('product.update', $product->id) : '#' }}"
+            action="{{ route('product.store') }}"
             enctype="multipart/form-data"
             class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-gray-100 xl:p-7"
         >
             @csrf
-            @if (isset($product))
-                @method('PUT')
-            @endif
 
             <div class="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)]">
                 <div class="space-y-5">
                     <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                        <div class="flex aspect-[3/4] items-center justify-center rounded-xl bg-white">
-                            @if (!empty($product?->image))
-                                <img
-                                    src="{{ $product->image }}"
-                                    alt="{{ $product->name ?? 'Product image' }}"
-                                    class="h-full w-full rounded-xl object-cover"
-                                >
-                            @else
-                                <div class="flex h-full w-full flex-col items-center justify-center rounded-xl border border-dashed border-gray-300 text-center text-gray-400">
-                                    <i class="fa-solid fa-book-open text-5xl"></i>
-                                    <p class="mt-3 text-sm font-medium">Preview image</p>
-                                </div>
-                            @endif
+                        <div class="flex aspect-[3/4] items-center justify-center rounded-xl border border-dashed border-gray-300 bg-white text-center text-gray-400">
+                            <div>
+                                <i class="fa-solid fa-book-open text-5xl"></i>
+                                <p class="mt-3 text-sm font-medium">Preview image</p>
+                            </div>
                         </div>
                     </div>
 
@@ -64,34 +53,32 @@
                             id="name"
                             name="name"
                             type="text"
-                            value="{{ old('name', $product->name ?? 'Atomic Habits') }}"
+                            value="{{ old('name') }}"
                             class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                             placeholder="Enter product name"
                         >
                     </div>
 
-
-                        <div>
-                            <label for="brand_id" class="mb-2 block text-sm font-semibold text-gray-700">Tác giả</label>
-                            <select
-                                id="brand_id"
-                                name="brand_id"
-                                class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
-                            >
-                                @if (!empty($brands) && count($brands))
-                                    @foreach ($brands as $brand)
-                                        <option
-                                            value="{{ $brand->id }}"
-                                            {{ (string) old('brand_id', $product->brand_id ?? '') === (string) $brand->id ? 'selected' : '' }}
-                                        >
-                                            {{ $brand->name }}
-                                        </option>
-                                    @endforeach
-                                @else
-                                    <option value="">Paperback</option>
-                                @endif
-                            </select>
-                        </div>
+                    <div>
+                        <label for="brand_id" class="mb-2 block text-sm font-semibold text-gray-700">Tác giả</label>
+                        <select
+                            id="brand_id"
+                            name="brand_id"
+                            class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                        >
+                            <option value="">Chọn tác giả</option>
+                            @if (!empty($brands) && count($brands))
+                                @foreach ($brands as $brand)
+                                    <option
+                                        value="{{ $brand->id }}"
+                                        {{ (string) old('brand_id') === (string) $brand->id ? 'selected' : '' }}
+                                    >
+                                        {{ $brand->name }}
+                                    </option>
+                                @endforeach
+                            @endif
+                        </select>
+                    </div>
 
                     <div class="grid gap-5 md:grid-cols-2">
                         <div>
@@ -100,7 +87,7 @@
                                 id="price_buy"
                                 name="price_buy"
                                 type="text"
-                                value="{{ old('price_buy', $product->price_buy ?? '18.50') }}"
+                                value="{{ old('price_buy') }}"
                                 class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="0.00"
                             >
@@ -112,7 +99,7 @@
                                 id="qty"
                                 name="qty"
                                 type="number"
-                                value="{{ old('qty', $product->qty ?? '120') }}"
+                                value="{{ old('qty') }}"
                                 class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="0"
                             >
@@ -127,24 +114,23 @@
                                 name="category_id"
                                 class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                             >
+                                <option value="">Chọn thể loại</option>
                                 @if (!empty($cats) && count($cats))
                                     @foreach ($cats as $cat)
                                         <option
                                             value="{{ $cat->id }}"
-                                            {{ (string) old('category_id', $product->category_id ?? '') === (string) $cat->id ? 'selected' : '' }}
+                                            {{ (string) old('category_id') === (string) $cat->id ? 'selected' : '' }}
                                         >
                                             {{ $cat->name }}
                                         </option>
                                     @endforeach
-                                @else
-                                    <option value="">Self-Help</option>
                                 @endif
                             </select>
                         </div>
 
                         <div>
                             <label class="mb-2 block text-sm font-semibold text-gray-700">Status</label>
-                            {{-- <label class="mt-3 inline-flex cursor-pointer items-center gap-3">
+                            <label class="mt-3 inline-flex cursor-pointer items-center gap-3">
                                 <span class="relative inline-flex h-7 w-14 items-center rounded-full bg-emerald-500">
                                     <input type="hidden" name="status" value="0">
                                     <input
@@ -152,12 +138,12 @@
                                         name="status"
                                         value="1"
                                         class="peer sr-only"
-                                        {{ old('status', $product->status ?? 1) ? 'checked' : '' }}
+                                        {{ old('status', 1) ? 'checked' : '' }}
                                     >
                                     <span class="absolute left-1 h-5 w-5 rounded-full bg-white transition peer-checked:translate-x-7"></span>
                                 </span>
                                 <span class="font-medium text-gray-700">Active</span>
-                            </label> --}}
+                            </label>
                         </div>
                     </div>
 
@@ -167,9 +153,9 @@
                             id="description"
                             name="description"
                             rows="6"
-                            class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 "
+                            class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                             placeholder="Write a short product description"
-                        >{{ old('description', $product->description ?? 'A proven framework for building better habits. This hands-on book reveals practical strategies for forming good habits, breaking bad ones, and mastering the tiny behaviors that lead to remarkable results over time.') }}</textarea>
+                        >{{ old('description') }}</textarea>
                     </div>
                 </div>
             </div>
@@ -179,7 +165,7 @@
                     type="submit"
                     class="rounded-xl bg-orange-400 px-6 py-3 font-semibold text-white transition hover:bg-orange-500"
                 >
-                    Lưu thay đổi
+                    Tạo sản phẩm
                 </button>
                 <a
                     href="{{ route('product.index') }}"

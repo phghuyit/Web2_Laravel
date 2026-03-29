@@ -84,10 +84,10 @@
                             <td class="py-3 px-1 align-middle">
                                 <div class="flex flex-nowrap gap-2">
                                     <div class="rounded-lg shadow text-sm p-3 hover:bg-gray-100">
-                                        <a href="" > <i class="fa-solid fa-pen"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
+                                        <a href="{{ route("product.edit",$product->id) }}" > <i class="fa-solid fa-pen"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                     </div>
                                     <div class="rounded-lg shadow text-sm p-3 text-red-500 hover:bg-gray-100">
-                                        <a href="#" ><i class="fa-solid fa-trash"></i></a>
+                                        <a href="{{ route("product.destroy",$product->id) }}" ><i class="fa-solid fa-trash"></i></a>
                                     </div>
                                 </div>
                             </td>

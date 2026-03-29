@@ -92,6 +92,11 @@ class ProductAdminController extends Controller
     public function edit(string $id)
     {
         //
+        $product = Product::findOrFail($id);
+        $brands=Brand::select('id','name')->get();
+        $cats=Category::select('id','name')->get();
+
+        return view('layouts.backend.pages.product.edit',compact('product','brands','cats'));
     }
 
     /**
@@ -108,7 +113,11 @@ class ProductAdminController extends Controller
     public function destroy(string $id)
     {
         //
+        $product = Product::findOrFail($id);
 
+        $product->delete();
+
+        return redirect()->route('product.index');
     }
 
     public function trash(Request $request)

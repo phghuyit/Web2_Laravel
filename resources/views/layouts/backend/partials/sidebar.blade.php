@@ -49,7 +49,5 @@
                 <i class="fa-regular fa-truck mr-2"></i>
                 Đơn hàng hoàn thành
             </a>
-        <a href="">
-            <p class="uppercase text-lg text-gray-600 tracking-wider font-semibold hover:text-red-500 transition-[color] duration-300">thùng rác</p>
-        </a>
+        
     </div>
