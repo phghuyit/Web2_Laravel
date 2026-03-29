@@ -21,7 +21,7 @@
 
             <a href="{{ route('cate.index') }}" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
                 <i class="fa-solid fa-layer-group mr-2"></i>
-                Thể loại sách
+                Thể loại
             </a>
 
             <a href="{{ route('brand.index') }}" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
@@ -46,7 +46,7 @@
                 Toàn bộ đơn hàng
             </a>
             <a href="./index-1.html" class="mb-3 capitalize font-medium  hover:text-teal-600 transition ease-in-out duration-500 text-[15px]">
-                <i class="fa-solid fa-truck-fast mr-2"></i>
+                <i class="fa-regular fa-truck mr-2"></i>
                 Đơn hàng hoàn thành
             </a>
         <a href="">

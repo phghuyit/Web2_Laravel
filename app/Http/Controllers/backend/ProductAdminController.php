@@ -111,12 +111,33 @@ class ProductAdminController extends Controller
 
     }
 
-    public function trash()
+    public function trash(Request $request)
     {
         //
-        $products=Product::onlyTrashed()->paginate(5);
-        $brands=Brand::select('id','name')->get();
-        $cats=Category::select('id','name')->get();
-        return view('layouts.backend.pages.product.trash',compact('products','brands','cats'));
+        $query=Product::onlyTrashed();
+        $query->with(['category:id,name','brand:id,name']);
+        $query->select('id','name','slug','image','price_buy','category_id','brand_id','created_at','qty','status');
+
+        if($request->filled('name')){
+            $query->where([ ['name','like','%'.$request->input('name').'%'],
+                            ['slug','like','%'.$request->input('name').'%']]);
+        }
+
+        if($request->filled('sort_by')){
+            $sort=$request->input('sort_by');
+            switch($sort){
+                case 'name_asc':
+                    $query->orderBy('name','asc');
+                    break;
+                case 'name_desc':
+                    $query->orderBy('name','desc');
+                    break;
+                default:
+                    $query->orderBy('created_at','desc');
+                    break;
+            }
+        }
+        $products=$query->paginate(5)->withQueryString();
+        return view('layouts.backend.pages.product.trash',compact('products'));
     }
 }

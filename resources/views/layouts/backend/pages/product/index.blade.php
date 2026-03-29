@@ -5,7 +5,11 @@
 
         <div class="flex justify-between items-center mt-1 mb-6">
             <p class="text-xl font-bold uppercase">quản lý sản phẩm</p>
-            <a href="#" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
+            <div>
+                <a href="#" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
+                <a href="{{ route("product.trash") }}" class="rounded-lg py-1 px-3 bg-red-500 font-semibold capitalize text-white"><i class="fa-solid fa-trash mr-1"></i>Thùng rác</a>
+            </div>
+
         </div>
 
         <form method="GET" action="">
@@ -42,10 +46,10 @@
                 <div class="flex-1">
                     <select name="sort_by" class="border bg-white px-4 py-2 rounded-lg flex-1 w-full" onchange="this.form.submit()">
                         <option value="" >Sắp xếp</option>
-                        <option value="name_asc" >Tên tăng dần</option>
-                        <option value="name_desc" >Tên giảm dần</option>
-                        <option value="price_asc" >Giá tăng dần</option>
-                        <option value="price_desc" >Giá giảm dần</option>
+                        <option value="name_asc" {{ request("sort_by")=="name_asc"?"selected":" " }}>Tên tăng dần</option>
+                        <option value="name_desc"  {{ request("sort_by")=="name_desc"?"selected":" " }}>Tên giảm dần</option>
+                        <option value="price_asc"  {{ request("sort_by")=="price_asc"?"selected":" " }}>Giá tăng dần</option>
+                        <option value="price_desc"  {{ request("sort_by")=="price_desc"?"selected":" " }}>Giá giảm dần</option>
                     </select>
                 </div>
                 <a href="{{route('product.index')}}" class="rounded-lg py-1 px-3 bg-white self-center px-4 py-2">Reset</a>

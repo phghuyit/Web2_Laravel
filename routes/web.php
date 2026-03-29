@@ -44,7 +44,7 @@ use Illuminate\Support\Facades\Route;
 
         Route::prefix('product')->group(function(){
             Route::get('edit/{id}',[ProductAdminController::class,'edit'])->name('admin.product.edit');
-            Route::get('/trash',[ProductAdminController::class,'trash'])->name('admin.product.trash');
+            Route::get('/trash',[ProductAdminController::class,'trash'])->name('product.trash');
         });
         Route::resource('product', ProductAdminController::class);
 

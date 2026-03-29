@@ -4,8 +4,7 @@
     xl:p-6">
 
         <div class="flex justify-between items-center mt-1 mb-6">
-            <p class="text-xl font-bold uppercase">quản lý sản phẩm</p>
-            <a href="#" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
+            <p class="text-xl font-bold uppercase">Thùng rác sản phẩm</p>
         </div>
 
         <form method="GET" action="">
@@ -22,33 +21,23 @@
                     </button>
                 </div>
 
+
                 <div class="flex-1">
-                    <select name="brand_id" class="border bg-white px-4 py-2 rounded-lg w-full" onchange="this.form.submit()">
-                        <option value="" class="text-sm">Tác giả: All</option>
-                            @foreach ($brands as $brand)
-                                <option value="{{ $brand->id }}" class="text-sm" {{request('brand_id')==$brand->id?'selected':''}}>{{ $brand->name }}</option >
-                            @endforeach
-                    </select>
-                </div>
-                <div class="flex-1">
-                    <select name="cat_id" class="border bg-white px-4 py-2 rounded-lg flex-1 w-full" onchange="this.form.submit()">
-                        <option value="" >Thể loại: All</option>
-                        @foreach ($cats as $cat)
-                            <option value="{{ $cat->id }}" class="text-sm" {{request('cat_id')==$cat->id?'selected':''}}>{{ $cat->name }} {{request('cat_id')==$cat->id?'selected':''}}</option>
-                        @endforeach
+                    <select name="status" class="border bg-white px-4 py-2 rounded-lg flex-1 w-full" onchange="this.form.submit()">
+                        <option value="" >Status</option>
+                        <option value="0" {{ request("status")=="0"?"selected":" " }}>Ẩn</option>
+                        <option value="1" {{ request("status")=="1"?"selected":" " }}>Hiện</option>
                     </select>
                 </div>
                 <div class="border-l border-black h-6 self-center"></div>
                 <div class="">
                     <select name="sort_by" class="border bg-white px-4 py-2 rounded-lg flex-1 w-full" onchange="this.form.submit()">
                         <option value="" >Sắp xếp</option>
-                        <option value="name_asc" >Tên tăng dần</option>
-                        <option value="name_desc" >Tên giảm dần</option>
-                        <option value="price_asc" >Giá tăng dần</option>
-                        <option value="price_desc" >Giá giảm dần</option>
+                        <option value="name_asc" {{ request("sort_by")=="name_asc"?"selected":" " }}>Tên tăng dần</option>
+                        <option value="name_desc" {{ request("sort_by")=="name_desc"?"selected":" " }}>Tên giảm dần</option>
                     </select>
                 </div>
-                <a href="{{route('product.index')}}" class="rounded-lg py-1 px-3 bg-white self-center px-4 py-2">Reset</a>
+                <a href="{{route('product.trash')}}" class="rounded-lg py-1 px-3 bg-white self-center px-4 py-2">Reset</a>
             </div>
         </form>
         <div class="flex-auto">
@@ -67,7 +56,7 @@
                     </tr>
                 </thead>
                 <tbody >
-                    @foreach ($products as $product)
+                    @forelse ($products as $product)
                         <tr class="border-t border-gray-200 hover:bg-gray-50 text-center ">
                             <td class="py-3 px-1">{{$product->id}}</td>
                             <td class="py-3 px-1 w-[10%]"><img src="{{$product->image}}" alt="{{$product->name}}" class=""></td>
@@ -80,7 +69,7 @@
                             <td class="py-3 px-1 align-middle">
                                 <div class="flex flex-nowrap gap-2">
                                     <div class="rounded-lg shadow text-sm p-3 hover:bg-gray-100">
-                                        <a href="" > <i class="fa-solid fa-pen"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
+                                        <a href="" > <i class="fa-solid fa-arrows-rotate"></i><span class="hidden ml-1 xl:inline">Khôi phục</span></a>
                                     </div>
                                     <div class="rounded-lg shadow text-sm p-3 text-red-500 hover:bg-gray-100">
                                         <a href="#" ><i class="fa-solid fa-trash"></i></a>
@@ -88,7 +77,12 @@
                                 </div>
                             </td>
                         </tr>
-                    @endforeach
+                    @empty
+                        <tr>
+                            <td class="text-center p-6" colspan="9">Danh sách sản phẩm trong thùng rác trống</td>
+                        </tr>
+
+                    @endforelse
                 </tbody>
             </table>
         </div>
