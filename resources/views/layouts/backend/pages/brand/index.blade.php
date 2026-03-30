@@ -5,10 +5,14 @@
 
         <div class="flex justify-between items-center mt-1 mb-6">
             <p class="text-xl font-bold uppercase">quản lý tác giả</p>
-            <a href="#" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
+            <div>
+                <a href="{{ route("brand.create") }}" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm Tác Giả</a>
+                <a href="{{ route("brand.trash") }}" class="rounded-lg py-1 px-3 bg-red-500 font-semibold capitalize text-white"><i class="fa-solid fa-trash mr-1"></i>Thùng rác</a>
+            </div>
+
         </div>
 
-        <form method="GET" action="{{route('brand.index')}}">
+        <form method="GET" action="">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input
@@ -16,6 +20,7 @@
                         name="name"
                         placeholder="Search Tên Tác Giả"
                         class="w-full px-4 py-2 text-black rounded-l-md focus:outline-none bg-white"
+                        value="{{ request("name") }}"
                     >
                     <button class="bg-orange-400 hover:bg-orange-500 px-5 rounded-r-md text-black font-semibold">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -54,11 +59,15 @@
                         <td class="py-3 px-1 align-middle">
                             <div class="flex flex-nowrap gap-2">
                                 <div class="rounded-lg shadow text-sm p-3 hover:bg-gray-100">
-                                    <a href="" > <i class="fa-solid fa-pen"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
+                                    <a href="{{ route("brand.edit",$brand->id) }}" > <i class="fa-solid fa-pen"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                 </div>
-                                <div class="rounded-lg shadow text-sm p-3 text-red-500 hover:bg-gray-100">
-                                    <a href="#" ><i class="fa-solid fa-trash"></i></a>
-                                </div>
+                                <form action="{{ route("brand.destroy",$brand->id) }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <div class="rounded-lg shadow text-sm p-3 text-red-500 hover:bg-gray-100">
+                                            <button type="submit"><i class="fa-solid fa-trash text-red-600"></i></button>
+                                        </div>
+                                    </form>
                             </div>
                         </td>
                     </tr>

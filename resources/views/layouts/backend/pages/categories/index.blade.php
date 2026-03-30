@@ -5,7 +5,11 @@
 
         <div class="flex justify-between items-center mt-1 mb-6">
             <p class="text-xl font-bold uppercase">quản lý thể loại sách</p>
-            <a href="#" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
+            <div>
+                <a href="{{ route("cate.create") }}" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm thể loại</a>
+                <a href="{{ route("cate.trash") }}" class="rounded-lg py-1 px-3 bg-red-500 font-semibold capitalize text-white"><i class="fa-solid fa-trash mr-1"></i>Thùng rác</a>
+            </div>
+
         </div>
 
         <form method="GET" action="">
@@ -40,7 +44,10 @@
                     <th class="py-1 px-3 text-left">Image</th>
                     <th class="py-1 px-3 text-center">Tên Thể Loại</th>
                     <th class="py-1 px-3 text-center">Slug</th>
+                    <th class="py-1 px-3 text-center">Parent ID</th>
+                    <th class="py-1 px-3 text-center">Sort Order</th>
                     <th class="py-1 px-3 text-left">Status</th>
+                    <th class="py-1 px-3 text-left">Action</th>
                 </tr>
             </thead>
             <tbody >
@@ -50,15 +57,21 @@
                         <td class="py-3 px-1 w-[10%]"><img src="{{$cate->image}}" alt="{{$cate->slug}}" class=""></td>
                         <td class="py-3 px-1">{{$cate->name}}</td>
                         <td class="py-3 px-1">{{$cate->slug}}</td>
+                        <td class="py-3 px-1">{{$cate->parent_id}}</td>
+                        <td class="py-3 px-1">{{$cate->sort_order}}</td>
                         <td class="py-3 px-1">{{$cate->status}}</td>
                         <td class="py-3 px-1 align-middle">
                             <div class="flex flex-nowrap gap-2">
                                 <div class="rounded-lg shadow text-sm p-3 hover:bg-gray-100">
-                                    <a href="" > <i class="fa-solid fa-pen"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
+                                    <a href="{{ route("cate.edit",$cate->id) }}" > <i class="fa-solid fa-pen"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                 </div>
-                                <div class="rounded-lg shadow text-sm p-3 text-red-500 hover:bg-gray-100">
-                                    <a href="#" ><i class="fa-solid fa-trash"></i></a>
-                                </div>
+                                <form action="{{ route("cate.destroy",$cate->id) }}" method="post">
+                                    @method('DELETE')
+                                    @csrf
+                                    <div class="rounded-lg shadow text-sm p-3 text-red-500 hover:bg-gray-100">
+                                        <button type="submit"><i class="fa-solid fa-trash text-red-600"></i></button>
+                                    </div>
+                                </form>
                             </div>
                         </td>
                     </tr>

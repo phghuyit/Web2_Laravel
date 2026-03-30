@@ -1,6 +1,13 @@
 <?php
 
+use App\Http\Controllers\backend\BannerController;
 use App\Http\Controllers\backend\BrandController;
+use App\Http\Controllers\backend\ContactController as ContactAdminController;
+use App\Http\Controllers\backend\MenuController;
+use App\Http\Controllers\backend\OrderController;
+use App\Http\Controllers\backend\PostController;
+use App\Http\Controllers\backend\TopicController;
+use App\Http\Controllers\backend\UserController as UserAdminController;
 use Illuminate\Support\Facades\Route;
 //FrontEndImports
     use App\Http\Controllers\frontend\HomeController;
@@ -50,11 +57,55 @@ use Illuminate\Support\Facades\Route;
 
         Route::prefix('brand')->group(function(){
             Route::get('edit/{id}',[BrandController::class,'edit'])->name('admin.brand.edit');
+            Route::get('/trash',[BrandController::class,'trash'])->name('brand.trash');
         });
         Route::resource('brand', BrandController::class);
 
         Route::prefix('cate')->group(function(){
             Route::get('edit/{id}',[CategoriesController::class,'edit'])->name('cate.edit');
+            Route::get('/trash',[CategoriesController::class,'trash'])->name('cate.trash');
         });
         Route::resource('cate', CategoriesController::class);
+
+        Route::prefix('contact')->group(function(){
+            Route::get('edit/{id}',[ContactAdminController::class,'edit'])->name('contact.edit');
+            Route::get('/trash',[ContactAdminController::class,'trash'])->name('contact.trash');
+        });
+        Route::resource('contact', ContactAdminController::class);
+
+        Route::prefix('menu')->group(function(){
+            Route::get('edit/{id}',[MenuController::class,'edit'])->name('menu.edit');
+            Route::get('/trash',[MenuController::class,'trash'])->name('menu.trash');
+        });
+        Route::resource('menu', MenuController::class);
+
+        Route::prefix('order')->group(function(){
+            Route::get('edit/{id}',[OrderController::class,'edit'])->name('order.edit');
+            Route::get('/trash',[OrderController::class,'trash'])->name('order.trash');
+        });
+        Route::resource('order', OrderController::class);
+
+        Route::prefix('post')->group(function(){
+            Route::get('edit/{id}',[PostController::class,'edit'])->name('post.edit');
+            Route::get('/trash',[PostController::class,'trash'])->name('post.trash');
+        });
+        Route::resource('post', PostController::class);
+
+        Route::prefix('topic')->group(function(){
+            Route::get('edit/{id}',[TopicController::class,'edit'])->name('topic.edit');
+            Route::get('/trash',[TopicController::class,'trash'])->name('topic.trash');
+        });
+        Route::resource('topic', TopicController::class);
+
+        Route::prefix('user')->group(function(){
+            Route::get('edit/{id}',[UserAdminController::class,'edit'])->name('user.edit');
+            Route::get('/trash',[UserAdminController::class,'trash'])->name('user.trash');
+        });
+        Route::resource('user', UserAdminController::class);
+
+        Route::prefix('banner')->group(function(){
+            Route::get('edit/{id}',[BannerController::class,'edit'])->name('banner.edit');
+            Route::get('/trash',[BannerController::class,'trash'])->name('banner.trash');
+        });
+        Route::resource('banner', BannerController::class);
     });

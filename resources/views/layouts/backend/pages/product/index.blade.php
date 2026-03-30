@@ -6,7 +6,7 @@
         <div class="flex justify-between items-center mt-1 mb-6">
             <p class="text-xl font-bold uppercase">quản lý sản phẩm</p>
             <div>
-                <a href="#" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
+                <a href="{{ route("product.create") }}" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white"><i class="fa-solid fa-plus mr-1"></i>Thêm sách</a>
                 <a href="{{ route("product.trash") }}" class="rounded-lg py-1 px-3 bg-red-500 font-semibold capitalize text-white"><i class="fa-solid fa-trash mr-1"></i>Thùng rác</a>
             </div>
 
@@ -20,6 +20,7 @@
                         name="name"
                         placeholder="Search Kindle eBooks"
                         class="w-full px-4 py-2 text-black rounded-l-md focus:outline-none bg-white"
+                        value="{{ request("name") }}"
                     >
                     <button class="bg-orange-400 hover:bg-orange-500 px-5 rounded-r-md text-black font-semibold">
                         <i class="fa-solid fa-magnifying-glass"></i>
@@ -86,9 +87,13 @@
                                     <div class="rounded-lg shadow text-sm p-3 hover:bg-gray-100">
                                         <a href="{{ route("product.edit",$product->id) }}" > <i class="fa-solid fa-pen"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                     </div>
-                                    <div class="rounded-lg shadow text-sm p-3 text-red-500 hover:bg-gray-100">
-                                        <a href="{{ route("product.destroy",$product->id) }}" ><i class="fa-solid fa-trash"></i></a>
-                                    </div>
+                                    <form action="{{ route("product.destroy",$product->id) }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <div class="rounded-lg shadow text-sm p-3 text-red-500 hover:bg-gray-100">
+                                            <button type="submit"><i class="fa-solid fa-trash text-red-600"></i></button>
+                                        </div>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

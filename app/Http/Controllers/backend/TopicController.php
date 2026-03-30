@@ -3,28 +3,24 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Topic;
 use Illuminate\Http\Request;
 
-use App\Models\Category;
-
-class CategoriesController extends Controller
+class TopicController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
-        $query = Category::query();
-        $query->select('id','name','description','image','parent_id','sort_order','status','slug');
+        $query = Topic::query();
+        $query->select('id', 'name', 'slug', 'sort_order', 'description', 'status');
         $query->whereNull('deleted_at');
+
         if($request->filled('name')){
             $query->where([ ['name','like','%'.$request->input('name').'%'],
                             ['slug','like','%'.$request->input('name').'%']]);
         }
 
         if($request->filled('sort_by')){
-            $sort=$request->input('sort_by');
-            switch($sort){
+            switch($request->input('sort_by')){
                 case 'asc':
                     $query->orderBy('name','asc');
                     break;
@@ -36,76 +32,63 @@ class CategoriesController extends Controller
                     break;
             }
         }
-        $cates=$query->paginate(5)->withQueryString();
-        return view('layouts.backend.pages.categories.index',compact('cates'));
+
+        $topics = $query->paginate(5)->withQueryString();
+        return view('layouts.backend.pages.topic.index', compact('topics'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('layouts.backend.pages.categories.create');
+        return view('layouts.backend.pages.topic.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+
+
+        return redirect()->route('topic.index');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(string $id)
     {
-        //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(string $id)
     {
-        $cate = Category::findOrFail($id);
-        return view('layouts.backend.pages.categories.edit', compact('cate'));
+        $topic = Topic::findOrFail($id);
+        return view('layouts.backend.pages.topic.edit', compact('topic'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, string $id)
     {
-        //
+        
+
+        return redirect()->route('topic.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(string $id)
     {
-        $cate = Category::findOrFail($id);
-        $cate->delete();
+        $topic = Topic::findOrFail($id);
+        $topic->delete();
 
-        return redirect()->route('cate.trash');
+        return redirect()->route('topic.trash');
     }
-    public function trash(Request $request){
-        $query = Category::onlyTrashed()->select('id','name','description','image','parent_id','sort_order','status','slug');
+
+    public function trash(Request $request)
+    {
+        $query = Topic::onlyTrashed()->select('id', 'name', 'slug', 'sort_order', 'description', 'status');
 
         if($request->filled('name')){
             $query->where([ ['name','like','%'.$request->input('name').'%'],
                             ['slug','like','%'.$request->input('name').'%']]);
         }
 
-        if ($request->filled('status')) {
+        if($request->filled('status')){
             $query->where('status', $request->input('status'));
         }
 
         if($request->filled('sort_by')){
-            $sort=$request->input('sort_by');
-            switch($sort){
+            switch($request->input('sort_by')){
                 case 'asc':
                     $query->orderBy('name','asc');
                     break;
@@ -118,7 +101,7 @@ class CategoriesController extends Controller
             }
         }
 
-        $cates = $query->paginate(5)->withQueryString();
-        return view('layouts.backend.pages.categories.trash', compact('cates'));
+        $topics = $query->paginate(5)->withQueryString();
+        return view('layouts.backend.pages.topic.trash', compact('topics'));
     }
 }

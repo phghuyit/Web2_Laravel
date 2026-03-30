@@ -1,5 +1,5 @@
 
-    <div class="flex flex-col space-y-2 p-6 border-r relative min-h-screen">
+    <div class="flex flex-col space-y-2 p-6 border-r min-h-screen overflow-y-auto sticky">
         <p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">homes</p>
 
             <a href="./index.html" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
@@ -30,7 +30,7 @@
             </a>
 
         <p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">Users</p>
-            <a href="#" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
+            <a href="{{ route("user.index") }}" class="mb-3 capitalize font-medium  hover:text-orange-400 transition ease-in-out duration-500 text-[15px]">
                 <i class="fa-solid fa-user mr-2"></i>
                 Toàn bộ người dùng
             </a>
@@ -49,5 +49,11 @@
                 <i class="fa-regular fa-truck mr-2"></i>
                 Đơn hàng hoàn thành
             </a>
-        
+        <a href="{{ route("banner.index") }}"><p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">Banner</p></a>
+        <a href="{{ route("contact.index") }}"><p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">Contact</p></a>
+        <a href="{{ route("menu.index") }}"><p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">Menu</p></a>
+        <a href="{{ route("order.index") }}"><p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">Order</p></a>
+        <a href="{{ route("post.index") }}"><p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">post</p></a>
+        <a href="{{ route("topic.index") }}"><p class="uppercase text-lg text-gray-600 tracking-wider font-semibold">topic</p></a>
+
     </div>

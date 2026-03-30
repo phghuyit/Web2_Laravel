@@ -22,11 +22,11 @@ return new class extends Migration
             $table->float('price_buy');
             $table->float('price_sale')->nullable();
 
-            $table->string('image',1000);
+            $table->string('image',1000)->nullable();
 
             $table->unsignedInteger('qty');
 
-            $table->mediumText('detail');
+            $table->mediumText('detail')->nullable();
 
             $table->text('description')->nullable();
 

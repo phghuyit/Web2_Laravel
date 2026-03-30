@@ -1,12 +1,13 @@
 <div class="flex flex-col shadow rounded-[5px] p-6 text-lg ">
     <!-- Be present above all else. - Naval Ravikant -->
+    {{-- {{ dd($product) }} --}}
     <div class="self-center h-64">
         <img src="{{ $product->image }}" alt="Bìa sách" class="object-contain max-h-full">
     </div>
 
     <div class="mt-6 mb-12">
         <p class="font-semibold">{{$product->name}}</p>
-        <p class="">{{$product->brand->name}}</p>
+        {{-- <p class="">{{$product->brand->name}}</p> --}}
         <p class="text-red-400"><span class="font-semibold">{{number_format($product->price_buy)}} </span>vnđ</p>
     </div>
 

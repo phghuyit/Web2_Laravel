@@ -1,0 +1,101 @@
+<x-backend.layout>
+    <x-slot:title>Category Trash</x-slot:title>
+
+    <div class="p-3 xl:p-6">
+        <div class="mt-1 mb-6 flex items-center justify-between">
+            <p class="text-xl font-bold uppercase">Thung rac the loai sach</p>
+        </div>
+
+        <form method="GET" action="">
+            <div class="flex gap-3">
+                <div class="flex flex-3">
+                    <input
+                        type="text"
+                        name="name"
+                        placeholder="Search category"
+                        class="w-full rounded-l-md bg-white px-4 py-2 text-black focus:outline-none"
+                        value="{{ request('name') }}"
+                    >
+                    <button class="rounded-r-md bg-orange-400 px-5 font-semibold text-black hover:bg-orange-500">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                </div>
+
+                <div class="flex-1">
+                    <select name="status" class="w-full flex-1 rounded-lg border bg-white px-4 py-2" onchange="this.form.submit()">
+                        <option value="">Status</option>
+                        <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Inactive</option>
+                        <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Active</option>
+                    </select>
+                </div>
+                <div class="h-6 self-center border-l border-black"></div>
+                <div>
+                    <select name="sort_by" class="w-full flex-1 rounded-lg border bg-white px-4 py-2" onchange="this.form.submit()">
+                        <option value="">Sap xep</option>
+                        <option value="asc" {{ request('sort_by') == 'asc' ? 'selected' : '' }}>Ten tang dan</option>
+                        <option value="desc" {{ request('sort_by') == 'desc' ? 'selected' : '' }}>Ten giam dan</option>
+                    </select>
+                </div>
+                <a href="{{ route('cate.trash') }}" class="self-center rounded-lg bg-white px-4 py-2">Reset</a>
+            </div>
+        </form>
+
+        <div class="flex-auto">
+            <div class="overflow-x-auto">
+                <table class="mt-3 w-full border-collapse rounded-lg bg-white">
+                    <thead>
+                        <tr>
+                            <th class="px-3 py-1 text-center">ID</th>
+                            <th class="px-3 py-1 text-left">Image</th>
+                            <th class="px-3 py-1 text-center">Category Name</th>
+                            <th class="px-3 py-1 text-center">Slug</th>
+                            <th class="px-3 py-1 text-center">Parent ID</th>
+                            <th class="px-3 py-1 text-center">Sort Order</th>
+                            <th class="px-3 py-1 text-center whitespace-nowrap">Status</th>
+                            <th class="px-3 py-1 text-center">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @forelse ($cates as $cate)
+                            <tr class="border-t border-gray-200 text-center hover:bg-gray-50">
+                                <td class="px-1 py-3">{{ $cate->id }}</td>
+                                <td class="w-[10%] px-1 py-3">
+                                    @if ($cate->image)
+                                        <img src="{{ $cate->image }}" alt="{{ $cate->name }}" class="h-14 w-14 rounded object-cover">
+                                    @else
+                                        <div class="mx-auto flex h-14 w-14 items-center justify-center rounded bg-gray-100 text-gray-400">
+                                            <i class="fa-solid fa-book-open"></i>
+                                        </div>
+                                    @endif
+                                </td>
+                                <td class="px-1 py-3">{{ $cate->name }}</td>
+                                <td class="px-1 py-3">{{ $cate->slug }}</td>
+                                <td class="px-1 py-3">{{ $cate->parent_id }}</td>
+                                <td class="px-1 py-3">{{ $cate->sort_order }}</td>
+                                <td class="px-1 py-3">{{ $cate->status }}</td>
+                                <td class="align-middle px-1 py-3">
+                                    <div class="flex flex-nowrap gap-2">
+                                        <div class="rounded-lg p-3 text-sm shadow hover:bg-gray-100">
+                                            <a href="#"><i class="fa-solid fa-arrows-rotate"></i><span class="ml-1 hidden xl:inline">Khoi phuc</span></a>
+                                        </div>
+                                        <div class="rounded-lg p-3 text-sm text-red-500 shadow hover:bg-gray-100">
+                                            <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td class="p-6 text-center" colspan="8">Danh sach the loai trong thung rac rong</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-4">
+            {{ $cates->links() }}
+        </div>
+    </div>
+</x-backend.layout>

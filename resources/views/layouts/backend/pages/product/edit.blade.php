@@ -31,7 +31,7 @@
                         <div class="flex aspect-[3/4] items-center justify-center rounded-xl bg-white">
                             @if (!empty($product?->image))
                                 <img
-                                    src="{{ $product->image }}"
+                                    src="{{ asset('storage/' . $product->image) }}"
                                     alt="{{ $product->name ?? 'Product image' }}"
                                     class="h-full w-full rounded-xl object-cover"
                                 >

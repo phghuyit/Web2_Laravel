@@ -3,41 +3,47 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Banner;
 use Illuminate\Http\Request;
 
-use App\Models\Category;
-
-class CategoriesController extends Controller
+class BannerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request)
     {
-        $query = Category::query();
-        $query->select('id','name','description','image','parent_id','sort_order','status','slug');
+        //
+        $query = Banner::query();
+        $query->select('id','name','description','link','sort_order','position','image','status');
         $query->whereNull('deleted_at');
+
         if($request->filled('name')){
-            $query->where([ ['name','like','%'.$request->input('name').'%'],
-                            ['slug','like','%'.$request->input('name').'%']]);
+            $query->where('name','like','%'.$request->input('name').'%');
         }
 
         if($request->filled('sort_by')){
             $sort=$request->input('sort_by');
             switch($sort){
-                case 'asc':
+                case 'name_asc':
                     $query->orderBy('name','asc');
                     break;
-                case 'desc':
+                case 'name_desc':
                     $query->orderBy('name','desc');
+                    break;
+                case 'sort_order_asc':
+                    $query->orderBy('sort_order','asc');
+                    break;
+                case 'sort_order_desc':
+                    $query->orderBy('sort_order','desc');
                     break;
                 default:
                     $query->orderBy('created_at','desc');
                     break;
             }
         }
-        $cates=$query->paginate(5)->withQueryString();
-        return view('layouts.backend.pages.categories.index',compact('cates'));
+        $banners=$query->paginate(5)->withQueryString();
+        return view('layouts.backend.pages.banner.index',compact('banners'));
     }
 
     /**
@@ -45,7 +51,8 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('layouts.backend.pages.categories.create');
+        //
+        return view("layouts.backend.pages.banner.create");
     }
 
     /**
@@ -69,8 +76,9 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        $cate = Category::findOrFail($id);
-        return view('layouts.backend.pages.categories.edit', compact('cate'));
+        //
+        $banner = Banner::findOrFail($id);
+        return view('layouts.backend.pages.banner.edit', compact('banner'));
     }
 
     /**
@@ -86,17 +94,19 @@ class CategoriesController extends Controller
      */
     public function destroy(string $id)
     {
-        $cate = Category::findOrFail($id);
-        $cate->delete();
+        //
+        $banner = Banner::findOrFail($id);
 
-        return redirect()->route('cate.trash');
+        $banner->delete();
+
+        return redirect()->route('banner.trash');
     }
+
     public function trash(Request $request){
-        $query = Category::onlyTrashed()->select('id','name','description','image','parent_id','sort_order','status','slug');
+        $query = Banner::onlyTrashed()->select('id','name','description','link','sort_order','position','image','status');
 
         if($request->filled('name')){
-            $query->where([ ['name','like','%'.$request->input('name').'%'],
-                            ['slug','like','%'.$request->input('name').'%']]);
+            $query->where('name','like','%'.$request->input('name').'%');
         }
 
         if ($request->filled('status')) {
@@ -106,11 +116,17 @@ class CategoriesController extends Controller
         if($request->filled('sort_by')){
             $sort=$request->input('sort_by');
             switch($sort){
-                case 'asc':
+                case 'name_asc':
                     $query->orderBy('name','asc');
                     break;
-                case 'desc':
+                case 'name_desc':
                     $query->orderBy('name','desc');
+                    break;
+                case 'sort_order_asc':
+                    $query->orderBy('sort_order','asc');
+                    break;
+                case 'sort_order_desc':
+                    $query->orderBy('sort_order','desc');
                     break;
                 default:
                     $query->orderBy('created_at','desc');
@@ -118,7 +134,7 @@ class CategoriesController extends Controller
             }
         }
 
-        $cates = $query->paginate(5)->withQueryString();
-        return view('layouts.backend.pages.categories.trash', compact('cates'));
+        $banners = $query->paginate(5)->withQueryString();
+        return view('layouts.backend.pages.banner.trash', compact('banners'));
     }
 }

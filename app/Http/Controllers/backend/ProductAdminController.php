@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Http\Requests\StoreProductRequest;
+use Illuminate\Support\Str;
 
 class ProductAdminController extends Controller
 {
@@ -49,7 +51,7 @@ class ProductAdminController extends Controller
                     $query->orderBy('name','desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('id','asc');
                     break;
             }
         }
@@ -68,14 +70,41 @@ class ProductAdminController extends Controller
     public function create()
     {
         //
+        $brands=Brand::select('id','name')->get();
+        $cats=Category::select('id','name')->get();
+        return view("layouts.backend.pages.product.create",compact('brands','cats'));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
         //
+        $product = new Product();
+        $slug = Str::of($request->name)->slug('-');
+        $product->name=$request->name;
+        $product->slug=$slug;
+
+        if($request->has("image")){
+            $file = $request->file("image");
+            $filename = $slug.'_'.$file->getClientOriginalName();
+            $path= $file->storeAs('products',$filename,'public');
+            $product->image=$path;
+        }
+        $product->brand_id=$request->brand_id;
+        $product->category_id=$request->category_id;
+        $product->price_buy=$request->price_buy;
+
+        $product->qty=$request->qty;
+        if($request->has("description")){
+            $product->description=$request->description;
+        }
+        // $product->created_by=Auth::id()??1;
+        $product->status=$request->status;
+        $product->created_at=date('Y-m-d H:i:s');
+        $product->save();
+        return redirect()-> route("product.index");
     }
 
     /**
@@ -117,7 +146,7 @@ class ProductAdminController extends Controller
 
         $product->delete();
 
-        return redirect()->route('product.index');
+        return redirect()->route('product.trash');
     }
 
     public function trash(Request $request)

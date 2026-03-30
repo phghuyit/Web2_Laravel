@@ -41,6 +41,9 @@
                             type="file"
                             class="block w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-orange-100 file:px-4 file:py-2 file:font-medium file:text-orange-600 hover:file:bg-orange-200"
                         >
+                        @error('image')
+                            <span style="color:red">{{ $message }}</span>
+                        @enderror
                     </div>
                 </div>
 
@@ -57,6 +60,9 @@
                             class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                             placeholder="Enter product name"
                         >
+                        @error('name')
+                            <span style="color:red">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div>
@@ -91,6 +97,9 @@
                                 class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="0.00"
                             >
+                            @error('price_buy')
+                                <span style="color:red">{{ $message }}</span>
+                            @enderror
                         </div>
 
                         <div>
@@ -103,12 +112,18 @@
                                 class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="0"
                             >
+                            @error('qty')
+                                <span style="color:red">{{ $message }}</span>
+                            @enderror
                         </div>
                     </div>
 
                     <div class="grid gap-5 md:grid-cols-2">
                         <div>
                             <label for="category_id" class="mb-2 block text-sm font-semibold text-gray-700">Thể Loại</label>
+                            @error('category_id')
+                                <span style="color:red">{{ $message }}</span>
+                            @enderror
                             <select
                                 id="category_id"
                                 name="category_id"
@@ -130,6 +145,9 @@
 
                         <div>
                             <label class="mb-2 block text-sm font-semibold text-gray-700">Status</label>
+                            @error('status')
+                                <span style="color:red">{{ $message }}</span>
+                            @enderror
                             <label class="mt-3 inline-flex cursor-pointer items-center gap-3">
                                 <span class="relative inline-flex h-7 w-14 items-center rounded-full bg-emerald-500">
                                     <input type="hidden" name="status" value="0">
@@ -175,5 +193,6 @@
                 </a>
             </div>
         </form>
+       
     </div>
 </x-backend.layout>
