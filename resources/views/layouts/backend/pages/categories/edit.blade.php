@@ -2,63 +2,63 @@
     <x-slot:title>Edit Category</x-slot:title>
 
     <div class="p-3 xl:p-6">
-        <div class="mb-6 flex flex-col gap-2">
-            <div class="flex items-center gap-2 text-sm text-gray-500">
+        <div class="flex flex-col gap-2 mb-6">
+            <div class="flex gap-2 items-center text-gray-500 text-sm">
                 <a href="{{ route('cate.index') }}" class="transition hover:text-orange-500">
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <i class="fa-arrow-left fa-solid"></i>
                 </a>
                 <span>Categories</span>
                 <span>/</span>
                 <span>Edit Category</span>
             </div>
-            <h1 class="text-2xl font-bold capitalize text-gray-800">Chinh sua the loai sach</h1>
+            <h1 class="capitalize font-bold text-2xl text-gray-800">Chinh sua the loai sach</h1>
         </div>
 
         <form
             method="POST"
             action="{{ isset($cate) ? route('cate.update', $cate->id) : '#' }}"
             enctype="multipart/form-data"
-            class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-gray-100 xl:p-7"
+            class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7"
         >
             @csrf
             @if (isset($cate))
                 @method('PUT')
             @endif
 
-            <div class="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)]">
+            <div class="gap-6 grid xl:grid-cols-[280px_minmax(0,1fr)]">
                 <div class="space-y-5">
-                    <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                        <div class="flex aspect-[4/3] items-center justify-center rounded-xl bg-white">
+                    <div class="bg-gray-50 border border-gray-200 overflow-hidden p-4 rounded-2xl">
+                        <div class="aspect-[4/3] bg-white flex items-center justify-center rounded-xl">
                             @if (!empty($cate?->image))
                                 <img
                                     src="{{ $cate->image }}"
                                     alt="{{ $cate->name ?? 'Category image' }}"
-                                    class="h-full w-full rounded-xl object-cover"
+                                    class="h-full object-cover rounded-xl w-full"
                                 >
                             @else
-                                <div class="flex h-full w-full flex-col items-center justify-center rounded-xl border border-dashed border-gray-300 text-center text-gray-400">
-                                    <i class="fa-solid fa-book-open text-5xl"></i>
-                                    <p class="mt-3 text-sm font-medium">Preview image</p>
+                                <div class="border border-dashed border-gray-300 flex flex-col h-full items-center justify-center rounded-xl text-center text-gray-400 w-full">
+                                    <i class="fa-book-open fa-solid text-5xl"></i>
+                                    <p class="font-medium mt-3 text-sm">Preview image</p>
                                 </div>
                             @endif
                         </div>
                     </div>
 
                     <div>
-                        <label for="image" class="mb-2 block text-sm font-semibold text-gray-700">Upload image</label>
+                        <label for="image" class="block font-semibold mb-2 text-gray-700 text-sm">Upload image</label>
                         <input
                             id="image"
                             name="image"
                             type="file"
-                            class="block w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-orange-100 file:px-4 file:py-2 file:font-medium file:text-orange-600 hover:file:bg-orange-200"
+                            class="bg-white block border border-gray-300 px-3 py-2 rounded-xl text-gray-600 text-sm w-full file:bg-orange-100 file:border-0 file:font-medium file:mr-4 file:px-4 file:py-2 file:rounded-lg file:text-orange-600 hover:file:bg-orange-200"
                         >
                     </div>
                 </div>
 
                 <div class="space-y-5">
-                    <div class="grid gap-5 md:grid-cols-2">
+                    <div class="gap-5 grid md:grid-cols-2">
                         <div>
-                            <label for="name" class="mb-2 block text-sm font-semibold text-gray-700">
+                            <label for="name" class="block font-semibold mb-2 text-gray-700 text-sm">
                                 Category Name <span class="text-red-500">*</span>
                             </label>
                             <input
@@ -66,13 +66,13 @@
                                 name="name"
                                 type="text"
                                 value="{{ old('name', $cate->name ?? '') }}"
-                                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                                class="border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="Enter category name"
                             >
                         </div>
 
                         <div>
-                            <label for="slug" class="mb-2 block text-sm font-semibold text-gray-700">
+                            <label for="slug" class="block font-semibold mb-2 text-gray-700 text-sm">
                                 Slug <span class="text-red-500">*</span>
                             </label>
                             <input
@@ -80,41 +80,41 @@
                                 name="slug"
                                 type="text"
                                 value="{{ old('slug', $cate->slug ?? '') }}"
-                                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                                class="border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="enter-category-slug"
                             >
                         </div>
                     </div>
 
-                    <div class="grid gap-5 md:grid-cols-3">
+                    <div class="gap-5 grid md:grid-cols-3">
                         <div>
-                            <label for="parent_id" class="mb-2 block text-sm font-semibold text-gray-700">Parent ID</label>
+                            <label for="parent_id" class="block font-semibold mb-2 text-gray-700 text-sm">Parent ID</label>
                             <input
                                 id="parent_id"
                                 name="parent_id"
                                 type="number"
                                 value="{{ old('parent_id', $cate->parent_id ?? 0) }}"
-                                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                                class="border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="0"
                             >
                         </div>
 
                         <div>
-                            <label for="sort_order" class="mb-2 block text-sm font-semibold text-gray-700">Sort Order</label>
+                            <label for="sort_order" class="block font-semibold mb-2 text-gray-700 text-sm">Sort Order</label>
                             <input
                                 id="sort_order"
                                 name="sort_order"
                                 type="number"
                                 value="{{ old('sort_order', $cate->sort_order ?? 1) }}"
-                                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                                class="border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="1"
                             >
                         </div>
 
                         <div>
-                            <label class="mb-2 block text-sm font-semibold text-gray-700">Status</label>
-                            <label class="mt-3 inline-flex cursor-pointer items-center gap-3">
-                                <span class="relative inline-flex h-7 w-14 items-center rounded-full bg-emerald-500">
+                            <label class="block font-semibold mb-2 text-gray-700 text-sm">Status</label>
+                            <label class="cursor-pointer gap-3 inline-flex items-center mt-3">
+                                <span class="bg-emerald-500 h-7 inline-flex items-center relative rounded-full w-14">
                                     <input type="hidden" name="status" value="0">
                                     <input
                                         type="checkbox"
@@ -123,7 +123,7 @@
                                         class="peer sr-only"
                                         {{ old('status', $cate->status ?? 1) ? 'checked' : '' }}
                                     >
-                                    <span class="absolute left-1 h-5 w-5 rounded-full bg-white transition peer-checked:translate-x-7"></span>
+                                    <span class="absolute bg-white h-5 left-1 rounded-full transition w-5 peer-checked:translate-x-7"></span>
                                 </span>
                                 <span class="font-medium text-gray-700">Active</span>
                             </label>
@@ -131,28 +131,28 @@
                     </div>
 
                     <div>
-                        <label for="description" class="mb-2 block text-sm font-semibold text-gray-700">Description</label>
+                        <label for="description" class="block font-semibold mb-2 text-gray-700 text-sm">Description</label>
                         <textarea
                             id="description"
                             name="description"
                             rows="6"
-                            class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                            class="border border-gray-200 outline-none px-4 py-3 rounded-2xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                             placeholder="Write a short category description"
                         >{{ old('description', $cate->description ?? '') }}</textarea>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-8 flex flex-wrap items-center gap-3 border-t border-gray-100 pt-6">
+            <div class="border-gray-100 border-t flex flex-wrap gap-3 items-center mt-8 pt-6">
                 <button
                     type="submit"
-                    class="rounded-xl bg-orange-400 px-6 py-3 font-semibold text-white transition hover:bg-orange-500"
+                    class="bg-orange-400 font-semibold px-6 py-3 rounded-xl text-white transition hover:bg-orange-500"
                 >
                     Luu thay doi
                 </button>
                 <a
                     href="{{ route('cate.index') }}"
-                    class="rounded-xl border border-gray-200 bg-white px-6 py-3 font-semibold text-gray-600 transition hover:bg-gray-50"
+                    class="bg-white border border-gray-200 font-semibold px-6 py-3 rounded-xl text-gray-600 transition hover:bg-gray-50"
                 >
                     Huy bo
                 </a>

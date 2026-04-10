@@ -1,8 +1,8 @@
-<div class="flex flex-col border border-[#d3d3d3] rounded-lg p-6 bg-white">
-    <div class="flex flex-row justify-between items-center">
-        <i class="text-indigo-700 fa-solid fa-shopping-cart"></i>
-        <span class="rounded-full text-white bg-orange-400 text-xs p-2">
-                12%<i class="fa-solid fa-angle-up"></i>
+<div class="bg-white border border-[#d3d3d3] flex flex-col p-6 rounded-lg">
+    <div class="flex flex-row items-center justify-between">
+        <i class="fa-shopping-cart fa-solid text-indigo-700"></i>
+        <span class="bg-orange-400 p-2 rounded-full text-white text-xs">
+                12%<i class="fa-angle-up fa-solid"></i>
         </span>
     </div>
 

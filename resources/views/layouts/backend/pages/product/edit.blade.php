@@ -2,62 +2,62 @@
     <x-slot:title>Edit Product</x-slot:title>
 
     <div class="p-3 xl:p-6">
-        <div class="mb-6 flex flex-col gap-2">
-            <div class="flex items-center gap-2 text-sm text-gray-500">
+        <div class="flex flex-col gap-2 mb-6">
+            <div class="flex gap-2 items-center text-gray-500 text-sm">
                 <a href="{{ route('product.index') }}" class="transition hover:text-orange-500">
-                    <i class="fa-solid fa-arrow-left"></i>
+                    <i class="fa-arrow-left fa-solid"></i>
                 </a>
                 <span>Products</span>
                 <span>/</span>
                 <span>Edit Product</span>
             </div>
-            <h1 class="text-2xl font-bold text-gray-800 capitalize">Chỉnh sửa thông tin sách</h1>
+            <h1 class="capitalize font-bold text-2xl text-gray-800">Chỉnh sửa thông tin sách</h1>
         </div>
 
         <form
             method="POST"
             action="{{ isset($product) ? route('product.update', $product->id) : '#' }}"
             enctype="multipart/form-data"
-            class="rounded-3xl bg-white p-5 shadow-sm ring-1 ring-gray-100 xl:p-7"
+            class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7"
         >
             @csrf
             @if (isset($product))
                 @method('PUT')
             @endif
 
-            <div class="grid gap-6 xl:grid-cols-[280px_minmax(0,1fr)]">
+            <div class="gap-6 grid xl:grid-cols-[280px_minmax(0,1fr)]">
                 <div class="space-y-5">
-                    <div class="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 p-4">
-                        <div class="flex aspect-[3/4] items-center justify-center rounded-xl bg-white">
+                    <div class="bg-gray-50 border border-gray-200 overflow-hidden p-4 rounded-2xl">
+                        <div class="aspect-[3/4] bg-white flex items-center justify-center rounded-xl">
                             @if (!empty($product?->image))
                                 <img
                                     src="{{ asset('storage/' . $product->image) }}"
                                     alt="{{ $product->name ?? 'Product image' }}"
-                                    class="h-full w-full rounded-xl object-cover"
+                                    class="h-full object-cover rounded-xl w-full"
                                 >
                             @else
-                                <div class="flex h-full w-full flex-col items-center justify-center rounded-xl border border-dashed border-gray-300 text-center text-gray-400">
-                                    <i class="fa-solid fa-book-open text-5xl"></i>
-                                    <p class="mt-3 text-sm font-medium">Preview image</p>
+                                <div class="border border-dashed border-gray-300 flex flex-col h-full items-center justify-center rounded-xl text-center text-gray-400 w-full">
+                                    <i class="fa-book-open fa-solid text-5xl"></i>
+                                    <p class="font-medium mt-3 text-sm">Preview image</p>
                                 </div>
                             @endif
                         </div>
                     </div>
 
                     <div>
-                        <label for="image" class="mb-2 block text-sm font-semibold text-gray-700">Upload Ảnh Bìa</label>
+                        <label for="image" class="block font-semibold mb-2 text-gray-700 text-sm">Upload Ảnh Bìa</label>
                         <input
                             id="image"
                             name="image"
                             type="file"
-                            class="block w-full rounded-xl border border-gray-300 bg-white px-3 py-2 text-sm text-gray-600 file:mr-4 file:rounded-lg file:border-0 file:bg-orange-100 file:px-4 file:py-2 file:font-medium file:text-orange-600 hover:file:bg-orange-200"
+                            class="bg-white block border border-gray-300 px-3 py-2 rounded-xl text-gray-600 text-sm w-full file:bg-orange-100 file:border-0 file:font-medium file:mr-4 file:px-4 file:py-2 file:rounded-lg file:text-orange-600 hover:file:bg-orange-200"
                         >
                     </div>
                 </div>
 
                 <div class="space-y-5">
                     <div>
-                        <label for="name" class="mb-2 block text-sm font-semibold text-gray-700">
+                        <label for="name" class="block font-semibold mb-2 text-gray-700 text-sm">
                             Product Name <span class="text-red-500">*</span>
                         </label>
                         <input
@@ -65,18 +65,18 @@
                             name="name"
                             type="text"
                             value="{{ old('name', $product->name ?? 'Atomic Habits') }}"
-                            class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                            class="border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                             placeholder="Enter product name"
                         >
                     </div>
 
 
                         <div>
-                            <label for="brand_id" class="mb-2 block text-sm font-semibold text-gray-700">Tác giả</label>
+                            <label for="brand_id" class="block font-semibold mb-2 text-gray-700 text-sm">Tác giả</label>
                             <select
                                 id="brand_id"
                                 name="brand_id"
-                                class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                                class="bg-white border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                             >
                                 @if (!empty($brands) && count($brands))
                                     @foreach ($brands as $brand)
@@ -93,39 +93,39 @@
                             </select>
                         </div>
 
-                    <div class="grid gap-5 md:grid-cols-2">
+                    <div class="gap-5 grid md:grid-cols-2">
                         <div>
-                            <label for="price_buy" class="mb-2 block text-sm font-semibold text-gray-700">Giá</label>
+                            <label for="price_buy" class="block font-semibold mb-2 text-gray-700 text-sm">Giá</label>
                             <input
                                 id="price_buy"
                                 name="price_buy"
                                 type="text"
                                 value="{{ old('price_buy', $product->price_buy ?? '18.50') }}"
-                                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                                class="border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="0.00"
                             >
                         </div>
 
                         <div>
-                            <label for="qty" class="mb-2 block text-sm font-semibold text-gray-700">Số lượng kho</label>
+                            <label for="qty" class="block font-semibold mb-2 text-gray-700 text-sm">Số lượng kho</label>
                             <input
                                 id="qty"
                                 name="qty"
                                 type="number"
                                 value="{{ old('qty', $product->qty ?? '120') }}"
-                                class="w-full rounded-xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                                class="border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                                 placeholder="0"
                             >
                         </div>
                     </div>
 
-                    <div class="grid gap-5 md:grid-cols-2">
+                    <div class="gap-5 grid md:grid-cols-2">
                         <div>
-                            <label for="category_id" class="mb-2 block text-sm font-semibold text-gray-700">Thể Loại</label>
+                            <label for="category_id" class="block font-semibold mb-2 text-gray-700 text-sm">Thể Loại</label>
                             <select
                                 id="category_id"
                                 name="category_id"
-                                class="w-full rounded-xl border border-gray-200 bg-white px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
+                                class="bg-white border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"
                             >
                                 @if (!empty($cats) && count($cats))
                                     @foreach ($cats as $cat)
@@ -143,9 +143,9 @@
                         </div>
 
                         <div>
-                            <label class="mb-2 block text-sm font-semibold text-gray-700">Status</label>
-                            {{-- <label class="mt-3 inline-flex cursor-pointer items-center gap-3">
-                                <span class="relative inline-flex h-7 w-14 items-center rounded-full bg-emerald-500">
+                            <label class="block font-semibold mb-2 text-gray-700 text-sm">Status</label>
+                            {{-- <label class="cursor-pointer gap-3 inline-flex items-center mt-3">
+                                <span class="bg-emerald-500 h-7 inline-flex items-center relative rounded-full w-14">
                                     <input type="hidden" name="status" value="0">
                                     <input
                                         type="checkbox"
@@ -154,7 +154,7 @@
                                         class="peer sr-only"
                                         {{ old('status', $product->status ?? 1) ? 'checked' : '' }}
                                     >
-                                    <span class="absolute left-1 h-5 w-5 rounded-full bg-white transition peer-checked:translate-x-7"></span>
+                                    <span class="absolute bg-white h-5 left-1 rounded-full transition w-5 peer-checked:translate-x-7"></span>
                                 </span>
                                 <span class="font-medium text-gray-700">Active</span>
                             </label> --}}
@@ -162,28 +162,28 @@
                     </div>
 
                     <div>
-                        <label for="description" class="mb-2 block text-sm font-semibold text-gray-700">Description</label>
+                        <label for="description" class="block font-semibold mb-2 text-gray-700 text-sm">Description</label>
                         <textarea
                             id="description"
                             name="description"
                             rows="6"
-                            class="w-full rounded-2xl border border-gray-200 px-4 py-3 text-gray-700 outline-none transition focus:border-orange-400 "
+                            class="border border-gray-200 outline-none px-4 py-3 rounded-2xl text-gray-700 transition w-full focus:border-orange-400"
                             placeholder="Write a short product description"
                         >{{ old('description', $product->description ?? 'A proven framework for building better habits. This hands-on book reveals practical strategies for forming good habits, breaking bad ones, and mastering the tiny behaviors that lead to remarkable results over time.') }}</textarea>
                     </div>
                 </div>
             </div>
 
-            <div class="mt-8 flex flex-wrap items-center gap-3 border-t border-gray-100 pt-6">
+            <div class="border-gray-100 border-t flex flex-wrap gap-3 items-center mt-8 pt-6">
                 <button
                     type="submit"
-                    class="rounded-xl bg-orange-400 px-6 py-3 font-semibold text-white transition hover:bg-orange-500"
+                    class="bg-orange-400 font-semibold px-6 py-3 rounded-xl text-white transition hover:bg-orange-500"
                 >
                     Lưu thay đổi
                 </button>
                 <a
                     href="{{ route('product.index') }}"
-                    class="rounded-xl border border-gray-200 bg-white px-6 py-3 font-semibold text-gray-600 transition hover:bg-gray-50"
+                    class="bg-white border border-gray-200 font-semibold px-6 py-3 rounded-xl text-gray-600 transition hover:bg-gray-50"
                 >
                     Hủy bỏ
                 </a>

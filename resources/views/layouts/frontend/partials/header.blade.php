@@ -1,8 +1,8 @@
 <header class="text-white">
-    <div class="bg-[#131921] mx-auto px-4 flex items-center gap-4 py-3">
+    <div class="bg-[#131921] flex gap-4 items-center mx-auto px-4 py-3">
 
         <!-- Logo -->
-        <div class="text-2xl font-bold tracking-wide">
+        <div class="font-bold text-2xl tracking-wide">
             <a href="{{ route('site.home') }}">amaz<span class="text-orange-400">in</span></a>
         </div>
         
@@ -11,32 +11,32 @@
             <input 
                 type="text" 
                 placeholder="Search Kindle eBooks"
-                class="w-full px-4 py-2 text-black rounded-l-md focus:outline-none bg-white"
+                class="bg-white px-4 py-2 rounded-l-md text-black w-full focus:outline-none"
             >
-            <button class="bg-orange-400 hover:bg-orange-500 px-5 rounded-r-md text-black font-semibold">
-                 <i class="fa-solid fa-magnifying-glass"></i>
+            <button class="bg-orange-400 font-semibold px-5 rounded-r-md text-black hover:bg-orange-500">
+                 <i class="fa-magnifying-glass fa-solid"></i>
             </button>
         </div>
 
         <!-- Menu Right -->
-        <div class="hidden md:flex items-center gap-6 text-sm">
+        <div class="gap-6 hidden items-center text-sm md:flex">
 
-            <div class="hover:underline cursor-pointer">
+            <div class="cursor-pointer hover:underline">
                 <a href="{{ route('site.user.login') }}">
                     <p class="text-xs">Hello, Sign in</p>
                     <p class="font-semibold">Account & Lists</p>
                 </a>
             </div>
 
-            <div class="hover:underline cursor-pointer">
+            <div class="cursor-pointer hover:underline">
                 <p class="text-xs">Returns</p>
                 <p class="font-semibold">& Orders</p>
             </div>
 
-            <div class="relative cursor-pointer">
+            <div class="cursor-pointer relative">
                 <a href="{{ route('site.cart.index') }}">
                     <span class="text-xl">🛒</span>
-                    <span class="absolute -top-2 -right-3 bg-orange-500 text-xs px-1 rounded">
+                    <span class="-right-3 -top-2 absolute bg-orange-500 px-1 rounded text-xs">
                         2
                     </span>
                 </a>
@@ -45,38 +45,32 @@
         </div>
 
     </div>
-    <div class="bg-[#ffff] mx-auto px-4 flex justify-center items-center gap-4 py-3 text-[#414c59] font-semibold border-b border-[#d3d3d3] shadow ">
-        <div class="border-r border-[#d3d3d3] px-6">
+    <div class="bg-[#ffff] border-[#d3d3d3] border-b flex font-semibold gap-4 items-center justify-center mx-auto px-4 py-3 shadow text-[#414c59]">
+        <div class="border-[#d3d3d3] border-r px-6">
             <a href="{{ route('site.home') }}"><img src="https://m.media-amazon.com/images/G/01/books-voyager/subnav/Subnav_BooksLogo.svg" alt="logo_ebook_amazon" ></a>
         </div>
         <div class="hover:text-[#1880e8]">
-            <a href="#"><p>Thể Loại<i class="fa-solid fa-caret-down font-[15px] text-[#131921] pl-0.5"></i></p></a>
+            <a href="#"><p>Thể Loại<i class="fa-caret-down fa-solid font-[15px] pl-0.5 text-[#131921]"></i></p></a>
         </div>
 
-        <div class="hidden hover:text-[#1880e8] 
-                    md:block">
-            <a href="#"><p>Best Seller<i class="fa-solid fa-circle-check font-[8px] text-orange-400 pl-0.5"></i></p></a>
+        <div class="hidden md:block hover:text-[#1880e8]">
+            <a href="#"><p>Best Seller<i class="fa-circle-check fa-solid font-[8px] pl-0.5 text-orange-400"></i></p></a>
         </div>
 
-        <div class="hidden hover:text-[#1880e8]
-                    lg:block">
-            <a href="#"><p>Hot Trend<span  class="font-[15px] text-[#131921] pl-0.5">&#11206;</span></p></a>
+        <div class="hidden lg:block hover:text-[#1880e8]">
+            <a href="#"><p>Hot Trend<span  class="font-[15px] pl-0.5 text-[#131921]">&#11206;</span></p></a>
         </div>
-        <div class="hidden hover:text-[#1880e8]
-                    md:block">
-            <a href="#"><p>Flash Sale<i class="fa-solid fa-bolt font-[15px] text-orange-400 pl-0.5"></i></p></a>
+        <div class="hidden md:block hover:text-[#1880e8]">
+            <a href="#"><p>Flash Sale<i class="fa-bolt fa-solid font-[15px] pl-0.5 text-orange-400"></i></p></a>
         </div>
-        <div class="hover:text-[#1880e8] border-r border-[#d3d3d3] pr-6
-                    lg:border-0 ">
+        <div class="border-[#d3d3d3] border-r pr-6 lg:border-0 hover:text-[#1880e8]">
             <a href="{{ route('site.contact.index') }}"><p>Liên Hệ</p></a>
         </div>
-        <div class="hover:text-[#1880e8] pr-6
-                    lg:border-r lg:border-[#d3d3d3]">
+        <div class="pr-6 lg:border-[#d3d3d3] lg:border-r hover:text-[#1880e8]">
             <a href="{{ route('site.product.index') }}"><p>Tất Cả Sản Phẩm</p></a>
         </div>
-        <div class="hidden hover:text-[#1880e8]
-                    lg:block">
-            <a href="#"><p>Sách Của Bạn<span  class="font-[15px] text-[#131921] pl-0.5">&#11206;</span></p></a>
+        <div class="hidden lg:block hover:text-[#1880e8]">
+            <a href="#"><p>Sách Của Bạn<span  class="font-[15px] pl-0.5 text-[#131921]">&#11206;</span></p></a>
         </div>
     </div>
 </header>

@@ -1,10 +1,10 @@
-<footer class="bg-[#232f3e] text-gray-300 mt-16">
+<footer class="bg-[#232f3e] mt-16 text-gray-300">
 
     <!-- Top Links -->
-    <div class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 md:grid-cols-4 gap-8 text-sm">
+    <div class="gap-8 grid grid-cols-1 max-w-7xl mx-auto px-6 py-12 text-sm md:grid-cols-4">
 
         <div>
-            <h3 class="text-white font-semibold mb-4">Get to Know Us</h3>
+            <h3 class="font-semibold mb-4 text-white">Get to Know Us</h3>
             <ul class="space-y-2">
                 <li><a href="#" class="hover:underline">About Amazon</a></li>
                 <li><a href="#" class="hover:underline">Careers</a></li>
@@ -14,7 +14,7 @@
         </div>
 
         <div>
-            <h3 class="text-white font-semibold mb-4">Make Money with Us</h3>
+            <h3 class="font-semibold mb-4 text-white">Make Money with Us</h3>
             <ul class="space-y-2">
                 <li><a href="#" class="hover:underline">Sell on Amazon</a></li>
                 <li><a href="#" class="hover:underline">Affiliate Program</a></li>
@@ -24,7 +24,7 @@
         </div>
 
         <div>
-            <h3 class="text-white font-semibold mb-4">Amazon Payment</h3>
+            <h3 class="font-semibold mb-4 text-white">Amazon Payment</h3>
             <ul class="space-y-2">
                 <li><a href="#" class="hover:underline">Business Card</a></li>
                 <li><a href="#" class="hover:underline">Shop with Points</a></li>
@@ -34,7 +34,7 @@
         </div>
 
         <div>
-            <h3 class="text-white font-semibold mb-4">Let Us Help You</h3>
+            <h3 class="font-semibold mb-4 text-white">Let Us Help You</h3>
             <ul class="space-y-2">
                 <li><a href="#" class="hover:underline">Your Account</a></li>
                 <li><a href="#" class="hover:underline">Returns Centre</a></li>
@@ -46,14 +46,14 @@
     </div>
     
     <!-- Bottom -->
-    <div class="border-t border-gray-600">
-        <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col md:flex-row items-center justify-between text-sm">
+    <div class="border-gray-600 border-t">
+        <div class="flex flex-col items-center justify-between max-w-7xl mx-auto px-6 py-6 text-sm md:flex-row">
 
-            <div class="text-white font-bold text-xl mb-4 md:mb-0">
+            <div class="font-bold mb-4 text-white text-xl md:mb-0">
                 amazin<span class="text-orange-400">ebook</span>
             </div>
 
-            <div class="text-gray-400 text-center md:text-right">
+            <div class="text-center text-gray-400 md:text-right">
                 © 2026 Amazon Ebook Clone. All rights reserved.
             </div>
 
