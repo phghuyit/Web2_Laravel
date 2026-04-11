@@ -2,13 +2,13 @@
     <x-slot:title>Banner</x-slot:title>
 
     <div class="p-3 xl:p-6">
-        <div class="mt-1 mb-6 flex items-center justify-between">
-            <p class="text-xl font-bold uppercase">Quản lý banner</p>
+        <div class="flex items-center justify-between mb-6 mt-1">
+            <p class="font-bold text-xl uppercase">Quản lý banner</p>
             <div>
-                <a href="{{ route('banner.create') }}" class="rounded-lg py-1 px-3 bg-[#059655] font-semibold capitalize text-white">
-                    <i class="fa-solid fa-plus mr-1"></i>Thêm mới banner
+                <a href="{{ route('banner.create') }}" class="bg-[#059655] capitalize font-semibold px-3 py-1 rounded-lg text-white">
+                    <i class="fa-plus fa-solid mr-1"></i>Thêm mới banner
                 </a>
-                <a href="{{ route("banner.trash") }}" class="rounded-lg py-1 px-3 bg-red-500 font-semibold capitalize text-white"><i class="fa-solid fa-trash mr-1"></i>Thùng rác</a>
+                <a href="{{ route("banner.trash") }}" class="bg-red-500 capitalize font-semibold px-3 py-1 rounded-lg text-white"><i class="fa-solid fa-trash mr-1"></i>Thùng rác</a>
             </div>
         </div>
 
@@ -19,30 +19,30 @@
                         type="text"
                         name="name"
                         placeholder="Search ten banner"
-                        class="w-full rounded-l-md bg-white px-4 py-2 text-black focus:outline-none"
+                        class="bg-white px-4 py-2 rounded-l-md text-black w-full focus:outline-none"
                         value="{{ request('name') }}"
                     >
-                    <button class="rounded-r-md bg-orange-400 px-5 font-semibold text-black hover:bg-orange-500">
-                        <i class="fa-solid fa-magnifying-glass"></i>
+                    <button class="bg-orange-400 font-semibold px-5 rounded-r-md text-black hover:bg-orange-500">
+                        <i class="fa-magnifying-glass fa-solid"></i>
                     </button>
                 </div>
                 <div>
-                    <select name="position" class="w-full rounded-lg border bg-white px-4 py-2" onchange="this.form.submit()">
+                    <select name="position" class="bg-white border px-4 py-2 rounded-lg w-full" onchange="this.form.submit()">
                         <option value="">Position: All</option>
                         <option value="slideshow" {{ request('position') == 'slideshow' ? 'selected' : '' }}>Slideshow</option>
                         <option value="advertise" {{ request('position') == 'advertise' ? 'selected' : '' }}>Advertise</option>
                     </select>
                 </div>
                 <div>
-                    <select name="status" class="w-full rounded-lg border bg-white px-4 py-2" onchange="this.form.submit()">
+                    <select name="status" class="bg-white border px-4 py-2 rounded-lg w-full" onchange="this.form.submit()">
                         <option value="">Trạng thái</option>
                         <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Hiện</option>
                         <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Ẩn</option>
                     </select>
                 </div>
-                <div class="h-6 self-center border-l border-black"></div>
+                <div class="border-black border-l h-6 self-center"></div>
                 <div>
-                    <select name="sort_by" class="w-full rounded-lg border bg-white px-4 py-2" onchange="this.form.submit()">
+                    <select name="sort_by" class="bg-white border px-4 py-2 rounded-lg w-full" onchange="this.form.submit()">
                         <option value="">Sắp xếp</option>
                         <option value="name_asc" {{ request('sort_by') == 'name_asc' ? 'selected' : '' }}>Tên tăng dần</option>
                         <option value="name_desc" {{ request('sort_by') == 'name_desc' ? 'selected' : '' }}>Tên giảm dần</option>
@@ -50,11 +50,11 @@
                         <option value="sort_order_desc" {{ request('sort_by') == 'sort_order_desc' ? 'selected' : '' }}>Sort Order Giảm</option>
                     </select>
                 </div>
-                <a href="{{ route('banner.index') }}" class="self-center rounded-lg bg-white px-4 py-2">Reset</a>
+                <a href="{{ route('banner.index') }}" class="bg-white px-4 py-2 rounded-lg self-center">Reset</a>
             </div>
         </form>
 
-        <table class="mx-auto mt-3 w-[99%] overflow-hidden rounded-lg border border-pink-500 bg-white border-collapse">
+        <table class="bg-white border border-collapse border-pink-500 mt-3 mx-auto overflow-hidden rounded-lg w-[99%]">
             <thead>
                 <tr>
                     <th class="px-3 py-1 text-center">ID</th>
@@ -70,28 +70,28 @@
             </thead>
             <tbody>
                 @forelse ($banners as $banner)
-                    <tr class="border-t-3 border-gray-200 text-center hover:bg-gray-50">
+                    <tr class="border-gray-200 border-t-3 text-center hover:bg-gray-50">
                         <td class="px-1 py-3">{{ $banner->id }}</td>
-                        <td class="px-1 py-3 font-semibold">{{ $banner->name }}</td>
+                        <td class="font-semibold px-1 py-3">{{ $banner->name }}</td>
                         <td class="px-1 py-3">{{ $banner->link }}</td>
                         <td class="px-1 py-3">{{ $banner->sort_order }}</td>
                         <td class="px-1 py-3">{{ $banner->position }}</td>
                         <td class="px-1 py-3">{{ $banner->description }}</td>
-                        <td class="w-[10%] px-1 py-3">
+                        <td class="px-1 py-3 w-[10%]">
                             @if ($banner->image)
-                                <img src="{{ $banner->image }}" alt="{{ $banner->name }}" class="h-14 w-24 rounded object-cover">
+                                <img src="{{ $banner->image }}" alt="{{ $banner->name }}" class="h-14 object-cover rounded w-24">
                             @endif
                         </td>
                         <td class="px-1 py-3">{{ $banner->status }}</td>
-                        <td class="px-1 py-3 align-middle">
+                        <td class="align-middle px-1 py-3">
                             <div class="flex flex-nowrap gap-2">
-                                <div class="rounded-lg p-3 text-sm shadow hover:bg-gray-100">
-                                    <a href="{{ route('banner.edit', $banner->id) }}"><i class="fa-solid fa-pen"></i><span class="ml-1 hidden xl:inline">Edit</span></a>
+                                <div class="p-3 rounded-lg shadow text-sm hover:bg-gray-100">
+                                    <a href="{{ route('banner.edit', $banner->id) }}"><i class="fa-pen fa-solid"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                 </div>
                                 <form action="{{ route('banner.destroy', $banner->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
-                                    <div class="rounded-lg p-3 text-sm text-red-500 shadow hover:bg-gray-100">
+                                    <div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100">
                                         <button type="submit"><i class="fa-solid fa-trash text-red-600"></i></button>
                                     </div>
                                 </form>

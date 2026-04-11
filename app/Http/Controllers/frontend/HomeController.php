@@ -3,11 +3,20 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Models\Product;
 
 class HomeController extends Controller
 {
-    public function index(){
-        return view('layouts.frontend.pages.home');
+    public function index()
+    {
+        $products = Product::query()
+            ->with(['category:id,name', 'brand:id,name'])
+            ->select('id', 'image', 'name', 'price_buy', 'category_id', 'brand_id', 'status')
+            ->where('status', 1)
+            ->latest()
+            ->limit(4)
+            ->get();
+
+        return view('layouts.frontend.pages.home', compact('products'));
     }
 }

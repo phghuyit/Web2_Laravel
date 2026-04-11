@@ -9,9 +9,7 @@
     {{$header??""}}
 </head>
 <body class="flex flex-col min-h-screen">
-    <div class="grid grid-cols-[30%_1fr] transition-all duration-300
-    lg:grid-cols-[25%_1fr]
-    xl:grid-cols-[15%_1fr] ">
+    <div class="duration-300 grid grid-cols-[30%_1fr] transition-all lg:grid-cols-[25%_1fr] xl:grid-cols-[15%_1fr]">
         @include('layouts.backend.partials.sidebar')
         <div class="bg-gray-200">
             @include('layouts.backend.partials.header')

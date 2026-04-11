@@ -1,6 +1,6 @@
 <div class="my-12">
-    <p class="capitalize text-3xl font-bold mb-6 ml-3">Sách Giảm Sâu</p>
-    <div class="grid grid-cols-2 xl:grid-cols-4 gap-10 mx-6">
+    <p class="capitalize font-bold mb-6 ml-3 text-3xl">Sách Giảm Sâu</p>
+    <div class="gap-10 grid grid-cols-2 mx-6 xl:grid-cols-4">
         @foreach ($products as $product)
             <x-ui.product-card :product="$product"/>
         @endforeach
