@@ -11,15 +11,18 @@ class ProductController extends Controller
     public function index(){
         $query=Product::query();
         $query->with(['category:id,name','brand:id,name'])
-        ->select('id','image','name','price_buy','category_id','brand_id','status')
+        ->select('id','image','name','slug','price_buy','category_id','brand_id','status')
         ->orderBy('created_at','desc')
         ->where('status',1)
         ->get();
         $products=$query->paginate(8);
         return view('layouts.frontend.pages.products.index',compact('products'));
     }
-    
-    public function detail(){
-        return view('layouts.frontend.pages.products.detail');
+
+    public function detail($slug){
+        $product=Product::with(['category:id,name','brand:id,name'])
+        ->where('slug',$slug)
+        ->firstOrFail();
+        return view('layouts.frontend.pages.products.detail',compact('product'));
     }
 }
