@@ -27,7 +27,9 @@ return new class extends Migration
             $table->unsignedInteger('updated_by')->nullable();
 
             $table->unsignedTinyInteger('status')->default(2);
-
+            $table->unsignedInteger('views')->default(0);
+            $table->timestamp('published_at')->nullable();
+            
             $table->timestamps();
             $table->softDeletes();
         });

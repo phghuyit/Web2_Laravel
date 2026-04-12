@@ -36,6 +36,8 @@ return new class extends Migration
 
             $table->unsignedTinyInteger('status')->default(2);
 
+            $table->unsignedInteger('views')->default(0);
+
             $table->timestamps();
             $table->softDeletes();
             });

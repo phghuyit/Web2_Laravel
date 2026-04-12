@@ -1,20 +1,23 @@
-<a href="{{ route('site.product.detail', $product->slug) }}" class="block outline-none">
+<a href="{{ route('site.product.detail', $product->slug) }}" class="outline-none h-full block">
     {{-- {{ dd($product) }} --}}
     <div
-        class="group flex flex-col rounded-lg border border-transparent p-6 shadow-md transition duration-200 hover:border-orange-500 hover:ring-2 hover:ring-orange-200">
+        class="group hover:-translate-y-2 flex flex-col h-full rounded-lg border border-transparent p-6 shadow-md transition duration-200 hover:border-orange-500 hover:ring-2 hover:ring-orange-200">
         <!-- Be present above all else. - Naval Ravikant -->
         <div class="h-64 self-center">
             <img src="{{ $product->image }}" alt="Bia sach" class="max-h-full object-contain">
         </div>
 
-        <div class="my-4">
+        <div class="my-4 flex-grow">
             <p class="font-bold text-xl leading-tight">{{ $product->name }}</p>
             <p>{{ $product->brand?->name }}</p>
-            @if($product->is_sale==1)
-                <p class="text-gray-500 line-through text-sm"><span class="font-bold">{{ number_format($product->price_buy) }}</span> vnd</p>
-                <p class="text-red-600"><span class="font-bold text-xl">{{ number_format($product->price_sale) }}</span> vnd</p>
+            @if ($product->is_sale == 1)
+                <p class="text-gray-500 line-through text-sm"><span
+                        class="font-bold">{{ number_format($product->price_buy) }}</span> vnd</p>
+                <p class="text-red-600"><span class="font-bold text-xl">{{ number_format($product->price_sale) }}</span>
+                    vnd</p>
             @else
-                <p class="text-red-600"><span class="font-bold text-xl">{{ number_format($product->price_buy) }}</span> vnd</p>
+                <p class="text-red-600"><span class="font-bold text-xl">{{ number_format($product->price_buy) }}</span>
+                    vnd</p>
             @endif
         </div>
 

@@ -23,6 +23,9 @@ class ProductController extends Controller
         $product=Product::with(['category:id,name','brand:id,name'])
         ->where('slug',$slug)
         ->firstOrFail();
+
+        $product->increment('views');
+
         return view('layouts.frontend.pages.products.detail',compact('product'));
     }
 }

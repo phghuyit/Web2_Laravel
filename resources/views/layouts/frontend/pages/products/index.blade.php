@@ -10,9 +10,8 @@
         <div class="flex-4">
             <p class="capitalize font-bold m-6 text-3xl">Tất cả sản phẩm</p>
             <div class="mt-6 mx-auto text-[#0f1111] w-[80%]">
-                <div class="gap-3 grid grid-cols-2 my-12 xl:grid-cols-4">
+                <div class="gap-6 lg:gap-12 grid grid-cols-2 my-12 xl:grid-cols-4">
                     @foreach ($products as $product)
-                    {{-- {{ dd($products) }} --}}
                         <x-ui.productcard :product="$product"></x-ui.productcard>
                     @endforeach
                 </div>
