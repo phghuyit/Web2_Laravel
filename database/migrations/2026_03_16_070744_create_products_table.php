@@ -21,6 +21,7 @@ return new class extends Migration
 
             $table->float('price_buy');
             $table->float('price_sale')->nullable();
+            $table->unsignedTinyInteger('is_sale')->default(0);
 
             $table->string('image',1000)->nullable();
 

@@ -4,7 +4,7 @@
     {{-- {{ dd($products) }} --}}
     <div class="gap-10 grid grid-cols-2 mx-6 xl:grid-cols-4">
         @foreach ($products as $product)
-            <a href="#"><x-ui.product-card :product="$product"/></a>
+            <x-ui.product-card :product="$product"/>
         @endforeach
     </div>
 </div>

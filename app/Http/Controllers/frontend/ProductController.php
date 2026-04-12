@@ -11,7 +11,7 @@ class ProductController extends Controller
     public function index(){
         $query=Product::query();
         $query->with(['category:id,name','brand:id,name'])
-        ->select('id','image','name','slug','price_buy','category_id','brand_id','status')
+        ->select('id','image','name','slug','price_buy','category_id','brand_id','status','is_sale','price_sale')
         ->orderBy('created_at','desc')
         ->where('status',1)
         ->get();

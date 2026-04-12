@@ -58,8 +58,9 @@ class ProductSeeder extends Seeder
 
         foreach($books as $book){
 
-        $buy=rand(30000,120000);
-        $sale=rand(130000,250000);
+        $buy = rand(130000, 250000);
+        $sale = rand(30000, 120000);
+        $is_sale = rand(0, 1);
 
         DB::table('products')->insert([
             'category_id'=>$book[3],
@@ -68,6 +69,7 @@ class ProductSeeder extends Seeder
             'slug'=>Str::slug($book[0]),
             'price_buy'=>$buy,
             'price_sale'=>$sale,
+            'is_sale'=>$is_sale,
             'image'=>'https://covers.openlibrary.org/b/isbn/'.$book[1].'-L.jpg',
             'qty'=>rand(20,200),
             'detail'=>'Nội dung chi tiết của sách '.$book[0].'. Đây là một trong những tác phẩm nổi tiếng trên thế giới.',

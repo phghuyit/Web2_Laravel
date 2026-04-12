@@ -12,19 +12,40 @@ class MenuSeeder extends Seeder
      * Run the database seeds.
      */
     public function run(): void
-{
-    for ($i = 1; $i <= 10; $i++) {
-        DB::table('menu')->insert([
-            'name' => 'Menu ' . $i,
-            'link' => '/menu-' . $i,
-            'table_id' => null,
-            'type' => 'custom',
-            'created_by' => 1,
-            'updated_by' => null,
-            'status' => rand(1,2),
-            'created_at' => now(),
-            'updated_at' => now(),
-        ]);
+    {
+        $menus = [
+            [
+                'name' => 'Thể loại',
+                'link' => '/category',
+                'type' => 'category',
+                'position' => 'header',
+                'status' => 1,
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Tất cả sản phẩm',
+                'link' => '/products',
+                'type' => 'custom',
+                'position' => 'header',
+                'status' => 1,
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+            [
+                'name' => 'Liên Hệ',
+                'link' => '/contact',
+                'type' => 'custom',
+                'position' => 'header',
+                'status' => 1,
+                'created_by' => 1,
+                'created_at' => now(),
+                'updated_at' => now(),
+            ],
+        ];
+
+        DB::table('menus')->insert($menus);
     }
-}
 }
