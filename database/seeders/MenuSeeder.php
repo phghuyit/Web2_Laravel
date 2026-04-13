@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +15,7 @@ class MenuSeeder extends Seeder
         $menus = [
             [
                 'name' => 'Thể loại',
-                'link' => '/category',
+                'link' => '',
                 'type' => 'category',
                 'position' => 'header',
                 'status' => 1,
@@ -26,7 +25,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'name' => 'Tất cả sản phẩm',
-                'link' => '/products',
+                'link' => 'site.product.index',
                 'type' => 'custom',
                 'position' => 'header',
                 'status' => 1,
@@ -36,7 +35,7 @@ class MenuSeeder extends Seeder
             ],
             [
                 'name' => 'Liên Hệ',
-                'link' => '/contact',
+                'link' => 'site.contact.index',
                 'type' => 'custom',
                 'position' => 'header',
                 'status' => 1,

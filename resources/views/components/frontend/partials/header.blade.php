@@ -1,5 +1,5 @@
-<header class="text-white">
-    <div class="bg-[#131921] flex gap-4 items-center mx-auto px-4 py-3">
+<header class="text-white pt-16">
+    <div class="bg-[#131921] fixed top-0 w-full z-50 flex gap-4 items-center px-4 py-3">
 
         <!-- Logo -->
         <div class="font-bold text-2xl tracking-wide">
@@ -8,13 +8,10 @@
 
         <!-- Search -->
         <div class="flex flex-1">
-            <input
-                type="text"
-                placeholder="Search Kindle eBooks"
-                class="bg-white px-4 py-2 rounded-l-md text-black w-full focus:outline-none"
-            >
+            <input type="text" placeholder="Search Kindle eBooks"
+                class="bg-white px-4 py-2 rounded-l-md text-black w-full focus:outline-none">
             <button class="bg-orange-400 font-semibold px-5 rounded-r-md text-black hover:bg-orange-500">
-                 <i class="fa-magnifying-glass fa-solid"></i>
+                <i class="fa-magnifying-glass fa-solid"></i>
             </button>
         </div>
 
@@ -45,13 +42,34 @@
         </div>
 
     </div>
-    <div class="bg-[#ffff] border-[#d3d3d3] border-b flex font-semibold gap-4 items-center justify-center mx-auto px-4 py-3 shadow text-[#414c59]">
+    <div
+        class="bg-[#ffff] border-[#d3d3d3] border-b flex font-semibold gap-4 items-center justify-center mx-auto px-4 py-3 shadow text-[#414c59]">
         <div class="border-[#d3d3d3] border-r px-6">
-            <a href="{{ route('site.home') }}"><img src="https://m.media-amazon.com/images/G/01/books-voyager/subnav/Subnav_BooksLogo.svg" alt="logo_ebook_amazon" ></a>
+            <a href="{{ route('site.home') }}"><img
+                    src="https://m.media-amazon.com/images/G/01/books-voyager/subnav/Subnav_BooksLogo.svg"
+                    alt="logo_ebook_amazon"></a>
         </div>
-        
+        @foreach ($menu as $e)
+            @if ($loop->last)
+                <div class="pr-6 lg:border-[#d3d3d3] lg:border-r hover:text-[#1880e8]">
+                    <a href="{{ $e->link ? route($e->link) : '#' }}">
+                        <p><span class="font-[15px] pl-0.5 text-[#131921]"><i
+                                    class="{{ $e->icon }}"></i></span>{{ $e->name }}</p>
+                    </a>
+                </div>
+            @else
+                <div class="hidden lg:block hover:text-[#1880e8]">
+                    <a href="{{ $e->link ? route($e->link) : '#' }}">
+                        <p><span class="font-[15px] pl-0.5 text-[#131921]"><i
+                                    class="{{ $e->icon }}"></i></span>{{ $e->name }}</p>
+                    </a>
+                </div>
+            @endif
+        @endforeach
         <div class="hidden lg:block hover:text-[#1880e8]">
-            <a href="#"><p>Sách Của Bạn<span  class="font-[15px] pl-0.5 text-[#131921]">&#11206;</span></p></a>
+            <a href="#">
+                <p>Sách Của Bạn<span class="font-[15px] pl-0.5 text-[#131921]">&#11206;</span></p>
+            </a>
         </div>
     </div>
 </header>

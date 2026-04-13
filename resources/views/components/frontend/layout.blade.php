@@ -13,14 +13,14 @@
 <body class="flex flex-col min-h-screen">
 <body>
 
-    @include('layouts.frontend.partials.header')
+    <x-frontend.partials.header/>
 
     <main class="flex-1">
-    <main>
         {{ $slot }}
     </main>
 
-    @include('layouts.frontend.partials.footer')
+    <x-frontend.partials.footer/>
+
     {{ $footer ?? '' }}
 </body>
 

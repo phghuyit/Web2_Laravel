@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('name', 255);
 
             // Đường dẫn khi click vào menu
-            $table->string('link', 255);
+            $table->string('link', 255)->nullable();
 
             // Cột ICON: Lưu class icon (Ví dụ: 'fa-home', 'fa-phone')
             $table->string('icon', 255)->nullable();
