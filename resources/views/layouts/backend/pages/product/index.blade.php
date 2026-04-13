@@ -86,13 +86,18 @@
                                     <div class="p-3 rounded-lg shadow text-sm hover:bg-gray-100">
                                         <a href="{{ route("product.edit",$product->id) }}" > <i class="fa-pen fa-solid"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                     </div>
-                                    <form action="{{ route("product.destroy",$product->id) }}" method="post">
+                                    <form action="{{ route("admin.product.del",$product->id) }}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100">
                                             <button type="submit"><i class="fa-solid fa-trash text-red-600"></i></button>
                                         </div>
                                     </form>
+
+                                    <a href="{{ route('product.show',$product->id) }}"
+                                    class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100">
+                                    <i class="fa-solid fa-eye text-yellow-600"></i>
+                                    </a>
                                 </div>
                             </td>
                         </tr>

@@ -52,7 +52,6 @@
                         $("#product-grid").css('opacity', '0.5');
                     },
                     success: function(response) {
-                        $('#product-grid').html(response.product_html);
                         $('#paginator-container').html(response.paginator_html);
                         $("#product-grid").css('opacity', '1');
                     },

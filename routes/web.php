@@ -50,6 +50,9 @@ Route::prefix('admin')->group(function () {
     Route::prefix('product')->group(function () {
         Route::get('edit/{id}', [ProductAdminController::class, 'edit'])->name('admin.product.edit');
         Route::get('/trash', [ProductAdminController::class, 'trash'])->name('product.trash');
+        Route::put('restore/{id}', [ProductAdminController::class, 'restore'])->name('admin.product.restore');
+        Route::delete('delete/{id}', [ProductAdminController::class, 'delete'])->name('admin.product.del');
+        Route::get('/show/{id}', [ProductAdminController::class, 'show'])->name('product.show');
     });
     Route::resource('product', ProductAdminController::class);
 

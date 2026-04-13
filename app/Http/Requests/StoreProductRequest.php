@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Models\Product;
 
 class StoreProductRequest extends FormRequest
 {
@@ -23,7 +24,7 @@ class StoreProductRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|string|max:1000|unique:products,name',
+            'name' => 'required|string|max:1000|unique:' . Product::class . ',name',
 
             'image'=> 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
 

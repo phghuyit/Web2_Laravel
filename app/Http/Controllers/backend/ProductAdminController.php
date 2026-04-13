@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Support\Str;
 
 class ProductAdminController extends Controller
@@ -75,6 +76,13 @@ class ProductAdminController extends Controller
         return view("layouts.backend.pages.product.create",compact('brands','cats'));
     }
 
+    public function restore(string $id)
+    {
+        //
+        $product= Product::onlyTrashed()->findOrFail($id);
+        $product->restore();
+        return redirect()->route('product.index');
+    }
     /**
      * Store a newly created resource in storage.
      */
@@ -113,6 +121,13 @@ class ProductAdminController extends Controller
     public function show(string $id)
     {
         //
+        $product = Product::findOrFail($id);
+        if($product){
+            $brands=Brand::select('id','name')->get();
+            $cats=Category::select('id','name')->get();
+
+            return view('layouts.backend.pages.product.showDetail',compact('product','brands','cats'));
+        }
     }
 
     /**
@@ -122,29 +137,63 @@ class ProductAdminController extends Controller
     {
         //
         $product = Product::findOrFail($id);
-        $brands=Brand::select('id','name')->get();
-        $cats=Category::select('id','name')->get();
+        if($product){
+            $brands=Brand::select('id','name')->get();
+            $cats=Category::select('id','name')->get();
 
-        return view('layouts.backend.pages.product.edit',compact('product','brands','cats'));
+            return view('layouts.backend.pages.product.edit',compact('product','brands','cats'));
+        }
+
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateProductRequest $request, string $id)
     {
         //
+        $product=Product::findOrFail($id);
+        $product->name=$request->name;
+        $slug = Str::of($request->name)->slug('-');
+        $product->slug=$slug;
+
+        if($request->has("image")){
+            $file = $request->file("image");
+            $filename = $slug.'_'.$file->getClientOriginalName();
+            $path= $file->storeAs('products',$filename,'public');
+            $product->image=$path;
+        }
+        $product->brand_id=$request->brand_id;
+        $product->category_id=$request->category_id;
+        $product->price_buy=$request->price_buy;
+
+        $product->qty=$request->qty;
+        if($request->has("description")){
+            $product->description=$request->description;
+        }
+        // $product->created_by=Auth::id()??1;
+        $product->status=1??$request->status;
+        $product->created_at=date('Y-m-d H:i:s');
+        $product->save();
+        return redirect()->route('product.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+    public function delete(string $id)
     {
         //
         $product = Product::findOrFail($id);
 
         $product->delete();
+
+        return redirect()->route('product.trash');
+    }
+
+    public function destroy(string $id)
+    {
+        //
+        $product = Product::withTrashed()->findOrFail($id);
+
+        $product->forceDelete();
 
         return redirect()->route('product.trash');
     }

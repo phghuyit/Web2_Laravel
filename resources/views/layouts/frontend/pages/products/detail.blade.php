@@ -75,8 +75,29 @@
         <div class="rounded-2xl border-t border-[#d3d3d3] pt-6 xl:col-span-2 xl:border xl:border-[#d3d3d3] xl:bg-white xl:p-5 xl:shadow-sm">
             <p class="mt-3 text-xl font-bold">Nhung the loai lien quan ma ban co the thay thu vi</p>
             <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                <div class="rounded-xl border border-[#e5e7eb] bg-[#fafafa] p-4 text-sm text-[#565959]">nhung loai sp lien quan</div>
+                <div class="rounded-xl border border-[#e5e7eb] bg-[#fafafa] p-4 text-sm text-[#565959]">
+                    @fragment("related-prod")
+                        @foreach ($relatedProd as $product )
+                            <x-ui.productcard :product="$product"></x-ui.productcard>
+                        @endforeach
+                    @endfragment
+                </div>
+                </div>
             </div>
         </div>
     </div>
+    <x-slot:footer>
+        <script>
+            const [products,setProd]=useState([]);
+            useEffect(()=>{
+                $.ajax({
+                    method: 'GET',
+                    url:"{{ route('site.product.detail') }}",
+                    data: $product,
+                    
+                }
+            )
+            })
+        </script>
+    </x-slot:footer>
 </x-frontend.layout>
