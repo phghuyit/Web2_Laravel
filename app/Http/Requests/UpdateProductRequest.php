@@ -2,9 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Product;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Models\Product;
 
 class UpdateProductRequest extends FormRequest
 {
@@ -25,8 +25,8 @@ class UpdateProductRequest extends FormRequest
     {
         return [
             //
-            'name'=>['required', Rule::unique(Product::class, 'name')->ignore($this->route('product'))],
-            'image'=> 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
-            ];
+            'name' => ['required', Rule::unique(Product::class, 'name')->ignore($this->route('product'))],
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+        ];
     }
 }

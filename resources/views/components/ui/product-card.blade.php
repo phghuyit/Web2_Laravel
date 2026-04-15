@@ -3,8 +3,10 @@
     <div
         class="group hover:-translate-y-2 flex flex-col h-full rounded-lg border border-transparent p-6 shadow-md transition duration-200 hover:border-orange-500 hover:ring-2 hover:ring-orange-200">
         <!-- Be present above all else. - Naval Ravikant -->
-        <div class="h-64 self-center">
-            <img src="{{ $product->image }}" alt="Bia sach" class="max-h-full object-contain">
+        <div class="self-center w-full flex justify-center">
+            <div class="m-1 rounded-xl bg-[#f7f7f7] px-1 2xl:p-2  2xl:h-64 flex justify-center xl:w-[50%]">
+                <img src="{{ $product->image }}" alt="Bia sach" class="max-h-full object-contain h-50 2xl:h-full">
+            </div>
         </div>
 
         <div class="my-4 flex-grow">

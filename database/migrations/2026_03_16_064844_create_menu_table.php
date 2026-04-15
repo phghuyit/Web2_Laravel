@@ -42,7 +42,7 @@ return new class extends Migration
                 'brand',
                 'topic',
                 'page',
-                'custom'
+                'custom',
             ])->default('custom');
 
             $table->unsignedInteger('created_by')->default(1);

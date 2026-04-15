@@ -20,7 +20,7 @@ return new class extends Migration
             $table->unsignedInteger('sort_order')->default(1);
 
             $table->enum('position', ['slideshow', 'advertise'])
-                  ->default('slideshow');
+                ->default('slideshow');
 
             $table->text('description')->nullable();
 

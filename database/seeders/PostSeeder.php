@@ -2,9 +2,9 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+
 class PostSeeder extends Seeder
 {
     /**
@@ -15,10 +15,10 @@ class PostSeeder extends Seeder
         $posts = [
             // Post 1 – Ebook deal / guide
             [
-                'topic_id'    => 1,
-                'title'       => 'Top 10 Ebook Hay Nhất Năm 2025 – Bạn Đã Đọc Chưa?',
-                'slug'        => 'top-10-ebook-hay-nhat-nam-2025',
-                'detail'      => '<p>Năm 2025 chứng kiến sự bùng nổ của thị trường sách điện tử với hàng loạt tựa sách đình đám ra mắt trên toàn cầu. Từ tiểu thuyết lãng mạn kỳ ảo (<em>romantasy</em>) đến sách phi hư cấu truyền cảm hứng, ebook ngày càng trở thành lựa chọn ưa thích của độc giả hiện đại nhờ tính tiện lợi và giá thành phải chăng.</p>
+                'topic_id' => 1,
+                'title' => 'Top 10 Ebook Hay Nhất Năm 2025 – Bạn Đã Đọc Chưa?',
+                'slug' => 'top-10-ebook-hay-nhat-nam-2025',
+                'detail' => '<p>Năm 2025 chứng kiến sự bùng nổ của thị trường sách điện tử với hàng loạt tựa sách đình đám ra mắt trên toàn cầu. Từ tiểu thuyết lãng mạn kỳ ảo (<em>romantasy</em>) đến sách phi hư cấu truyền cảm hứng, ebook ngày càng trở thành lựa chọn ưa thích của độc giả hiện đại nhờ tính tiện lợi và giá thành phải chăng.</p>
 <p>Dưới đây là 10 cuốn ebook nổi bật nhất năm 2025 được tổng hợp từ danh sách bestseller của Amazon Kindle, Barnes &amp; Noble Nook và các nền tảng đọc sách hàng đầu thế giới:</p>
 <ol>
   <li><strong>Onyx Storm</strong> – Rebecca Yarros: Phần tiếp theo của series Empyrean, thống trị danh sách bestseller New York Times trong 8 tuần liên tiếp. Câu chuyện kết hợp giữa rồng, phép thuật và tình yêu cuốn hút không thể bỏ qua.</li>
@@ -33,24 +33,24 @@ class PostSeeder extends Seeder
   <li><strong>The Body Keeps the Score</strong> – Bessel van der Kolk: Cuốn sách về chấn thương tâm lý tiếp tục bám trụ danh sách bestseller tuần thứ 6 liên tiếp trong năm 2025.</li>
 </ol>
 <p>Tất cả các tựa sách trên đều có phiên bản ebook với mức giá từ 7–15 USD trên các nền tảng lớn. Hãy tải về và bắt đầu hành trình đọc sách của bạn ngay hôm nay!</p>',
-                'image'       => 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80',
-                'post_type'   => 'post',
+                'image' => 'https://images.unsplash.com/photo-1512820790803-83ca734da794?w=800&q=80',
+                'post_type' => 'post',
                 'description' => 'Khám phá 10 cuốn ebook bán chạy nhất năm 2025 – từ romantasy đình đám đến sách phi hư cấu truyền cảm hứng, tất cả đều có sẵn để tải về ngay.',
-                'created_by'  => 1,
-                'updated_by'  => null,
-                'status'      => 1,
-                'views'       => 1240,
+                'created_by' => 1,
+                'updated_by' => null,
+                'status' => 1,
+                'views' => 1240,
                 'published_at' => '2025-06-15 08:00:00',
-                'created_at'  => '2025-06-15 07:30:00',
-                'updated_at'  => '2025-06-15 07:30:00',
+                'created_at' => '2025-06-15 07:30:00',
+                'updated_at' => '2025-06-15 07:30:00',
             ],
 
             // Post 2 – Bestseller series spotlight
             [
-                'topic_id'    => 2,
-                'title'       => 'Series Empyrean Của Rebecca Yarros – Cơn Bão Romantasy Không Thể Cưỡng Lại',
-                'slug'        => 'series-empyrean-rebecca-yarros-con-bao-romantasy',
-                'detail'      => '<p>Nếu bạn chưa nghe đến tên <strong>Rebecca Yarros</strong> hay series <strong>Empyrean</strong>, có lẽ bạn đã bỏ lỡ hiện tượng văn học lớn nhất của năm 2024–2025. Bộ truyện kết hợp hoàn hảo giữa fantasy sử thi và tình yêu lãng mạn, tạo nên thể loại "romantasy" đang làm mưa làm gió trên toàn cầu.</p>
+                'topic_id' => 2,
+                'title' => 'Series Empyrean Của Rebecca Yarros – Cơn Bão Romantasy Không Thể Cưỡng Lại',
+                'slug' => 'series-empyrean-rebecca-yarros-con-bao-romantasy',
+                'detail' => '<p>Nếu bạn chưa nghe đến tên <strong>Rebecca Yarros</strong> hay series <strong>Empyrean</strong>, có lẽ bạn đã bỏ lỡ hiện tượng văn học lớn nhất của năm 2024–2025. Bộ truyện kết hợp hoàn hảo giữa fantasy sử thi và tình yêu lãng mạn, tạo nên thể loại "romantasy" đang làm mưa làm gió trên toàn cầu.</p>
 
 <h2>Bộ Series Gồm Những Tập Nào?</h2>
 <ul>
@@ -63,24 +63,24 @@ class PostSeeder extends Seeder
 <p>Series Empyrean không chỉ là câu chuyện tình yêu – đây là một thế giới hoành tráng với hệ thống phép thuật độc đáo, những con rồng có cá tính riêng, và các nhân vật được xây dựng chiều sâu. Tác giả Rebecca Yarros khéo léo đan xen giữa hành động căng thẳng và những khoảnh khắc lãng mạn khiến người đọc không thể đặt sách xuống.</p>
 <p>Cả ba tập đều có sẵn dưới dạng ebook trên Kindle, Apple Books và Kobo. Phiên bản audiobook cũng nhận được đánh giá xuất sắc từ cộng đồng.</p>
 <blockquote><em>"Đây là bộ series romantasy hay nhất tôi từng đọc trong 10 năm trở lại đây." – Goodreads Review, 5 sao</em></blockquote>',
-                'image'       => 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&q=80',
-                'post_type'   => 'post',
+                'image' => 'https://images.unsplash.com/photo-1544947950-fa07a98d237f?w=800&q=80',
+                'post_type' => 'post',
                 'description' => 'Tìm hiểu về series Empyrean của Rebecca Yarros – bộ truyện romantasy đang khuynh đảo thế giới với hơn 2 triệu bản Onyx Storm bán ra chỉ trong vài tuần.',
-                'created_by'  => 1,
-                'updated_by'  => 2,
-                'status'      => 1,
-                'views'       => 3875,
+                'created_by' => 1,
+                'updated_by' => 2,
+                'status' => 1,
+                'views' => 3875,
                 'published_at' => '2025-03-10 09:00:00',
-                'created_at'  => '2025-03-10 08:00:00',
-                'updated_at'  => '2025-03-12 10:00:00',
+                'created_at' => '2025-03-10 08:00:00',
+                'updated_at' => '2025-03-12 10:00:00',
             ],
 
             // Post 3 – New release announcement
             [
-                'topic_id'    => 3,
-                'title'       => 'Sách Mới Ra Mắt Tháng 3/2025 – Những Tựa Sách Không Thể Bỏ Lỡ',
-                'slug'        => 'sach-moi-ra-mat-thang-3-2025',
-                'detail'      => '<p>Tháng 3/2025 là tháng vàng cho những tín đồ mê sách khi hàng loạt tựa sách được mong đợi nhất năm chính thức ra mắt. Từ tiểu thuyết văn học đoạt giải thưởng đến sách tự giúp bản thân, đây là những cuốn sách bạn nên thêm vào danh sách đọc ngay bây giờ.</p>
+                'topic_id' => 3,
+                'title' => 'Sách Mới Ra Mắt Tháng 3/2025 – Những Tựa Sách Không Thể Bỏ Lỡ',
+                'slug' => 'sach-moi-ra-mat-thang-3-2025',
+                'detail' => '<p>Tháng 3/2025 là tháng vàng cho những tín đồ mê sách khi hàng loạt tựa sách được mong đợi nhất năm chính thức ra mắt. Từ tiểu thuyết văn học đoạt giải thưởng đến sách tự giúp bản thân, đây là những cuốn sách bạn nên thêm vào danh sách đọc ngay bây giờ.</p>
 
 <h2>Tiểu Thuyết Fiction Nổi Bật</h2>
 <p><strong>Onyx Storm – Rebecca Yarros (Ra mắt 21/01/2025)</strong><br>
@@ -98,24 +98,24 @@ Nhà tâm lý học xã hội Jonathan Haidt đưa ra bằng chứng thuyết ph
 
 <h2>Lịch Ra Mắt Sách Còn Lại Trong Quý 1/2025</h2>
 <p>Ngoài các tựa sách trên, độc giả có thể mong đợi thêm nhiều tên tuổi lớn sẽ ra mắt trong những tuần tới. Hãy theo dõi trang web của chúng tôi để không bỏ lỡ bất kỳ thông tin nào về các tựa sách mới nhất!</p>',
-                'image'       => 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80',
-                'post_type'   => 'post',
+                'image' => 'https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&q=80',
+                'post_type' => 'post',
                 'description' => 'Danh sách những cuốn sách mới ra mắt tháng 3/2025 đáng đọc nhất – từ romantasy, tiểu thuyết văn học đến sách phát triển bản thân.',
-                'created_by'  => 1,
-                'updated_by'  => null,
-                'status'      => 1,
-                'views'       => 892,
+                'created_by' => 1,
+                'updated_by' => null,
+                'status' => 1,
+                'views' => 892,
                 'published_at' => '2025-03-01 07:00:00',
-                'created_at'  => '2025-03-01 06:30:00',
-                'updated_at'  => '2025-03-01 06:30:00',
+                'created_at' => '2025-03-01 06:30:00',
+                'updated_at' => '2025-03-01 06:30:00',
             ],
 
             // Post 4 – Ebook reading guide / tips page
             [
-                'topic_id'    => 1,
-                'title'       => 'Hướng Dẫn Đọc Ebook Cho Người Mới Bắt Đầu – Chọn Nền Tảng Nào Tốt Nhất?',
-                'slug'        => 'huong-dan-doc-ebook-cho-nguoi-moi-bat-dau',
-                'detail'      => '<p>Bạn muốn chuyển sang đọc sách điện tử nhưng không biết bắt đầu từ đâu? Đừng lo – bài viết này sẽ giúp bạn hiểu rõ các nền tảng ebook phổ biến nhất, cách chọn thiết bị đọc sách phù hợp và những mẹo nhỏ để tận hưởng trải nghiệm đọc sách tốt nhất.</p>
+                'topic_id' => 1,
+                'title' => 'Hướng Dẫn Đọc Ebook Cho Người Mới Bắt Đầu – Chọn Nền Tảng Nào Tốt Nhất?',
+                'slug' => 'huong-dan-doc-ebook-cho-nguoi-moi-bat-dau',
+                'detail' => '<p>Bạn muốn chuyển sang đọc sách điện tử nhưng không biết bắt đầu từ đâu? Đừng lo – bài viết này sẽ giúp bạn hiểu rõ các nền tảng ebook phổ biến nhất, cách chọn thiết bị đọc sách phù hợp và những mẹo nhỏ để tận hưởng trải nghiệm đọc sách tốt nhất.</p>
 
 <h2>Tại Sao Nên Đọc Ebook?</h2>
 <ul>
@@ -149,24 +149,24 @@ Nhà tâm lý học xã hội Jonathan Haidt đưa ra bằng chứng thuyết ph
 </ol>
 
 <p>Hy vọng bài hướng dẫn này sẽ giúp bạn bước vào thế giới ebook một cách dễ dàng và thú vị. Hãy bắt đầu với một tựa sách bạn yêu thích và để câu chuyện dẫn lối!</p>',
-                'image'       => 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
-                'post_type'   => 'page',
+                'image' => 'https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80',
+                'post_type' => 'page',
                 'description' => 'Hướng dẫn chi tiết cho người mới bắt đầu đọc ebook: so sánh các nền tảng Kindle, Apple Books, Kobo và những mẹo đọc sách hiệu quả.',
-                'created_by'  => 1,
-                'updated_by'  => 1,
-                'status'      => 1,
-                'views'       => 2150,
+                'created_by' => 1,
+                'updated_by' => 1,
+                'status' => 1,
+                'views' => 2150,
                 'published_at' => '2025-01-20 10:00:00',
-                'created_at'  => '2025-01-20 09:00:00',
-                'updated_at'  => '2025-02-05 14:00:00',
+                'created_at' => '2025-01-20 09:00:00',
+                'updated_at' => '2025-02-05 14:00:00',
             ],
 
             // Post 5 – Hunger Games new book review
             [
-                'topic_id'    => 2,
-                'title'       => 'Review Sách: "Sunrise on the Reaping" – Câu Chuyện Của Haymitch Trong The Hunger Games',
-                'slug'        => 'review-sach-sunrise-on-the-reaping-hunger-games',
-                'detail'      => '<p>Sau nhiều năm chờ đợi, Suzanne Collins đã quay trở lại vũ trụ <strong>The Hunger Games</strong> với tập thứ 5 mang tên <em>Sunrise on the Reaping</em> – câu chuyện lần này xoay quanh nhân vật được yêu thích <strong>Haymitch Abernathy</strong>, người chiến thắng Đấu trường Sinh tử năm thứ 50.</p>
+                'topic_id' => 2,
+                'title' => 'Review Sách: "Sunrise on the Reaping" – Câu Chuyện Của Haymitch Trong The Hunger Games',
+                'slug' => 'review-sach-sunrise-on-the-reaping-hunger-games',
+                'detail' => '<p>Sau nhiều năm chờ đợi, Suzanne Collins đã quay trở lại vũ trụ <strong>The Hunger Games</strong> với tập thứ 5 mang tên <em>Sunrise on the Reaping</em> – câu chuyện lần này xoay quanh nhân vật được yêu thích <strong>Haymitch Abernathy</strong>, người chiến thắng Đấu trường Sinh tử năm thứ 50.</p>
 
 <h2>Tóm Tắt Nội Dung</h2>
 <p>Câu chuyện diễn ra 24 năm trước sự kiện trong cuốn sách đầu tiên. Chúng ta gặp Haymitch khi còn là một thiếu niên 16 tuổi tại vùng District 12 – nghèo khó, thông minh và đang yêu lần đầu. Khi tên anh được gọi tại buổi Chọn Lựa (<em>Reaping</em>), hành trình sống còn của Haymitch trong Hunger Games lần thứ 50 – Lễ Kỷ Niệm Thứ Tư (<em>Fourth Quarter Quell</em>) – bắt đầu.</p>
@@ -187,16 +187,16 @@ Nhà tâm lý học xã hội Jonathan Haidt đưa ra bằng chứng thuyết ph
 <p>⭐⭐⭐⭐½ (4.5/5 sao)</p>
 <p><em>Sunrise on the Reaping</em> là một phần bổ sung xuất sắc cho vũ trụ The Hunger Games. Cuốn sách không chỉ thỏa mãn fan cũ mà còn có thể đứng độc lập như một tác phẩm bi kịch hoàn chỉnh. Phim chuyển thể dự kiến ra rạp tháng 11/2026 hứa hẹn sẽ là một bom tấn điện ảnh.</p>
 <p>Hiện sách đã có sẵn ở định dạng ebook trên Amazon Kindle và Apple Books với giá khoảng 14.99 USD.</p>',
-                'image'       => 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=800&q=80',
-                'post_type'   => 'post',
+                'image' => 'https://images.unsplash.com/photo-1476275466078-4007374efbbe?w=800&q=80',
+                'post_type' => 'post',
                 'description' => 'Review chi tiết "Sunrise on the Reaping" – tập 5 của The Hunger Games kể về tuổi trẻ của Haymitch Abernathy. Cuốn sách bán hơn 1,6 triệu bản năm 2025.',
-                'created_by'  => 1,
-                'updated_by'  => null,
-                'status'      => 1,
-                'views'       => 4320,
+                'created_by' => 1,
+                'updated_by' => null,
+                'status' => 1,
+                'views' => 4320,
                 'published_at' => '2025-04-05 08:00:00',
-                'created_at'  => '2025-04-05 07:00:00',
-                'updated_at'  => '2025-04-05 07:00:00',
+                'created_at' => '2025-04-05 07:00:00',
+                'updated_at' => '2025-04-05 07:00:00',
             ],
         ];
 

@@ -1,5 +1,6 @@
 <?php
 
+// BackEndImports
 use App\Http\Controllers\backend\BannerController;
 use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\CategoriesController;
@@ -15,7 +16,6 @@ use App\Http\Controllers\backend\UserController as UserAdminController;
 use App\Http\Controllers\frontend\CartController;
 use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\HomeController;
-// BackEndImports
 use App\Http\Controllers\frontend\ProductController;
 use App\Http\Controllers\frontend\UserController;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +30,7 @@ Route::redirect('/home', '/phghuy_ltw2/public');
 
 Route::get('product', [ProductController::class, 'index'])->name('site.product.index');
 Route::get('/product/{slug}', [ProductController::class, 'detail'])->name('site.product.detail');
+Route::get('/live-search', [ProductController::class, 'liveSearch'])->name('site.liveSearch');
 // Contact-Liên hệ
 
 Route::get('contact', [ContactController::class, 'index'])->name('site.contact.index');

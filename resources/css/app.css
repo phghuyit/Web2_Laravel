@@ -10,3 +10,12 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+.mySlide{
+    animation: fade 0.3s;
+}
+
+@keyframes fade {
+    from{opacity: .4;}
+    to{opacity: 1}
+}

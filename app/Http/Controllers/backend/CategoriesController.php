@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use App\Models\Category;
+use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -15,29 +14,30 @@ class CategoriesController extends Controller
     public function index(Request $request)
     {
         $query = Category::query();
-        $query->select('id','name','description','image','parent_id','sort_order','status','slug');
+        $query->select('id', 'name', 'description', 'image', 'parent_id', 'sort_order', 'status', 'slug');
         $query->whereNull('deleted_at');
-        if($request->filled('name')){
-            $query->where([ ['name','like','%'.$request->input('name').'%'],
-                            ['slug','like','%'.$request->input('name').'%']]);
+        if ($request->filled('name')) {
+            $query->where([['name', 'like', '%'.$request->input('name').'%'],
+                ['slug', 'like', '%'.$request->input('name').'%']]);
         }
 
-        if($request->filled('sort_by')){
-            $sort=$request->input('sort_by');
-            switch($sort){
+        if ($request->filled('sort_by')) {
+            $sort = $request->input('sort_by');
+            switch ($sort) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
-        $cates=$query->paginate(5)->withQueryString();
-        return view('layouts.backend.pages.categories.index',compact('cates'));
+        $cates = $query->paginate(5)->withQueryString();
+
+        return view('layouts.backend.pages.categories.index', compact('cates'));
     }
 
     /**
@@ -70,6 +70,7 @@ class CategoriesController extends Controller
     public function edit(string $id)
     {
         $cate = Category::findOrFail($id);
+
         return view('layouts.backend.pages.categories.edit', compact('cate'));
     }
 
@@ -91,34 +92,37 @@ class CategoriesController extends Controller
 
         return redirect()->route('cate.trash');
     }
-    public function trash(Request $request){
-        $query = Category::onlyTrashed()->select('id','name','description','image','parent_id','sort_order','status','slug');
 
-        if($request->filled('name')){
-            $query->where([ ['name','like','%'.$request->input('name').'%'],
-                            ['slug','like','%'.$request->input('name').'%']]);
+    public function trash(Request $request)
+    {
+        $query = Category::onlyTrashed()->select('id', 'name', 'description', 'image', 'parent_id', 'sort_order', 'status', 'slug');
+
+        if ($request->filled('name')) {
+            $query->where([['name', 'like', '%'.$request->input('name').'%'],
+                ['slug', 'like', '%'.$request->input('name').'%']]);
         }
 
         if ($request->filled('status')) {
             $query->where('status', $request->input('status'));
         }
 
-        if($request->filled('sort_by')){
-            $sort=$request->input('sort_by');
-            switch($sort){
+        if ($request->filled('sort_by')) {
+            $sort = $request->input('sort_by');
+            switch ($sort) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
 
         $cates = $query->paginate(5)->withQueryString();
+
         return view('layouts.backend.pages.categories.trash', compact('cates'));
     }
 }

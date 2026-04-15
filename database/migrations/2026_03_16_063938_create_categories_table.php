@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('categories', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name',1000);
+            $table->string('name', 1000);
 
-            $table->string('slug',1000);
+            $table->string('slug', 1000);
 
-            $table->string('image',1000)->nullable();
+            $table->string('image', 1000)->nullable();
 
             $table->unsignedInteger('parent_id')->default(0);
 
@@ -33,7 +33,7 @@ return new class extends Migration
             $table->timestamp('deleted_at')->nullable();
 
             $table->unsignedTinyInteger('status')->default(2);
-            
+
             $table->timestamps();
         });
     }

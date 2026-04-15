@@ -20,7 +20,7 @@
                 <div class="flex-1">
                     <select name="status" class="bg-white border flex-1 px-4 py-2 rounded-lg w-full"
                         onchange="this.form.submit()">
-                        <option value="">Status</option>
+                        <option value="">Trạng Thái</option>
                         <option value="0" {{ request('status') == '0' ? 'selected' : ' ' }}>Ẩn</option>
                         <option value="1" {{ request('status') == '1' ? 'selected' : ' ' }}>Hiện</option>
                     </select>

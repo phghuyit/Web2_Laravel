@@ -54,9 +54,40 @@
                     {{ $product->description ?? 'Không có mô tả' }}
                 </div>
 
-                <div class="border-t border-[#d3d3d3] pt-4 leading-7 text-[#222]">
-                    <p class="font-semibold mb-2">Lịch sử thao tác (Audit Trail / Log):</p>
-                    {{ $product->description ?? 'Không có mô tả' }}
+                <div class="border-t border-[#d3d3d3] pt-4 text-[#222]">
+                    <p class="font-semibold mb-3">Lịch sử thao tác (Audit Trail / Log):</p>
+                    <div class="grid grid-cols-2 gap-4 text-sm">
+                        <div>
+                            <p class="text-gray-500">Người tạo (Created By):</p>
+                            <p class="font-medium">{{ $product->created_by ?? 'Không rõ' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Ngày tạo (Created At):</p>
+                            <p class="font-medium">
+                                {{ $product->created_at ? \Carbon\Carbon::parse($product->created_at)->format('d/m/Y H:i') : 'Không rõ' }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Người cập nhật (Updated By):</p>
+                            <p class="font-medium">{{ $product->updated_by ?? 'Không có' }}</p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Ngày cập nhật (Updated At):</p>
+                            <p class="font-medium">
+                                {{ $product->updated_at ? \Carbon\Carbon::parse($product->updated_at)->format('d/m/Y H:i') : 'Không có' }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Ngày xóa (Deleted At):</p>
+                            <p class="font-medium">
+                                {{ $product->deleted_at ? \Carbon\Carbon::parse($product->deleted_at)->format('d/m/Y H:i') : 'Chưa bị xóa' }}
+                            </p>
+                        </div>
+                        <div>
+                            <p class="text-gray-500">Lượt xem (Views):</p>
+                            <p class="font-medium">{{ $product->view ?? 0 }}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
 

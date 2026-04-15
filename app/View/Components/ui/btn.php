@@ -8,16 +8,21 @@ use Illuminate\View\Component;
 
 class btn extends Component
 {
-    public $content,$url,$bgcolor;
+    public $content;
+
+    public $url;
+
+    public $bgcolor;
+
     /**
      * Create a new component instance.
      */
-    public function __construct($url="",$content="",$bgcolor="bg-orange-400")
+    public function __construct($url = '', $content = '', $bgcolor = 'bg-orange-400')
     {
         //
-        $this->bgcolor=$bgcolor;
-        $this->url=$url;
-        $this->content=$content;
+        $this->bgcolor = $bgcolor;
+        $this->url = $url;
+        $this->content = $content;
     }
 
     /**

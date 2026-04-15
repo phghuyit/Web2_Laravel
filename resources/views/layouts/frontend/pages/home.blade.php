@@ -7,6 +7,5 @@
         <x-frontend.product-hot />
         <x-frontend.product-new />
         <x-frontend.product-sale />
-        <x-frontend.hot-news />
     </div>
 </x-frontend.layout>

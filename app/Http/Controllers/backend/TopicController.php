@@ -14,26 +14,27 @@ class TopicController extends Controller
         $query->select('id', 'name', 'slug', 'sort_order', 'description', 'status');
         $query->whereNull('deleted_at');
 
-        if($request->filled('name')){
-            $query->where([ ['name','like','%'.$request->input('name').'%'],
-                            ['slug','like','%'.$request->input('name').'%']]);
+        if ($request->filled('name')) {
+            $query->where([['name', 'like', '%'.$request->input('name').'%'],
+                ['slug', 'like', '%'.$request->input('name').'%']]);
         }
 
-        if($request->filled('sort_by')){
-            switch($request->input('sort_by')){
+        if ($request->filled('sort_by')) {
+            switch ($request->input('sort_by')) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
 
         $topics = $query->paginate(5)->withQueryString();
+
         return view('layouts.backend.pages.topic.index', compact('topics'));
     }
 
@@ -45,23 +46,20 @@ class TopicController extends Controller
     public function store(Request $request)
     {
 
-
         return redirect()->route('topic.index');
     }
 
-    public function show(string $id)
-    {
-    }
+    public function show(string $id) {}
 
     public function edit(string $id)
     {
         $topic = Topic::findOrFail($id);
+
         return view('layouts.backend.pages.topic.edit', compact('topic'));
     }
 
     public function update(Request $request, string $id)
     {
-        
 
         return redirect()->route('topic.index');
     }
@@ -78,30 +76,31 @@ class TopicController extends Controller
     {
         $query = Topic::onlyTrashed()->select('id', 'name', 'slug', 'sort_order', 'description', 'status');
 
-        if($request->filled('name')){
-            $query->where([ ['name','like','%'.$request->input('name').'%'],
-                            ['slug','like','%'.$request->input('name').'%']]);
+        if ($request->filled('name')) {
+            $query->where([['name', 'like', '%'.$request->input('name').'%'],
+                ['slug', 'like', '%'.$request->input('name').'%']]);
         }
 
-        if($request->filled('status')){
+        if ($request->filled('status')) {
             $query->where('status', $request->input('status'));
         }
 
-        if($request->filled('sort_by')){
-            switch($request->input('sort_by')){
+        if ($request->filled('sort_by')) {
+            switch ($request->input('sort_by')) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
 
         $topics = $query->paginate(5)->withQueryString();
+
         return view('layouts.backend.pages.topic.trash', compact('topics'));
     }
 }

@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('topic', function (Blueprint $table) {
             $table->id();
-            $table->string('name',1000);
-            $table->string('slug',1000);
+            $table->string('name', 1000);
+            $table->string('slug', 1000);
 
             $table->unsignedInteger('sort_order')->default(1);
 

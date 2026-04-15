@@ -9,10 +9,11 @@ class Order extends Model
 {
     //
     protected $table = 'order';
+
     use SoftDeletes;
 
     public function orderdetails()
-{
-    return $this->hasMany(OrderDetail::class);
-}
+    {
+        return $this->hasMany(OrderDetail::class);
+    }
 }

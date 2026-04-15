@@ -50,6 +50,7 @@ class ProductController extends Controller
 
     public function detail($slug)
     {
+
         $product = Product::with(['category:id,name', 'brand:id,name'])
             ->where('slug', $slug)
             ->firstOrFail();
@@ -57,5 +58,31 @@ class ProductController extends Controller
         $product->increment('views');
 
         return view('layouts.frontend.pages.products.detail', compact('product'));
+    }
+
+    public function liveSearch(Request $request)
+    {
+        if ($request->ajax()) {
+            $keyword = $request->keyword;
+            $products = Product::select('slug', 'name', 'image', 'brand_id')
+                ->with('brand:id,name')
+                ->where('status', 1)
+                ->whereNull('deleted_at')
+                ->when($keyword, function ($q) use ($keyword) {
+                    $q->where(fn ($key) => $key->where('name', 'like', "%{$keyword}%")
+                        ->orWhere('slug', 'like', "%{$keyword}%"));
+                })
+                ->limit(5)
+                ->get();
+
+            return response()->json([
+                'product_data' => view('components.frontend.partials.header', [
+                    'products' => $products,
+                    'menu' => [],
+                ])->fragment('search-results'),
+            ]);
+        }
+
+        return back()->withInput();
     }
 }

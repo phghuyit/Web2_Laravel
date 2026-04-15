@@ -16,13 +16,13 @@ return new class extends Migration
 
             $table->unsignedInteger('user_id')->nullable();
 
-            $table->string('name',255);
+            $table->string('name', 255);
 
-            $table->string('email',255);
+            $table->string('email', 255);
 
-            $table->string('phone',255);
+            $table->string('phone', 255);
 
-            $table->string('title',1000)->nullable();
+            $table->string('title', 1000)->nullable();
 
             $table->mediumText('content');
 

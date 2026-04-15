@@ -19,7 +19,7 @@
                         <li>
                             <label
                                 class="flex cursor-pointer items-center gap-3 rounded-2xl px-3 py-2 transition hover:bg-orange-50">
-                                <input type="checkbox" name="category_id[]" value="{{ $item->id }}"
+                                <input type="checkbox" name="category_id" value="{{ $item->id }}"
                                     class="accent-orange-400">
                                 <span>{{ $item->name }}</span>
                             </label>
@@ -51,7 +51,7 @@
                     <li>
                         <label
                             class="flex cursor-pointer items-center gap-3 rounded-2xl px-3 py-2 transition hover:bg-orange-50">
-                            <input type="radio" name="price_range" data-min=1000 class="rounded accent-orange-400">
+                            <input type="radio" name="price_range" data-min=1000000 class="rounded accent-orange-400">
                             <span>1tr+</span>
                         </label>
                     </li>

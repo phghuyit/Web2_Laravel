@@ -1,7 +1,7 @@
 <div class="group relative flex h-100 w-full max-w-6xl mx-auto overflow-hidden rounded-2xl bg-gray-100 shadow-md">
 
     <!-- Slides -->
-    <div class="mySlide w-full h-full">
+    <div class="mySlide w-full h-full ">
         <div class="absolute top-4 left-4 rounded-md bg-black/50 px-3 py-1 text-sm text-white backdrop-blur-sm">1 / 3</div>
         <img src="https://media.gettyimages.com/id/458112117/photo/amazon-kindle-ebook-device.jpg?s=1024x1024&w=gi&k=20&c=OyghjJi274mQVSi4WBFfLPs2QguCB9LptnEFpe3TCro=" class="h-full w-full object-contain" alt="img1">
     </div>

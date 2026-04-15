@@ -11,8 +11,9 @@ class Topic extends Model
     use SoftDeletes;
 
     protected $table = 'topic';
+
     public function posts()
-{
-    return $this->hasMany(Post::class);
-}
+    {
+        return $this->hasMany(Post::class);
+    }
 }

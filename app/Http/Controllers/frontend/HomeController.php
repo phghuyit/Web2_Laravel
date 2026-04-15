@@ -11,7 +11,7 @@ class HomeController extends Controller
     {
         $products = Product::query()
             ->with(['category:id,name', 'brand:id,name'])
-            ->select('id', 'image', 'name', 'price_buy','slug', 'category_id', 'brand_id', 'status','is_sale','price_sale')
+            ->select('id', 'image', 'name', 'price_buy', 'slug', 'category_id', 'brand_id', 'status', 'is_sale', 'price_sale')
             ->where('status', 1)
             ->latest()
             ->limit(4)

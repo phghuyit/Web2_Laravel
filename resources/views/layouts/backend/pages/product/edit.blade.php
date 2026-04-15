@@ -104,7 +104,7 @@
                                 @if (!empty($cats) && count($cats))
                                     @foreach ($cats as $cat)
                                         <option value="{{ $cat->id }}"
-                                            {{ (string) old('category_id', $product->category_id ?? '') === (string) $cat->id ? 'selected' : '' }}>
+                                            {{ old('category_id', $product->category_id ?? '') ===  $cat->id ? 'selected' : '' }}>
                                             {{ $cat->name }}
                                         </option>
                                     @endforeach
@@ -116,20 +116,12 @@
 
                         <div>
                             <label class="block font-semibold mb-2 text-gray-700 text-sm">Status</label>
-                            {{-- <label class="cursor-pointer gap-3 inline-flex items-center mt-3">
-                                <span class="bg-emerald-500 h-7 inline-flex items-center relative rounded-full w-14">
-                                    <input type="hidden" name="status" value="0">
-                                    <input
-                                        type="checkbox"
-                                        name="status"
-                                        value="1"
-                                        class="peer sr-only"
-                                        {{ old('status', $product->status ?? 1) ? 'checked' : '' }}
-                                    >
-                                    <span class="absolute bg-white h-5 left-1 rounded-full transition w-5 peer-checked:translate-x-7"></span>
-                                </span>
-                                <span class="font-medium text-gray-700">Active</span>
-                            </label> --}}
+                            <select name="status"
+                            class="bg-white border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100">
+                                <option value="">Trạng Thái</option>
+                                <option value="0" {{ (string) old('status',$product->status??1)=== '0'?'selected':''}} >Ẩn</option>
+                                <option value="1" {{ (string) old('status',$product->status??1)=== '1'?'selected':''}}>Hiện</option>
+                            </select>
                         </div>
                     </div>
 

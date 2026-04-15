@@ -14,25 +14,26 @@ class MenuController extends Controller
         $query->select('id', 'name', 'link', 'table_id', 'type', 'status');
         $query->whereNull('deleted_at');
 
-        if($request->filled('name')){
-            $query->where('name','like','%'.$request->input('name').'%');
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->input('name').'%');
         }
 
-        if($request->filled('sort_by')){
-            switch($request->input('sort_by')){
+        if ($request->filled('sort_by')) {
+            switch ($request->input('sort_by')) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
 
         $menus = $query->paginate(5)->withQueryString();
+
         return view('layouts.backend.pages.menu.index', compact('menus'));
     }
 
@@ -44,23 +45,20 @@ class MenuController extends Controller
     public function store(Request $request)
     {
 
-
         return redirect()->route('menu.index');
     }
 
-    public function show(string $id)
-    {
-    }
+    public function show(string $id) {}
 
     public function edit(string $id)
     {
         $menu = Menu::findOrFail($id);
+
         return view('layouts.backend.pages.menu.edit', compact('menu'));
     }
 
     public function update(Request $request, string $id)
     {
-       
 
         return redirect()->route('menu.index');
     }
@@ -77,29 +75,30 @@ class MenuController extends Controller
     {
         $query = Menu::onlyTrashed()->select('id', 'name', 'link', 'table_id', 'type', 'status');
 
-        if($request->filled('name')){
-            $query->where('name','like','%'.$request->input('name').'%');
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->input('name').'%');
         }
 
-        if($request->filled('status')){
+        if ($request->filled('status')) {
             $query->where('status', $request->input('status'));
         }
 
-        if($request->filled('sort_by')){
-            switch($request->input('sort_by')){
+        if ($request->filled('sort_by')) {
+            switch ($request->input('sort_by')) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
 
         $menus = $query->paginate(5)->withQueryString();
+
         return view('layouts.backend.pages.menu.trash', compact('menus'));
     }
 }

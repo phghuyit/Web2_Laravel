@@ -2,14 +2,15 @@
 
 namespace App\View\Components\frontend;
 
+use App\Models\Post;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
-use App\Models\Post;
 
 class HotNews extends Component
 {
     public $posts;
+
     public function __construct()
     {
         //

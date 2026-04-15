@@ -14,15 +14,15 @@ return new class extends Migration
         Schema::create('brand', function (Blueprint $table) {
             $table->id();
 
-            $table->string('name',1000)->unique();
+            $table->string('name', 1000)->unique();
 
-            $table->string('slug',1000);
+            $table->string('slug', 1000);
 
             $table->unsignedInteger('sort_order')->default(0);
 
             $table->text('description');
 
-            $table->string('image',1000)->nullable();
+            $table->string('image', 1000)->nullable();
 
             $table->unsignedInteger('created_by')->default(1);
 

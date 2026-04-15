@@ -15,10 +15,10 @@ return new class extends Migration
             $table->id();
 
             $table->unsignedInteger('user_id');
-            $table->string('name',255);
-            $table->string('phone',255);
-            $table->string('email',255);
-            $table->string('address',255);
+            $table->string('name', 255);
+            $table->string('phone', 255);
+            $table->string('email', 255);
+            $table->string('address', 255);
             $table->text('note')->nullable();
             $table->unsignedInteger('updated_by')->nullable();
             $table->unsignedTinyInteger('status')->default(2);

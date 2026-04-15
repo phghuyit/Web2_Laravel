@@ -16,14 +16,14 @@ return new class extends Migration
             $table->unsignedInteger('category_id');
             $table->unsignedInteger('brand_id');
 
-            $table->string('name',1000);
-            $table->string('slug',1000);
+            $table->string('name', 1000);
+            $table->string('slug', 1000);
 
             $table->float('price_buy');
             $table->float('price_sale')->nullable();
             $table->unsignedTinyInteger('is_sale')->default(0);
 
-            $table->string('image',1000)->nullable();
+            $table->string('image', 1000)->nullable();
 
             $table->unsignedInteger('qty');
 
@@ -40,7 +40,7 @@ return new class extends Migration
 
             $table->timestamps();
             $table->softDeletes();
-            });
+        });
     }
 
     /**

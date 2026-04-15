@@ -5,7 +5,6 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,25 +14,26 @@ class UserController extends Controller
         $query->select('id', 'name', 'email', 'phone', 'username', 'address', 'image', 'roles', 'status');
         $query->whereNull('deleted_at');
 
-        if($request->filled('name')){
-            $query->where('name','like','%'.$request->input('name').'%');
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->input('name').'%');
         }
 
-        if($request->filled('sort_by')){
-            switch($request->input('sort_by')){
+        if ($request->filled('sort_by')) {
+            switch ($request->input('sort_by')) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
 
         $users = $query->paginate(5)->withQueryString();
+
         return view('layouts.backend.pages.user.index', compact('users'));
     }
 
@@ -48,19 +48,17 @@ class UserController extends Controller
         return redirect()->route('user.index');
     }
 
-    public function show(string $id)
-    {
-    }
+    public function show(string $id) {}
 
     public function edit(string $id)
     {
         $user = User::findOrFail($id);
+
         return view('layouts.backend.pages.user.edit', compact('user'));
     }
 
     public function update(Request $request, string $id)
     {
-        
 
         return redirect()->route('user.index');
     }
@@ -77,29 +75,30 @@ class UserController extends Controller
     {
         $query = User::onlyTrashed()->select('id', 'name', 'email', 'phone', 'username', 'address', 'image', 'roles', 'status');
 
-        if($request->filled('name')){
-            $query->where('name','like','%'.$request->input('name').'%');
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->input('name').'%');
         }
 
-        if($request->filled('status')){
+        if ($request->filled('status')) {
             $query->where('status', $request->input('status'));
         }
 
-        if($request->filled('sort_by')){
-            switch($request->input('sort_by')){
+        if ($request->filled('sort_by')) {
+            switch ($request->input('sort_by')) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
 
         $users = $query->paginate(5)->withQueryString();
+
         return view('layouts.backend.pages.user.trash', compact('users'));
     }
 }

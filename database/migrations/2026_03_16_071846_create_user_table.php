@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('address')->nullable();
             $table->string('image')->nullable();
 
-            $table->enum('roles',['admin','user'])->default('user');
+            $table->enum('roles', ['admin', 'user'])->default('user');
 
             $table->unsignedInteger('created_by')->default(1);
             $table->unsignedInteger('updated_by')->nullable();

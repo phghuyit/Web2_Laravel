@@ -28,7 +28,7 @@
         <script>
             function handle_filter() {
                 let categories = [];
-                $('input[name="category_id[]"]:checked').each(function() {
+                $('input[name="category_id"]:checked').each(function() {
                     categories.push($(this).val());
                 });
 
@@ -52,6 +52,7 @@
                         $("#product-grid").css('opacity', '0.5');
                     },
                     success: function(response) {
+                        $('#product-grid').html(response.product_html);
                         $('#paginator-container').html(response.paginator_html);
                         $("#product-grid").css('opacity', '1');
                     },

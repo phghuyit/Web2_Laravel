@@ -14,12 +14,12 @@ return new class extends Migration
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
             $table->unsignedInteger('topic_id')->nullable();
-            $table->string('title',1000);
-            $table->string('slug',1000);
+            $table->string('title', 1000);
+            $table->string('slug', 1000);
             $table->mediumText('detail');
-            $table->string('image',1000)->nullable();
+            $table->string('image', 1000)->nullable();
 
-            $table->enum('post_type',['post','page'])->default('post');
+            $table->enum('post_type', ['post', 'page'])->default('post');
 
             $table->text('description')->nullable();
 
@@ -29,7 +29,7 @@ return new class extends Migration
             $table->unsignedTinyInteger('status')->default(2);
             $table->unsignedInteger('views')->default(0);
             $table->timestamp('published_at')->nullable();
-            
+
             $table->timestamps();
             $table->softDeletes();
         });

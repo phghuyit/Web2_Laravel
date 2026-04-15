@@ -3,9 +3,8 @@
 namespace App\Http\Controllers\backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-
 use App\Models\Brand;
+use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
@@ -16,30 +15,31 @@ class BrandController extends Controller
     {
         //
         $query = Brand::query();
-        $query->select('id','name','description','image','status','slug');
+        $query->select('id', 'name', 'description', 'image', 'status', 'slug');
         $query->whereNull('deleted_at');
 
-        if($request->filled('name')){
-            $query->where('name','like','%'.$request->input('name').'%')
-            ->orwhere('slug','like','%'.$request->input('name').'%');
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->input('name').'%')
+                ->orwhere('slug', 'like', '%'.$request->input('name').'%');
         }
 
-        if($request->filled('sort_by')){
-            $sort=$request->input('sort_by');
-            switch($sort){
+        if ($request->filled('sort_by')) {
+            $sort = $request->input('sort_by');
+            switch ($sort) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
-        $brands=$query->paginate(5)->withQueryString();
-        return view('layouts.backend.pages.brand.index',compact('brands'));
+        $brands = $query->paginate(5)->withQueryString();
+
+        return view('layouts.backend.pages.brand.index', compact('brands'));
     }
 
     /**
@@ -48,7 +48,7 @@ class BrandController extends Controller
     public function create()
     {
         //
-        return view("layouts.backend.pages.brand.create");
+        return view('layouts.backend.pages.brand.create');
     }
 
     /**
@@ -73,6 +73,7 @@ class BrandController extends Controller
     public function edit(string $id)
     {
         $brand = Brand::findOrFail($id);
+
         return view('layouts.backend.pages.brand.edit', compact('brand'));
     }
 
@@ -97,34 +98,36 @@ class BrandController extends Controller
         return redirect()->route('brand.trash');
     }
 
-    public function trash(Request $request){
+    public function trash(Request $request)
+    {
         $query = Brand::onlyTrashed()->select('id', 'name', 'description', 'image', 'status', 'slug', 'deleted_at');
 
-        if($request->filled('name')){
-            $query->where([ ['name','like','%'.$request->input('name').'%'],
-                            ['slug','like','%'.$request->input('name').'%']]);
+        if ($request->filled('name')) {
+            $query->where([['name', 'like', '%'.$request->input('name').'%'],
+                ['slug', 'like', '%'.$request->input('name').'%']]);
         }
 
         if ($request->filled('status')) {
             $query->where('status', $request->input('status'));
         }
 
-        if($request->filled('sort_by')){
-            $sort=$request->input('sort_by');
-            switch($sort){
+        if ($request->filled('sort_by')) {
+            $sort = $request->input('sort_by');
+            switch ($sort) {
                 case 'asc':
-                    $query->orderBy('name','asc');
+                    $query->orderBy('name', 'asc');
                     break;
                 case 'desc':
-                    $query->orderBy('name','desc');
+                    $query->orderBy('name', 'desc');
                     break;
                 default:
-                    $query->orderBy('created_at','desc');
+                    $query->orderBy('created_at', 'desc');
                     break;
             }
         }
 
         $brands = $query->paginate(5)->withQueryString();
+
         return view('layouts.backend.pages.brand.trash', compact('brands'));
     }
 }

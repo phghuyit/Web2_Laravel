@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests;
 
-use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Product;
+use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProductRequest extends FormRequest
 {
@@ -24,17 +24,17 @@ class StoreProductRequest extends FormRequest
     {
         return [
             //
-            'name' => 'required|string|max:1000|unique:' . Product::class . ',name',
+            'name' => 'required|string|max:1000|unique:'.Product::class.',name',
 
-            'image'=> 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
+            'image' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
 
             'category_id' => 'required|integer|exists:categories,id',
 
-            'brand_id'=> 'required|integer|exists:brand,id',
+            'brand_id' => 'required|integer|exists:brand,id',
 
-            'price_buy'=>'required|numeric|min:0',
+            'price_buy' => 'required|numeric|min:0',
 
-            'price_sale'=>'nullable|numeric|min:0|lte:price_buy',
+            'price_sale' => 'nullable|numeric|min:0|lte:price_buy',
 
             'qty' => 'required|integer|min:0',
 
@@ -43,7 +43,7 @@ class StoreProductRequest extends FormRequest
             'description' => 'nullable|string',
 
             'status' => 'required|integer|in:1,2',
-            ];
+        ];
     }
 
     public function messages(): array
