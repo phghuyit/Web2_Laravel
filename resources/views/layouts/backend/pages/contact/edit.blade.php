@@ -14,7 +14,7 @@
             <h1 class="capitalize font-bold text-2xl text-gray-800">Chinh sua lien he</h1>
         </div>
 
-        <form method="POST" action="{{ isset($contact) ? route('contact.update', $contact->id) : '#' }}" class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7">
+        <form method="POST" action="{{ isset($contact) ? route('contact.update', $contact->id) : route('contact.store') }}" class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7">
             @csrf
             @if (isset($contact))
                 @method('PUT')

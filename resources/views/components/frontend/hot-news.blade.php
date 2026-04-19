@@ -5,20 +5,10 @@
         </h2>
     </div>
     <div class="gap-10 grid grid-cols-1 mx-6 xl:grid-cols-12 items-start">
-        <article
-            class="hidden xl:block col-span-3 flex flex-col overflow-hidden rounded-lg shadow-sm h-full transition-transform hover:-translate-y-1 duration-300 transition-color hover:ring-gray-500 hover:ring-1">
-            <div class="h-1/2 bg-gray-200 shrink-0">
-                <img src="{{ $posts[0]->image }}" alt="{{ $posts[0]->title }}" class="w-full h-full object-cover">
-            </div>
-
-            <div class="p-3 flex flex-col flex-grow text-white">
-                <h3 class="font-bold text-base mb-1 line-clamp-2">{{ $posts[0]->title }}</h3>
-                <p class=" line-clamp-4 text-gray-300">{{ $posts[0]->description }}</p>
-            </div>
-        </article>
+        <x-ui.main-post-card :post="$posts->first()"/>
 
         <div class="col-span-6">
-            @foreach ($posts as $post)
+            @foreach ($posts->skip(1) as $post)
                 <x-ui.post-card :post="$post" />
             @endforeach
         </div>
@@ -27,3 +17,4 @@
         </div>
     </div>
 </div>
+

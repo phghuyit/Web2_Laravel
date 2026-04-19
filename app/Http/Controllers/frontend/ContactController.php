@@ -10,4 +10,9 @@ class ContactController extends Controller
     {
         return view('layouts.frontend.pages.contact.index');
     }
+
+    public function aboutUs()
+    {
+        return view('layouts.frontend.pages.contact.aboutus');
+    }
 }

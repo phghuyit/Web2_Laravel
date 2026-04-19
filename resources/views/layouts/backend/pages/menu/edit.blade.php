@@ -5,7 +5,7 @@
             <div class="flex gap-2 items-center text-gray-500 text-sm"><a href="{{ route('menu.index') }}" class="transition hover:text-orange-500"><i class="fa-arrow-left fa-solid"></i></a><span>Menu</span><span>/</span><span>Edit Menu</span></div>
             <h1 class="capitalize font-bold text-2xl text-gray-800">Chinh sua menu</h1>
         </div>
-        <form method="POST" action="{{ isset($menu) ? route('menu.update', $menu->id) : '#' }}" class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7">@csrf @if (isset($menu)) @method('PUT') @endif
+<form method="POST" action="{{ isset($menu) ? route('menu.update', $menu->id) : route('menu.store') }}" class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7">@csrf @if (isset($menu)) @method('PUT') @endif
             <div class="space-y-5">
                 <div class="gap-5 grid md:grid-cols-2">
                     <div><label for="name" class="block font-semibold mb-2 text-gray-700 text-sm">Name</label><input id="name" name="name" type="text" value="{{ old('name', $menu->name ?? '') }}" class="border border-gray-200 outline-none px-4 py-3 rounded-xl text-gray-700 transition w-full focus:border-orange-400 focus:ring-2 focus:ring-orange-100"></div>

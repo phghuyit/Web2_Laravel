@@ -25,7 +25,7 @@
             <div class="gap-6 grid xl:grid-cols-[280px_minmax(0,1fr)]">
                 <div class="space-y-5">
                     <div class="bg-gray-50 border border-gray-200 overflow-hidden p-4 rounded-2xl">
-                        <div class="aspect-[3/4] bg-white border border-dashed border-gray-300 flex items-center justify-center rounded-xl text-center text-gray-400">
+                        <div class="aspect-3/4 bg-white border border-dashed border-gray-300 flex items-center justify-center rounded-xl text-center text-gray-400">
                             <div>
                                 <i class="fa-book-open fa-solid text-5xl"></i>
                                 <p class="font-medium mt-3 text-sm">Preview image</p>
@@ -193,6 +193,6 @@
                 </a>
             </div>
         </form>
-       
+
     </div>
 </x-backend.layout>

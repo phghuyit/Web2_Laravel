@@ -16,7 +16,7 @@
 
         <form
             method="POST"
-            action="{{ isset($banner) ? route('banner.update', $banner->id) : '#' }}"
+                    action="{{ isset($banner) ? route('banner.update', $banner->id) : route('banner.store') }}"
             enctype="multipart/form-data"
             class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7"
         >

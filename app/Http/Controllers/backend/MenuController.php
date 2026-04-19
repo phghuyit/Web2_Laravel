@@ -44,11 +44,24 @@ class MenuController extends Controller
 
     public function store(Request $request)
     {
+        $menu = new Menu;
+        $menu->name = $request->name;
+        $menu->link = $request->link;
+        $menu->table_id = $request->table_id;
+        $menu->type = $request->type;
+        $menu->status = $request->status ?? 1;
+        $menu->created_at = date('Y-m-d H:i:s');
+        $menu->save();
 
         return redirect()->route('menu.index');
     }
 
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        $menu = Menu::findOrFail($id);
+
+        return view('layouts.backend.pages.menu.show', compact('menu'));
+    }
 
     public function edit(string $id)
     {
@@ -59,14 +72,38 @@ class MenuController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $menu = Menu::findOrFail($id);
+        $menu->name = $request->name;
+        $menu->link = $request->link;
+        $menu->table_id = $request->table_id;
+        $menu->type = $request->type;
+        $menu->status = $request->status ?? 1;
+        $menu->updated_at = date('Y-m-d H:i:s');
+        $menu->save();
 
         return redirect()->route('menu.index');
     }
 
-    public function destroy(string $id)
+    public function restore(string $id)
+    {
+        $menu = Menu::onlyTrashed()->findOrFail($id);
+        $menu->restore();
+
+        return redirect()->route('menu.index');
+    }
+
+    public function delete(string $id)
     {
         $menu = Menu::findOrFail($id);
         $menu->delete();
+
+        return redirect()->route('menu.trash');
+    }
+
+    public function destroy(string $id)
+    {
+        $menu = Menu::withTrashed()->findOrFail($id);
+        $menu->forceDelete();
 
         return redirect()->route('menu.trash');
     }

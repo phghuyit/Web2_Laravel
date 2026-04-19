@@ -1,20 +1,19 @@
 <?php
 
-namespace App\View\Components\frontend;
+namespace App\View\Components\frontend\cart;
 
-use App\Models\Post;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class HotNews extends Component
+class ItemCart extends Component
 {
-    public $posts;
-
+    /**
+     * Create a new component instance.
+     */
     public function __construct()
     {
         //
-        $this->posts = Post::query()->latest()->limit(5)->get();
     }
 
     /**
@@ -22,6 +21,6 @@ class HotNews extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.frontend.hot-news');
+        return view('components..frontend.cart.item-cart');
     }
 }

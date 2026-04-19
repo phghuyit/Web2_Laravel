@@ -16,7 +16,7 @@
 
         <form
             method="POST"
-            action="{{ isset($cate) ? route('cate.update', $cate->id) : '#' }}"
+                    action="{{ isset($cate) ? route('cate.update', $cate->id) : route('cate.store') }}"
             enctype="multipart/form-data"
             class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7"
         >

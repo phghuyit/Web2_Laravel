@@ -10,7 +10,7 @@
             </div>
         </div>
 
-        <form method="GET" action="">
+<form method="GET" action="{{ route('menu.index') }}">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input type="text" name="name" placeholder="Tim kiem menu" class="bg-white px-4 py-2 rounded-l-md text-black w-full focus:outline-none" value="{{ request('name') }}">
@@ -52,7 +52,7 @@
                         <td class="align-middle px-1 py-3">
                             <div class="flex flex-nowrap gap-2">
                                 <div class="p-3 rounded-lg shadow text-sm hover:bg-gray-100"><a href="{{ route('menu.edit', $menu->id) }}"><i class="fa-pen fa-solid"></i><span class="hidden ml-1 xl:inline">Edit</span></a></div>
-                                <form action="{{ route('menu.destroy', $menu->id) }}" method="post">@method('DELETE') @csrf<div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100"><button type="submit"><i class="fa-solid fa-trash text-red-600"></i></button></div></form>
+<form action="{{ route('menu.del', $menu->id) }}" method="post">@method('DELETE') @csrf<div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100"><button type="submit"><i class="fa-solid fa-trash text-red-600"></i></button></div></form>
                             </div>
                         </td>
                     </tr>

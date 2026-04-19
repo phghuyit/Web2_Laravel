@@ -6,11 +6,11 @@
             <p class="font-bold text-xl uppercase">Thùng rác sản phẩm</p>
         </div>
 
-        <form method="GET" action="">
+        <form method="GET" action="{{ route('product.trash') }}">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input type="text" name="name" placeholder="Search Kindle eBooks"
-                        class="bg-white px-4 py-2 rounded-l-md text-black w-full focus:outline-none">
+                        class="bg-white px-4 py-2 rounded-l-md text-black w-full focus:outline-none" value="{{ request('name') }}">
                     <button class="bg-orange-400 font-semibold px-5 rounded-r-md text-black hover:bg-orange-500">
                         <i class="fa-magnifying-glass fa-solid"></i>
                     </button>

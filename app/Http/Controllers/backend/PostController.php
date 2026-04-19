@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
@@ -45,11 +46,34 @@ class PostController extends Controller
 
     public function store(Request $request)
     {
+        $post = new Post;
+        $post->title = $request->title;
+        $post->slug = Str::of($request->title)->slug('-');
+        $post->topic_id = $request->topic_id;
+        $post->detail = $request->detail;
+        $post->post_type = $request->post_type;
+        $post->description = $request->description;
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $filename = $post->slug.'_'.$file->getClientOriginalName();
+            $path = $file->storeAs('posts', $filename, 'public');
+            $post->image = $path;
+        }
+
+        $post->status = $request->status ?? 1;
+        $post->created_at = date('Y-m-d H:i:s');
+        $post->save();
 
         return redirect()->route('post.index');
     }
 
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        $post = Post::findOrFail($id);
+
+        return view('layouts.backend.pages.post.show', compact('post'));
+    }
 
     public function edit(string $id)
     {
@@ -60,14 +84,48 @@ class PostController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $post = Post::findOrFail($id);
+        $post->title = $request->title;
+        $post->slug = Str::of($request->title)->slug('-');
+        $post->topic_id = $request->topic_id;
+        $post->detail = $request->detail;
+        $post->post_type = $request->post_type;
+        $post->description = $request->description;
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $filename = $post->slug.'_'.$file->getClientOriginalName();
+            $path = $file->storeAs('posts', $filename, 'public');
+            $post->image = $path;
+        }
+
+        $post->status = $request->status ?? 1;
+        $post->updated_at = date('Y-m-d H:i:s');
+        $post->save();
 
         return redirect()->route('post.index');
     }
 
-    public function destroy(string $id)
+    public function restore(string $id)
+    {
+        $post = Post::onlyTrashed()->findOrFail($id);
+        $post->restore();
+
+        return redirect()->route('post.index');
+    }
+
+    public function delete(string $id)
     {
         $post = Post::findOrFail($id);
         $post->delete();
+
+        return redirect()->route('post.trash');
+    }
+
+    public function destroy(string $id)
+    {
+        $post = Post::withTrashed()->findOrFail($id);
+        $post->forceDelete();
 
         return redirect()->route('post.trash');
     }

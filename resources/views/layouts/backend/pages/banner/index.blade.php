@@ -12,7 +12,7 @@
             </div>
         </div>
 
-        <form method="GET" action="">
+        <form method="GET" action="{{ route('banner.index') }}">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input
@@ -88,7 +88,7 @@
                                 <div class="p-3 rounded-lg shadow text-sm hover:bg-gray-100">
                                     <a href="{{ route('banner.edit', $banner->id) }}"><i class="fa-pen fa-solid"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                 </div>
-                                <form action="{{ route('banner.destroy', $banner->id) }}" method="post">
+                    <form action="{{ route('banner.del', $banner->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100">

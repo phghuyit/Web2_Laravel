@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Topic;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class TopicController extends Controller
 {
@@ -45,11 +46,24 @@ class TopicController extends Controller
 
     public function store(Request $request)
     {
+        $topic = new Topic;
+        $topic->name = $request->name;
+        $topic->slug = Str::of($request->name)->slug('-');
+        $topic->description = $request->description;
+        $topic->sort_order = $request->sort_order;
+        $topic->status = $request->status ?? 1;
+        $topic->created_at = date('Y-m-d H:i:s');
+        $topic->save();
 
         return redirect()->route('topic.index');
     }
 
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        $topic = Topic::findOrFail($id);
+
+        return view('layouts.backend.pages.topic.show', compact('topic'));
+    }
 
     public function edit(string $id)
     {
@@ -60,14 +74,38 @@ class TopicController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $topic = Topic::findOrFail($id);
+        $topic->name = $request->name;
+        $topic->slug = Str::of($request->name)->slug('-');
+        $topic->description = $request->description;
+        $topic->sort_order = $request->sort_order;
+        $topic->status = $request->status ?? 1;
+        $topic->updated_at = date('Y-m-d H:i:s');
+        $topic->save();
 
         return redirect()->route('topic.index');
     }
 
-    public function destroy(string $id)
+    public function restore(string $id)
+    {
+        $topic = Topic::onlyTrashed()->findOrFail($id);
+        $topic->restore();
+
+        return redirect()->route('topic.index');
+    }
+
+    public function delete(string $id)
     {
         $topic = Topic::findOrFail($id);
         $topic->delete();
+
+        return redirect()->route('topic.trash');
+    }
+
+    public function destroy(string $id)
+    {
+        $topic = Topic::withTrashed()->findOrFail($id);
+        $topic->forceDelete();
 
         return redirect()->route('topic.trash');
     }

@@ -44,11 +44,38 @@ class UserController extends Controller
 
     public function store(Request $request)
     {
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->username = $request->username;
+        $user->address = $request->address;
+        $user->roles = $request->roles;
+
+        if ($request->has('password')) {
+            $user->password = bcrypt($request->password);
+        }
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('users', $filename, 'public');
+            $user->image = $path;
+        }
+
+        $user->status = $request->status ?? 1;
+        $user->created_at = date('Y-m-d H:i:s');
+        $user->save();
 
         return redirect()->route('user.index');
     }
 
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        $user = User::findOrFail($id);
+
+        return view('layouts.backend.pages.user.show', compact('user'));
+    }
 
     public function edit(string $id)
     {
@@ -59,14 +86,52 @@ class UserController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $user = User::findOrFail($id);
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->username = $request->username;
+        $user->address = $request->address;
+        $user->roles = $request->roles;
+
+        if ($request->filled('password')) {
+            $user->password = bcrypt($request->password);
+        }
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('users', $filename, 'public');
+            $user->image = $path;
+        }
+
+        $user->status = $request->status ?? 1;
+        $user->updated_at = date('Y-m-d H:i:s');
+        $user->save();
 
         return redirect()->route('user.index');
     }
 
-    public function destroy(string $id)
+    public function restore(string $id)
+    {
+        $user = User::onlyTrashed()->findOrFail($id);
+        $user->restore();
+
+        return redirect()->route('user.index');
+    }
+
+    public function delete(string $id)
     {
         $user = User::findOrFail($id);
         $user->delete();
+
+        return redirect()->route('user.trash');
+    }
+
+    public function destroy(string $id)
+    {
+        $user = User::withTrashed()->findOrFail($id);
+        $user->forceDelete();
 
         return redirect()->route('user.trash');
     }

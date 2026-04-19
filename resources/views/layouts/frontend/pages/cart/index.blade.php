@@ -10,7 +10,8 @@
                 </div>
 
                 <div class="my-6 space-y-6">
-                    //Card Cart San pham
+                    <x-frontend.cart.item-cart name="Sản phẩm mẫu 1" price="166,666 đ" quantity="1" />
+                    <x-frontend.cart.item-cart name="Sản phẩm mẫu 2" price="166,667 đ" quantity="1" />
                 </div>
             </div>
 
@@ -34,8 +35,11 @@
                 </div>
 
                 <div class="w-full">
-                    <div class="rounded-lg p-3 text-center my-3 whitespace-nowrap bg-orange-400 hover:bg-orange-500 transition-color duration-300">
-                        <a href="#"><p class="capitalize">Tiến hành Thanh Toán</p></a>
+                    <div
+                        class="rounded-lg p-3 text-center my-3 whitespace-nowrap bg-orange-400 hover:bg-orange-500 transition-color duration-300">
+                        <a href="#">
+                            <p class="capitalize">Tiến hành Thanh Toán</p>
+                        </a>
                     </div>
                 </div>
 

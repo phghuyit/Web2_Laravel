@@ -11,7 +11,7 @@
 
         </div>
 
-        <form method="GET" action="">
+        <form method="GET" action="{{ route('brand.index') }}">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input
@@ -60,7 +60,7 @@
                                 <div class="p-3 rounded-lg shadow text-sm hover:bg-gray-100">
                                     <a href="{{ route("brand.edit",$brand->id) }}" > <i class="fa-pen fa-solid"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                 </div>
-                                <form action="{{ route("brand.destroy",$brand->id) }}" method="post">
+                    <form action="{{ route("brand.del",$brand->id) }}" method="post">
                                         @method('DELETE')
                                         @csrf
                                         <div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100">
@@ -78,7 +78,6 @@
         </div>
     </div>
 </x-backend.layout>
-
 
 
 

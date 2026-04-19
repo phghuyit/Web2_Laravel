@@ -32,7 +32,8 @@
                         class="border border-[#a6a6a6] focus:ring-orange-200 focus:ring-2 focus:border-orange-100 outline-none h-9.5 px-3 rounded-[3px] w-full text-base  duration-300 mt-2 transition-all">
                 </div>
                 <button type="button"
-                    class="bg-[#ffd814] hover:bg-[#f7ca00] border border-[#fcd200] rounded-2xl w-full py-2.5 text-base shadow font-medium mt-5 cursor-pointer capitalize">đăng nhập</button>
+                    class="bg-[#ffd814] hover:bg-[#f7ca00] border border-[#fcd200] rounded-2xl w-full py-2.5 text-base shadow font-medium mt-5 cursor-pointer capitalize">đăng
+                    nhập</button>
             </form>
 
             <p class="text-sm text-[#111] mt-5 leading-relaxed">
@@ -43,19 +44,23 @@
             </p>
             <details class="text-base mt-3 group">
                 <summary class="cursor-pointer text-[#0066c0] hover:text-[#c45500] list-none flex items-center">
-                    <i class="fa-solid fa-angle-down transition-transform duration-300 group-open:rotate-180 text-xs"></i>
+                    <i
+                        class="fa-solid fa-angle-down transition-transform duration-300 group-open:rotate-180 text-xs"></i>
                     <span class="group-hover:underline">Cần trợ giúp?</span>
                 </summary>
                 <div class="pl-4 mt-2 space-y-2 flex flex-col translate-x-2 items-start">
-                    <a href="#" class="text-[#0066c0] hover:text-[#c45500] hover:underline text-sm">Quên mật khẩu</a>
-                    <a href="#" class="text-[#0066c0] hover:text-[#c45500] hover:underline text-sm">Vấn đề khác với
+                    <a href="{{ route("site.user.forgot") }}" class="text-[#0066c0] hover:text-[#c45500] hover:underline text-sm">Quên mật
+                        khẩu</a>
+                    <a href="#" class="text-[#0066c0] hover:text-[#c45500] hover:underline text-sm">Vấn đề khác
+                        với
                         đăng nhập</a>
                 </div>
             </details>
             <div class="border-[#d5d9d9] border-b my-6"></div>
-            <div class="text-base font-bold text-[#111]">Mua sắm cho doanh nghiệp?</div>
-            <a href="#" class="text-base text-[#0066c0] hover:text-[#c45500] hover:underline">Tạo một tài khoản
-                doanh nghiệp miễn phí</a>
+            <div class="text-base font-bold text-[#111]">Lần đầu đến với Amazin?</div>
+            <a href="{{ route('site.user.signup') }}"
+                class="text-base text-[#0066c0] hover:text-[#c45500] hover:underline block mt-1">Tạo tài khoản cá nhân
+                của bạn</a>
         </div>
     </main>
 

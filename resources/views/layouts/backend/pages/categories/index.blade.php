@@ -11,7 +11,7 @@
 
         </div>
 
-        <form method="GET" action="">
+        <form method="GET" action="{{ route('cate.index') }}">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input
@@ -64,7 +64,7 @@
                                 <div class="p-3 rounded-lg shadow text-sm hover:bg-gray-100">
                                     <a href="{{ route("cate.edit",$cate->id) }}" > <i class="fa-pen fa-solid"></i><span class="hidden ml-1 xl:inline">Edit</span></a>
                                 </div>
-                                <form action="{{ route("cate.destroy",$cate->id) }}" method="post">
+                    <form action="{{ route("cate.del",$cate->id) }}" method="post">
                                     @method('DELETE')
                                     @csrf
                                     <div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100">

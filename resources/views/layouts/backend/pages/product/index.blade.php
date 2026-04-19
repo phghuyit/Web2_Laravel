@@ -15,7 +15,7 @@
 
         </div>
 
-        <form method="GET" action="">
+        <form method="GET" action="{{ route('product.index') }}">
             <div class="flex gap-3">
                 <div class="flex flex-2 lg:flex-3">
                     <input type="text" name="name" placeholder="Search Kindle eBooks"

@@ -45,11 +45,26 @@ class ContactController extends Controller
 
     public function store(Request $request)
     {
+        $contact = new Contact;
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->title = $request->title;
+        $contact->content = $request->content;
+        $contact->replay_id = $request->replay_id;
+        $contact->status = $request->status ?? 1;
+        $contact->created_at = date('Y-m-d H:i:s');
+        $contact->save();
 
         return redirect()->route('contact.index');
     }
 
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        $contact = Contact::findOrFail($id);
+
+        return view('layouts.backend.pages.contact.show', compact('contact'));
+    }
 
     public function edit(string $id)
     {
@@ -60,14 +75,40 @@ class ContactController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $contact = Contact::findOrFail($id);
+        $contact->name = $request->name;
+        $contact->email = $request->email;
+        $contact->phone = $request->phone;
+        $contact->title = $request->title;
+        $contact->content = $request->content;
+        $contact->replay_id = $request->replay_id;
+        $contact->status = $request->status ?? 1;
+        $contact->updated_at = date('Y-m-d H:i:s');
+        $contact->save();
 
         return redirect()->route('contact.index');
     }
 
-    public function destroy(string $id)
+    public function restore(string $id)
+    {
+        $contact = Contact::onlyTrashed()->findOrFail($id);
+        $contact->restore();
+
+        return redirect()->route('contact.index');
+    }
+
+    public function delete(string $id)
     {
         $contact = Contact::findOrFail($id);
         $contact->delete();
+
+        return redirect()->route('contact.trash');
+    }
+
+    public function destroy(string $id)
+    {
+        $contact = Contact::withTrashed()->findOrFail($id);
+        $contact->forceDelete();
 
         return redirect()->route('contact.trash');
     }

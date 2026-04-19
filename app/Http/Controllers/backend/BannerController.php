@@ -61,7 +61,25 @@ class BannerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $banner = new Banner;
+        $banner->name = $request->name;
+        $banner->description = $request->description;
+        $banner->link = $request->link;
+        $banner->sort_order = $request->sort_order;
+        $banner->position = $request->position;
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('banners', $filename, 'public');
+            $banner->image = $path;
+        }
+
+        $banner->status = $request->status ?? 1;
+        $banner->created_at = date('Y-m-d H:i:s');
+        $banner->save();
+
+        return redirect()->route('banner.index');
     }
 
     /**
@@ -69,7 +87,9 @@ class BannerController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $banner = Banner::findOrFail($id);
+
+        return view('layouts.backend.pages.banner.show', compact('banner'));
     }
 
     /**
@@ -88,7 +108,41 @@ class BannerController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $banner = Banner::findOrFail($id);
+        $banner->name = $request->name;
+        $banner->description = $request->description;
+        $banner->link = $request->link;
+        $banner->sort_order = $request->sort_order;
+        $banner->position = $request->position;
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $filename = $file->getClientOriginalName();
+            $path = $file->storeAs('banners', $filename, 'public');
+            $banner->image = $path;
+        }
+
+        $banner->status = $request->status ?? 1;
+        $banner->updated_at = date('Y-m-d H:i:s');
+        $banner->save();
+
+        return redirect()->route('banner.index');
+    }
+
+    public function restore(string $id)
+    {
+        $banner = Banner::onlyTrashed()->findOrFail($id);
+        $banner->restore();
+
+        return redirect()->route('banner.index');
+    }
+
+    public function delete(string $id)
+    {
+        $banner = Banner::findOrFail($id);
+        $banner->delete();
+
+        return redirect()->route('banner.trash');
     }
 
     /**
@@ -96,10 +150,8 @@ class BannerController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-        $banner = Banner::findOrFail($id);
-
-        $banner->delete();
+        $banner = Banner::withTrashed()->findOrFail($id);
+        $banner->forceDelete();
 
         return redirect()->route('banner.trash');
     }

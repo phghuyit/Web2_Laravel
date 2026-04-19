@@ -11,4 +11,12 @@ class UserController extends Controller
     {
         return view('layouts.frontend.pages.user.login');
     }
+    public function signup()
+    {
+        return view('layouts.frontend.pages.user.signup');
+    }
+    public function forgot()
+    {
+        return view('layouts.frontend.pages.user.forgotpass');
+    }
 }

@@ -16,7 +16,7 @@
 
         <form
             method="POST"
-            action="{{ isset($brand) ? route('brand.update', $brand->id) : '#' }}"
+                    action="{{ isset($brand) ? route('brand.update', $brand->id) : route('brand.store') }}"
             enctype="multipart/form-data"
             class="bg-white p-5 ring-1 ring-gray-100 rounded-3xl shadow-sm xl:p-7"
         >

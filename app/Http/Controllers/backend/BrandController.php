@@ -5,6 +5,7 @@ namespace App\Http\Controllers\backend;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BrandController extends Controller
 {
@@ -56,7 +57,23 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $brand = new Brand;
+        $brand->name = $request->name;
+        $brand->slug = Str::of($request->name)->slug('-');
+        $brand->description = $request->description;
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $filename = $brand->slug.'_'.$file->getClientOriginalName();
+            $path = $file->storeAs('brands', $filename, 'public');
+            $brand->image = $path;
+        }
+
+        $brand->status = $request->status ?? 1;
+        $brand->created_at = date('Y-m-d H:i:s');
+        $brand->save();
+
+        return redirect()->route('brand.index');
     }
 
     /**
@@ -64,7 +81,9 @@ class BrandController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+
+        return view('layouts.backend.pages.brand.show', compact('brand'));
     }
 
     /**
@@ -82,7 +101,39 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $brand = Brand::findOrFail($id);
+        $brand->name = $request->name;
+        $brand->slug = Str::of($request->name)->slug('-');
+        $brand->description = $request->description;
+
+        if ($request->has('image')) {
+            $file = $request->file('image');
+            $filename = $brand->slug.'_'.$file->getClientOriginalName();
+            $path = $file->storeAs('brands', $filename, 'public');
+            $brand->image = $path;
+        }
+
+        $brand->status = $request->status ?? 1;
+        $brand->updated_at = date('Y-m-d H:i:s');
+        $brand->save();
+
+        return redirect()->route('brand.index');
+    }
+
+    public function restore(string $id)
+    {
+        $brand = Brand::onlyTrashed()->findOrFail($id);
+        $brand->restore();
+
+        return redirect()->route('brand.index');
+    }
+
+    public function delete(string $id)
+    {
+        $brand = Brand::findOrFail($id);
+        $brand->delete();
+
+        return redirect()->route('brand.trash');
     }
 
     /**
@@ -90,10 +141,8 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
-        $brand = Brand::findOrFail($id);
-
-        $brand->delete();
+        $brand = Brand::withTrashed()->findOrFail($id);
+        $brand->forceDelete();
 
         return redirect()->route('brand.trash');
     }

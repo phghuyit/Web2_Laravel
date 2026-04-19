@@ -44,11 +44,26 @@ class OrderController extends Controller
 
     public function store(Request $request)
     {
+        $order = new Order;
+        $order->user_id = $request->user_id;
+        $order->name = $request->name;
+        $order->phone = $request->phone;
+        $order->email = $request->email;
+        $order->address = $request->address;
+        $order->note = $request->note;
+        $order->status = $request->status ?? 1;
+        $order->created_at = date('Y-m-d H:i:s');
+        $order->save();
 
         return redirect()->route('order.index');
     }
 
-    public function show(string $id) {}
+    public function show(string $id)
+    {
+        $order = Order::findOrFail($id);
+
+        return view('layouts.backend.pages.order.show', compact('order'));
+    }
 
     public function edit(string $id)
     {
@@ -59,14 +74,40 @@ class OrderController extends Controller
 
     public function update(Request $request, string $id)
     {
+        $order = Order::findOrFail($id);
+        $order->user_id = $request->user_id;
+        $order->name = $request->name;
+        $order->phone = $request->phone;
+        $order->email = $request->email;
+        $order->address = $request->address;
+        $order->note = $request->note;
+        $order->status = $request->status ?? 1;
+        $order->updated_at = date('Y-m-d H:i:s');
+        $order->save();
 
         return redirect()->route('order.index');
     }
 
-    public function destroy(string $id)
+    public function restore(string $id)
+    {
+        $order = Order::onlyTrashed()->findOrFail($id);
+        $order->restore();
+
+        return redirect()->route('order.index');
+    }
+
+    public function delete(string $id)
     {
         $order = Order::findOrFail($id);
         $order->delete();
+
+        return redirect()->route('order.trash');
+    }
+
+    public function destroy(string $id)
+    {
+        $order = Order::withTrashed()->findOrFail($id);
+        $order->forceDelete();
 
         return redirect()->route('order.trash');
     }

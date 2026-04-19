@@ -6,7 +6,7 @@
             <p class="font-bold text-xl uppercase">Thùng rác tác giả</p>
         </div>
 
-        <form method="GET" action="">
+        <form method="GET" action="{{ route('brand.trash') }}">
             <div class="flex gap-3">
                 <div class="flex flex-3">
                     <input
@@ -74,10 +74,10 @@
                                 <td class="align-middle px-1 py-3">
                                     <div class="flex flex-nowrap gap-2">
                                         <div class="p-3 rounded-lg shadow text-sm hover:bg-gray-100">
-                                            <a href="#"><i class="fa-arrows-rotate fa-solid"></i><span class="hidden ml-1 xl:inline">Khôi phục</span></a>
+                                            <form action="{{ route('brand.restore', $brand->id) }}" method="POST">@csrf @method('PUT')<button type="submit"><i class="fa-arrows-rotate fa-solid"></i><span class="hidden ml-1 xl:inline">Khôi phục</span></button></form>
                                         </div>
                                         <div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100">
-                                            <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                            <form action="{{ route('brand.destroy', $brand->id) }}" method="POST">@csrf @method('DELETE')<button type="submit"><i class="fa-solid fa-trash"></i></button></form>
                                         </div>
                                     </div>
                                 </td>
