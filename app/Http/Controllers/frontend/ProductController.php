@@ -50,14 +50,20 @@ class ProductController extends Controller
 
     public function detail($slug)
     {
-
         $product = Product::with(['category:id,name', 'brand:id,name'])
             ->where('slug', $slug)
             ->firstOrFail();
 
         $product->increment('views');
 
-        return view('layouts.frontend.pages.products.detail', compact('product'));
+        $relatedProducts = Product::where('status', 1)
+            ->where('category_id', $product->category_id)
+            ->where('id', '!=', $product->id)
+            ->orderBy('created_at', 'desc')
+            ->limit(4)
+            ->get();
+
+        return view('layouts.frontend.pages.products.detail', compact('product', 'relatedProducts'));
     }
 
     public function liveSearch(Request $request)

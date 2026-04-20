@@ -1,42 +1,52 @@
 <x-backend.layout>
-    <x-slot:title>Brand Trash</x-slot:title>
+    <x-slot:title>Thùng rác tác giả</x-slot:title>
 
     <div class="p-3 xl:p-6">
-        <div class="flex items-center justify-between mb-6 mt-1">
-            <p class="font-bold text-xl uppercase">Thùng rác tác giả</p>
+        <div class="flex flex-col gap-2 mb-6">
+            <div class="flex gap-2 items-center text-gray-500 text-sm">
+                <a href="{{ route('brand.index') }}" class="transition hover:text-orange-500">
+                    <i class="fa-arrow-left fa-solid"></i>
+                </a>
+                <span>Tác giả</span>
+                <span>/</span>
+                <span>Thùng rác tác giả</span>
+            </div>
+            <div class="flex items-center justify-between mt-1">
+                <p class="font-bold text-xl uppercase">Thùng rác tác giả</p>
+            </div>
         </div>
 
         <form method="GET" action="{{ route('brand.trash') }}">
             <div class="flex gap-3">
                 <div class="flex flex-3">
-                    <input
-                        type="text"
-                        name="name"
-                        placeholder="Search author"
+                    <input type="text" name="name" placeholder="Tìm kiếm tác giả"
                         class="bg-white px-4 py-2 rounded-l-md text-black w-full focus:outline-none"
-                        value="{{ request('name') }}"
-                    >
+                        value="{{ request('name') }}">
                     <button class="bg-orange-400 font-semibold px-5 rounded-r-md text-black hover:bg-orange-500">
                         <i class="fa-magnifying-glass fa-solid"></i>
                     </button>
                 </div>
 
                 <div class="flex-1">
-                    <select name="status" class="bg-white border flex-1 px-4 py-2 rounded-lg w-full" onchange="this.form.submit()">
-                        <option value="">Status</option>
+                    <select name="status" class="bg-white border flex-1 px-4 py-2 rounded-lg w-full"
+                        onchange="this.form.submit()">
+                        <option value="">Trạng thái</option>
                         <option value="0" {{ request('status') == '0' ? 'selected' : '' }}>Ẩn</option>
                         <option value="1" {{ request('status') == '1' ? 'selected' : '' }}>Hiện</option>
                     </select>
                 </div>
                 <div class="border-black border-l h-6 self-center"></div>
                 <div>
-                    <select name="sort_by" class="bg-white border flex-1 px-4 py-2 rounded-lg w-full" onchange="this.form.submit()">
+                    <select name="sort_by" class="bg-white border flex-1 px-4 py-2 rounded-lg w-full"
+                        onchange="this.form.submit()">
                         <option value="">Sắp xếp</option>
-                        <option value="name_asc" {{ request('sort_by') == 'name_asc' ? 'selected' : '' }}>Tên tăng dần</option>
-                        <option value="name_desc" {{ request('sort_by') == 'name_desc' ? 'selected' : '' }}>Tên giảm dần</option>
+                        <option value="name_asc" {{ request('sort_by') == 'name_asc' ? 'selected' : '' }}>Tên tăng dần
+                        </option>
+                        <option value="name_desc" {{ request('sort_by') == 'name_desc' ? 'selected' : '' }}>Tên giảm dần
+                        </option>
                     </select>
                 </div>
-                <a href="{{ route('brand.trash') }}" class="bg-white px-4 py-2 rounded-lg self-center">Reset</a>
+                <a href="{{ route('brand.trash') }}" class="bg-white px-4 py-2 rounded-lg self-center">Làm mới</a>
             </div>
         </form>
 
@@ -46,12 +56,12 @@
                     <thead>
                         <tr>
                             <th class="px-3 py-1 text-center">ID</th>
-                            <th class="px-3 py-1 text-left">Image</th>
-                            <th class="px-3 py-1 text-center">Author Name</th>
-                            <th class="px-3 py-1 text-center">Slug</th>
-                            <th class="px-3 py-1 text-center whitespace-nowrap">Status</th>
-                            <th class="px-3 py-1 text-center whitespace-nowrap">Deleted At</th>
-                            <th class="px-3 py-1 text-center">Actions</th>
+                            <th class="px-3 py-1 text-left">Hình ảnh</th>
+                            <th class="px-3 py-1 text-center">Tên tác giả</th>
+                            <th class="px-3 py-1 text-center">Đường dẫn</th>
+                            <th class="px-3 py-1 text-center whitespace-nowrap">Trạng thái</th>
+                            <th class="px-3 py-1 text-center whitespace-nowrap">Ngày xóa</th>
+                            <th class="px-3 py-1 text-center">Hành động</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,9 +70,11 @@
                                 <td class="px-1 py-3">{{ $brand->id }}</td>
                                 <td class="px-1 py-3 w-[10%]">
                                     @if ($brand->image)
-                                        <img src="{{ $brand->image }}" alt="{{ $brand->name }}" class="h-14 object-cover rounded w-14">
+                                        <img src="{{ $brand->image }}" alt="{{ $brand->name }}"
+                                            class="h-14 object-cover rounded w-14">
                                     @else
-                                        <div class="bg-gray-100 flex h-14 items-center justify-center mx-auto rounded text-gray-400 w-14">
+                                        <div
+                                            class="bg-gray-100 flex h-14 items-center justify-center mx-auto rounded text-gray-400 w-14">
                                             <i class="fa-feather-pointed fa-solid"></i>
                                         </div>
                                     @endif
@@ -74,10 +86,15 @@
                                 <td class="align-middle px-1 py-3">
                                     <div class="flex flex-nowrap gap-2">
                                         <div class="p-3 rounded-lg shadow text-sm hover:bg-gray-100">
-                                            <form action="{{ route('brand.restore', $brand->id) }}" method="POST">@csrf @method('PUT')<button type="submit"><i class="fa-arrows-rotate fa-solid"></i><span class="hidden ml-1 xl:inline">Khôi phục</span></button></form>
+                                            <form action="{{ route('brand.restore', $brand->id) }}" method="POST">
+                                                @csrf @method('PUT')<button type="submit"><i
+                                                        class="fa-arrows-rotate fa-solid"></i><span
+                                                        class="hidden ml-1 xl:inline">Khôi phục</span></button></form>
                                         </div>
                                         <div class="p-3 rounded-lg shadow text-red-500 text-sm hover:bg-gray-100">
-                                            <form action="{{ route('brand.destroy', $brand->id) }}" method="POST">@csrf @method('DELETE')<button type="submit"><i class="fa-solid fa-trash"></i></button></form>
+                                            <form action="{{ route('brand.destroy', $brand->id) }}" method="POST">
+                                                @csrf @method('DELETE')<button type="submit"><i
+                                                        class="fa-solid fa-trash"></i></button></form>
                                         </div>
                                     </div>
                                 </td>

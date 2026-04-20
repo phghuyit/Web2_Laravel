@@ -18,6 +18,7 @@ use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\ProductController;
 use App\Http\Controllers\frontend\UserController;
+use App\Http\Controllers\backend\AuthController as BackendAuthController;
 use Illuminate\Support\Facades\Route;
 
 // FrontEndRoutes
@@ -37,14 +38,27 @@ Route::get('contact', [ContactController::class, 'index'])->name('site.contact.i
 Route::post('contact', [ContactController::class, 'store'])->name('site.contact.store');
 
 // Cart- Giỏ hàng
-
-Route::get('cart', [CartController::class, 'index'])->name('site.cart.index');
+Route::prefix('cart')->group(function () {
+    Route::get('/', [CartController::class, 'index'])->name('site.cart.index');
+    Route::post('add', [CartController::class, 'addcart'])->name('site.cart.add');
+    Route::post('update', [CartController::class, 'updatecart'])->name('site.cart.update');
+    Route::get('del/{id}', [CartController::class, 'delcart'])->name('site.cart.del');
+    Route::get('delall', [CartController::class, 'delallcart'])->name('site.cart.delall');
+});
+Route::get('checkout', [CartController::class, 'checkout'])->name('site.cart.checkout');
+Route::post('checkout', [CartController::class, 'docheckout'])->name('site.cart.docheckout');
+Route::get('checkout/thanks', [CartController::class, 'thanks'])->name('site.cart.thanks');
 
 // Login - Đăng nhập
 
-Route::get('login', [UserController::class, 'index'])->name('site.user.login');
+Route::get('login', [UserController::class, 'index'])->name('site.user.login'); // Show login form
+Route::post('login', [UserController::class, 'doLogin'])->name('site.user.dologin'); // Handle login
+Route::get('register', [UserController::class, 'signup'])->name('site.user.register'); // Show registration form
+Route::post('register', [UserController::class, 'doRegister'])->name('site.user.doregister'); // Handle registration
 Route::get('signup', [UserController::class, 'signup'])->name('site.user.signup');
 Route::get('forgot', [UserController::class, 'forgot'])->name('site.user.forgot');
+Route::post('logout', [UserController::class, 'logout'])->name('site.user.logout'); // Handle logout
+Route::get('profile', [UserController::class, 'profile'])->name('site.user.profile')->middleware('auth'); // Show user profile
 //Quản lý bài Post - Tin tức
 
 Route::resource('post', PostController::class);
@@ -57,8 +71,13 @@ Route::prefix('post')->group(function () {
     });
 // BackendAdmin-Quản lý admin
 Route::prefix('admin')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::get('login', [BackendAuthController::class, 'login'])->name('admin.login');
+    Route::post('login', [BackendAuthController::class, 'doLogin'])->name('admin.dologin');
+});
 
+Route::prefix('admin')->middleware('login-admin')->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+    Route::post('logout', [BackendAuthController::class, 'logout'])->name('admin.logout');
     Route::prefix('product')->group(function () {
         Route::get('edit/{id}', [ProductAdminController::class, 'edit'])->name('admin.product.edit');
         Route::get('/trash', [ProductAdminController::class, 'trash'])->name('product.trash');
@@ -102,6 +121,7 @@ Route::prefix('admin')->group(function () {
 
     Route::prefix('order')->group(function () {
         Route::get('edit/{id}', [OrderController::class, 'edit'])->name('order.edit');
+        Route::get('/finish', [OrderController::class, 'finish'])->name('order.finish');
         Route::get('/trash', [OrderController::class, 'trash'])->name('order.trash');
         Route::put('restore/{id}', [OrderController::class, 'restore'])->name('order.restore');
         Route::delete('delete/{id}', [OrderController::class, 'delete'])->name('order.del');
@@ -140,4 +160,6 @@ Route::prefix('admin')->group(function () {
         Route::delete('delete/{id}', [BannerController::class, 'delete'])->name('banner.del');
     });
     Route::resource('banner', BannerController::class);
+
+
 });

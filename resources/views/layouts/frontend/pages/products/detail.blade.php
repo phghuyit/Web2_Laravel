@@ -2,6 +2,7 @@
     <x-slot:title>
         {{ $product->name }}
     </x-slot:title>
+
     <div
         class="mx-auto mt-6 grid w-[95%] grid-cols-1 gap-6 text-[#0f1111] xl:grid-cols-[minmax(0,300px)_minmax(0,1fr)_360px]">
         <div class="rounded-2xl border border-[#d3d3d3] bg-white p-4 shadow-sm">
@@ -16,7 +17,7 @@
             </div>
         </div>
 
-        <div class="space-y-4 rounded-2xl border border-[#d3d3d3] bg-white p-5 shadow-sm flex flex-col">
+        <div class="flex flex-col space-y-4 rounded-2xl border border-[#d3d3d3] bg-white p-5 shadow-sm">
             <div class="space-y-2">
                 <p class="text-2xl font-bold capitalize leading-tight">
                     {{ $product->name }}
@@ -34,16 +35,17 @@
                 </div>
             </div>
 
-            <div class="border-t border-[#d3d3d3] pt-4 leading-7 text-[#222] flex-1">
+            <div class="flex-1 border-t border-[#d3d3d3] pt-4 leading-7 text-[#222]">
                 <details class="group">
                     <summary
-                        class=" w-fit cursor-pointer items-center text-sm font-medium text-blue-500 transition-colors hover:text-orange-500 list-none">
+                        class="w-fit cursor-pointer items-center list-none text-sm font-medium text-blue-500 transition-colors hover:text-orange-500">
                         <div class="mt-3 text-base text-[#333] line-clamp-3 group-open:line-clamp-none">
-                            {{$product->detail}}
+                            {{ $product->detail }}
                         </div>
                         <span class="group-open:hidden">Xem thêm</span>
                         <span class="hidden group-open:inline">Thu gọn</span>
-                        <i class="fa-solid fa-angle-down transition-transform duration-300 group-open:rotate-180 text-xs"></i>
+                        <i
+                            class="fa-solid fa-angle-down text-xs transition-transform duration-300 group-open:rotate-180"></i>
                     </summary>
                 </details>
             </div>
@@ -62,23 +64,27 @@
             <div class="rounded-2xl border border-[#d3d3d3] bg-white p-6 shadow-sm">
                 <p class="text-3xl font-semibold text-[#111827]">
                     <span
-                        class="mr-2 hidden font-light text-red-500 lg:inline lg:text-5xl">-53%</span>{{ number_format($product->price_sale ?? $product->price_buy) }}
+                        class="mr-2 hidden font-light text-red-500 lg:inline lg:text-5xl">-53%</span>{{ number_format($product->is_sale ? $product->price_sale : $product->price_buy) }}
                     vnd
                 </p>
                 <p class="mt-2 text-sm text-[#565959]">Giá bìa cứng: <span
                         class="line-through">{{ number_format($product->price_buy) }} vnd</span></p>
                 <div class="mt-4">
-                    <div class="bg-orange-400 hover:bg-orange-500 rounded-lg p-3 text-center my-3 whitespace-nowrap">
+                    <div class="my-3 rounded-lg bg-orange-400 p-3 text-center whitespace-nowrap hover:bg-orange-500">
                         <a href="#">
                             <p class="truncate">Mua ngay</p>
                         </a>
                     </div>
-                    <p class="mt text-sm text-[#565959] text-center ">hoặc</p>
-                    <div class="bg-orange-400 hover:bg-orange-500 rounded-lg p-3 text-center my-3 whitespace-nowrap">
-                        <a href="#">
-                            <p class="truncate">Thêm vào giỏ hàng</p>
-                        </a>
-                    </div>
+                    <p class="mt text-center text-sm text-[#565959]">hoặc</p>
+                    <form action="{{ route('site.cart.add') }}" method="POST" class="my-3">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="qty" value="1">
+                        <button type="submit"
+                            class="w-full rounded-lg bg-orange-400 p-3 text-center whitespace-nowrap hover:bg-orange-500 cursor-pointer">
+                            <span class="block truncate">Thêm vào giỏ hàng</span>
+                        </button>
+                    </form>
                 </div>
                 <p class="mt-4 text-sm text-[#565959]">Bằng việc đặt hàng, bạn đã đồng ý với <a href="#"
                         class="font-medium text-blue-500 hover:text-orange-500 hover:underline">Điều khoản dịch vụ và
@@ -106,19 +112,15 @@
 
         <div
             class="rounded-2xl border-t border-[#d3d3d3] pt-6 xl:col-span-2 xl:border xl:border-[#d3d3d3] xl:bg-white xl:p-5 xl:shadow-sm">
-            <p class="mt-3 text-xl font-bold">Nhung the loai lien quan ma ban co the thay thu vi</p>
+            <p class="mt-3 text-xl font-bold">Những thể loại liên quan mà bạn có thể thấy thú vị</p>
             <div class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-                <div class="rounded-xl border border-[#e5e7eb] bg-[#fafafa] p-4 text-sm text-[#565959]">
-                    {{-- @fragment("related-prod")
-                        @foreach ($relatedProd as $product)
-                            <x-ui.productcard :product="$product"></x-ui.productcard>
-                        @endforeach
-                    @endfragment --}}
-                </div>
+                @foreach ($relatedProducts as $product)
+                    <x-ui.productcard :product="$product"></x-ui.productcard>
+                @endforeach
             </div>
         </div>
     </div>
-    </div>
+
     <x-slot:footer>
         <script></script>
     </x-slot:footer>

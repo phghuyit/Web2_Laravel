@@ -37,6 +37,34 @@ class OrderController extends Controller
         return view('layouts.backend.pages.order.index', compact('orders'));
     }
 
+    public function finish(Request $request){
+        $query = Order::query();
+        $query->select('id', 'user_id', 'name', 'phone', 'email', 'address', 'note', 'status');
+        $query->whereNull('deleted_at');
+        $query->where('status',2);
+        if ($request->filled('name')) {
+            $query->where('name', 'like', '%'.$request->input('name').'%');
+        }
+
+        if ($request->filled('sort_by')) {
+            switch ($request->input('sort_by')) {
+                case 'asc':
+                    $query->orderBy('name', 'asc');
+                    break;
+                case 'desc':
+                    $query->orderBy('name', 'desc');
+                    break;
+                default:
+                    $query->orderBy('created_at', 'desc');
+                    break;
+            }
+        }
+
+        $orders = $query->paginate(5)->withQueryString();
+
+        return view('layouts.backend.pages.order.finish', compact('orders'));
+    }
+
     public function create()
     {
         return view('layouts.backend.pages.order.create');

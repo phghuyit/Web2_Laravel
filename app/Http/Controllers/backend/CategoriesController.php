@@ -134,7 +134,7 @@ class CategoriesController extends Controller
         $cate = Category::findOrFail($id);
         $cate->delete();
 
-        return redirect()->route('cate.trash');
+        return redirect()->route('cate.index');
     }
 
     /**

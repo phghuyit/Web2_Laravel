@@ -42,13 +42,29 @@
 
         <!-- Menu Right -->
         <div class="gap-6 hidden items-center text-sm md:flex">
-
-            <div class="cursor-pointer hover:underline">
-                <a href="{{ route('site.user.login') }}">
-                    <p class="text-xs">Hello, Sign in</p>
-                    <p class="font-semibold">Account & Lists</p>
-                </a>
-            </div>
+            @if (Auth::check())
+                <div class="cursor-pointer hover:underline">
+                    <a href="{{ route('site.user.profile') }}">
+                        <p class="text-xs">Hello, {{ Auth::user()->name }}</p>
+                        <p class="font-semibold">Profile Detail</p>
+                    </a>
+                </div>
+                <div class="cursor-pointer hover:underline">
+                    <a href="{{ route('site.user.logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                        <p class="font-semibold">Logout</p>
+                    </a>
+                    <form id="logout-form" action="{{ route('site.user.logout') }}" method="POST" class="hidden">
+                        @csrf
+                    </form>
+                </div>
+            @else
+                <div class="cursor-pointer hover:underline">
+                    <a href="{{ route('site.user.login') }}">
+                        <p class="text-xs">Hello, Sign in</p>
+                        <p class="font-semibold">Account & Lists</p>
+                    </a>
+                </div>
+            @endif
 
             <div class="cursor-pointer hover:underline">
                 <p class="text-xs">Returns</p>
