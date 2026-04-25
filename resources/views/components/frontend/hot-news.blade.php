@@ -12,9 +12,9 @@
                 <x-ui.post-card :post="$post" />
             @endforeach
         </div>
-        <div class="col-span-3 xl:block">
+        {{-- <div class="col-span-3 xl:block">
             <iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fpham.huy.658514%2F&tabs=timeline&width=340&height=209&small_header=false&adapt_container_width=true&hide_cover=true&show_facepile=false&appId" width="340" height="209" class="border-none overflow-hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-        </div>
+        </div> --}}
     </div>
 </div>
 

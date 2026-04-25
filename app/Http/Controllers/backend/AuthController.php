@@ -10,7 +10,6 @@ class AuthController extends Controller
 {
     public function login()
     {
-        // Make sure to create this view or adjust the path to your actual login blade file
         return view('layouts.backend.pages.login.index');
     }
 
@@ -25,8 +24,7 @@ class AuthController extends Controller
         ];
 
         if (Auth::attempt($data_login)) {
-            // $request->session()->regenerate();
-
+            $request->session()->regenerate();
             return redirect()->route('admin.dashboard');
         }
 
@@ -36,8 +34,8 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        // $request->session()->invalidate();
-        // $request->session()->regenerateToken();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
         return redirect()->route('admin.login');
     }
 }

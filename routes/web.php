@@ -22,60 +22,56 @@ use App\Http\Controllers\backend\AuthController as BackendAuthController;
 use Illuminate\Support\Facades\Route;
 
 // FrontEndRoutes
-// Home-Trang chủ
+Route::group([], function () {
+    // Home-Trang chủ
+    Route::get('/', [HomeController::class, 'index'])->name('site.home');
+    Route::redirect('/home', '/phghuy_ltw2/public');
 
-Route::get('/', [HomeController::class, 'index'])->name('site.home');
-Route::redirect('/home', '/phghuy_ltw2/public');
+    // Product-Sản Phẩm
+    Route::get('product', [ProductController::class, 'index'])->name('site.product.index');
+    Route::get('/product/{slug}', [ProductController::class, 'detail'])->name('site.product.detail');
+    Route::get('/live-search', [ProductController::class, 'liveSearch'])->name('site.liveSearch');
 
-// Product-Sản Phẩm
+    // Contact-Liên hệ
+    Route::get('aboutUs', [ContactController::class, 'aboutUs'])->name('site.contact.aboutUs');
+    Route::get('contact', [ContactController::class, 'index'])->name('site.contact.index');
+    Route::post('contact', [ContactController::class, 'store'])->name('site.contact.store');
 
-Route::get('product', [ProductController::class, 'index'])->name('site.product.index');
-Route::get('/product/{slug}', [ProductController::class, 'detail'])->name('site.product.detail');
-Route::get('/live-search', [ProductController::class, 'liveSearch'])->name('site.liveSearch');
-// Contact-Liên hệ
-Route::get('aboutUs', [ContactController::class, 'aboutUs'])->name('site.contact.aboutUs');
-Route::get('contact', [ContactController::class, 'index'])->name('site.contact.index');
-Route::post('contact', [ContactController::class, 'store'])->name('site.contact.store');
-
-// Cart- Giỏ hàng
-Route::prefix('cart')->group(function () {
-    Route::get('/', [CartController::class, 'index'])->name('site.cart.index');
-    Route::post('add', [CartController::class, 'addcart'])->name('site.cart.add');
-    Route::post('update', [CartController::class, 'updatecart'])->name('site.cart.update');
-    Route::get('del/{id}', [CartController::class, 'delcart'])->name('site.cart.del');
-    Route::get('delall', [CartController::class, 'delallcart'])->name('site.cart.delall');
-});
-Route::get('checkout', [CartController::class, 'checkout'])->name('site.cart.checkout');
-Route::post('checkout', [CartController::class, 'docheckout'])->name('site.cart.docheckout');
-Route::get('checkout/thanks', [CartController::class, 'thanks'])->name('site.cart.thanks');
-
-// Login - Đăng nhập
-
-Route::get('login', [UserController::class, 'index'])->name('site.user.login'); // Show login form
-Route::post('login', [UserController::class, 'doLogin'])->name('site.user.dologin'); // Handle login
-Route::get('register', [UserController::class, 'signup'])->name('site.user.register'); // Show registration form
-Route::post('register', [UserController::class, 'doRegister'])->name('site.user.doregister'); // Handle registration
-Route::get('signup', [UserController::class, 'signup'])->name('site.user.signup');
-Route::get('forgot', [UserController::class, 'forgot'])->name('site.user.forgot');
-Route::post('logout', [UserController::class, 'logout'])->name('site.user.logout'); // Handle logout
-Route::get('profile', [UserController::class, 'profile'])->name('site.user.profile')->middleware('auth'); // Show user profile
-//Quản lý bài Post - Tin tức
-
-Route::resource('post', PostController::class);
-Route::prefix('post')->group(function () {
-        Route::get('edit/{id}', [PostController::class, 'edit'])->name('post.edit');
-        Route::get('/trash', [PostController::class, 'trash'])->name('post.trash');
-        Route::put('restore/{id}', [PostController::class, 'restore'])->name('post.restore');
-        Route::delete('delete/{id}', [PostController::class, 'delete'])->name('post.del');
-        Route::get('/show/{id}', [PostController::class, 'show'])->name('post.show');
+    // Cart- Giỏ hàng
+    Route::prefix('cart')->group(function () {
+        Route::get('/', [CartController::class, 'index'])->name('site.cart.index');
+        Route::post('add', [CartController::class, 'addcart'])->name('site.cart.add');
+        Route::post('update', [CartController::class, 'updatecart'])->name('site.cart.update');
+        Route::get('del/{id}', [CartController::class, 'delcart'])->name('site.cart.del');
+        Route::get('delall', [CartController::class, 'delallcart'])->name('site.cart.delall');
     });
+
+    // Login - Đăng nhập
+    Route::get('login', [UserController::class, 'index'])->name('site.user.login');
+    Route::post('login', [UserController::class, 'doLogin'])->name('site.user.dologin');
+    Route::get('register', [UserController::class, 'signup'])->name('site.user.register');
+    Route::post('register', [UserController::class, 'doRegister'])->name('site.user.doregister');
+    Route::get('signup', [UserController::class, 'signup'])->name('site.user.signup');
+    Route::get('forgot', [UserController::class, 'forgot'])->name('site.user.forgot');
+
+    // Frontend Routes protected by Auth
+    Route::middleware('auth:web')->group(function () {
+        Route::get('checkout', [CartController::class, 'checkout'])->name('site.cart.checkout');
+        Route::post('checkout', [CartController::class, 'docheckout'])->name('site.cart.docheckout');
+        Route::get('checkout/thanks', [CartController::class, 'thanks'])->name('site.cart.thanks');
+
+        Route::post('logout', [UserController::class, 'logout'])->name('site.user.logout');
+        Route::get('profile', [UserController::class, 'profile'])->name('site.user.profile');
+    });
+});
+
 // BackendAdmin-Quản lý admin
 Route::prefix('admin')->group(function () {
     Route::get('login', [BackendAuthController::class, 'login'])->name('admin.login');
     Route::post('login', [BackendAuthController::class, 'doLogin'])->name('admin.dologin');
 });
 
-Route::prefix('admin')->middleware('login-admin')->group(function () {
+Route::prefix('admin')->middleware('auth:admin')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
     Route::post('logout', [BackendAuthController::class, 'logout'])->name('admin.logout');
     Route::prefix('product')->group(function () {

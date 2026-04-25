@@ -65,11 +65,6 @@ class OrderController extends Controller
         return view('layouts.backend.pages.order.finish', compact('orders'));
     }
 
-    public function create()
-    {
-        return view('layouts.backend.pages.order.create');
-    }
-
     public function store(Request $request)
     {
         $order = new Order;

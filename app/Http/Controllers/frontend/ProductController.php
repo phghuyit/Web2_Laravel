@@ -84,7 +84,7 @@ class ProductController extends Controller
             return response()->json([
                 'product_data' => view('components.frontend.partials.header', [
                     'products' => $products,
-                    'menu' => [],
+                    'header' => collect([]),
                 ])->fragment('search-results'),
             ]);
         }

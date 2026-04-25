@@ -2,18 +2,18 @@
 
 namespace App\View\Components\frontend\partials;
 
+use App\Models\Menu;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
 class Footer extends Component
 {
-    /**
-     * Create a new component instance.
-     */
+    public $footer;
     public function __construct()
     {
         //
+        $this->footer = Menu::query()->where('status', 1)->where('position','footer')->get();
     }
 
     /**
@@ -21,6 +21,6 @@ class Footer extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components..frontend.partials.footer');
+        return view('components.frontend.partials.footer');
     }
 }

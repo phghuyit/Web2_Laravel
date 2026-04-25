@@ -16,12 +16,15 @@ class LoginAdmin
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if( !Auth::check()){
+        if( !Auth::guard('admin')->check()){
             return redirect()->route('admin.login')->with('error','Vui lòng đăng nhập!');
         }
-        $user = Auth::user();
+
+        $user = Auth::guard('admin')->user();
+
         if($user->roles!=='admin'){
-            return redirect()->route('site.home')-> with('error','Bạn không có quyền truy cập!');
+            Auth::guard('admin')->logout();
+            return redirect()->route('admin.login')-> with('error','Bạn không có quyền truy cập!');
         }
         return $next($request);
     }

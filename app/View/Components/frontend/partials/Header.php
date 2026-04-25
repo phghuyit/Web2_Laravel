@@ -9,7 +9,7 @@ use Illuminate\View\Component;
 
 class Header extends Component
 {
-    public $menu;
+    public $header;
 
     /**
      * Create a new component instance.
@@ -17,7 +17,7 @@ class Header extends Component
     public function __construct()
     {
         //
-        $this->menu = Menu::query()->where('status', 1)->get();
+        $this->header = Menu::query()->where('status', 1)->where('position','header')->get();
     }
 
     /**

@@ -3,45 +3,29 @@
     <!-- Top Links -->
     <div class="gap-8 grid grid-cols-1 max-w-7xl mx-auto px-6 py-12 text-sm md:grid-cols-4">
 
-        <div>
-            <h3 class="font-semibold mb-4 text-white">Về Chúng Tôi</h3>
-            <ul class="space-y-2">
-                <li><a href="#" class="hover:underline">Giới thiệu</a></li>
-                <li><a href="#" class="hover:underline">Tuyển dụng</a></li>
-                <li><a href="#" class="hover:underline">Thông cáo báo chí</a></li>
-                <li><a href="#" class="hover:underline">Quan hệ nhà đầu tư</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h3 class="font-semibold mb-4 text-white">Hợp Tác Cùng Chúng Tôi</h3>
-            <ul class="space-y-2">
-                <li><a href="#" class="hover:underline">Bán hàng trên Amazin</a></li>
-                <li><a href="#" class="hover:underline">Tiếp thị liên kết</a></li>
-                <li><a href="#" class="hover:underline">Quảng cáo sản phẩm</a></li>
-                <li><a href="#" class="hover:underline">Xuất bản sách Kindle</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h3 class="font-semibold mb-4 text-white">Thanh Toán</h3>
-            <ul class="space-y-2">
-                <li><a href="#" class="hover:underline">Thẻ doanh nghiệp</a></li>
-                <li><a href="#" class="hover:underline">Mua sắm bằng điểm</a></li>
-                <li><a href="#" class="hover:underline">Nạp tiền vào số dư</a></li>
-                <li><a href="#" class="hover:underline">Chuyển đổi tiền tệ</a></li>
-            </ul>
-        </div>
-
-        <div>
-            <h3 class="font-semibold mb-4 text-white">Hỗ Trợ Khách Hàng</h3>
-            <ul class="space-y-2">
-                <li><a href="#" class="hover:underline">Tài khoản của bạn</a></li>
-                <li><a href="#" class="hover:underline">Trung tâm đổi trả</a></li>
-                <li><a href="#" class="hover:underline">Trợ giúp</a></li>
-                <li><a href="#" class="hover:underline">Phí vận chuyển</a></li>
-            </ul>
-        </div>
+        @foreach ($footer->where('parent_id', 0) as $parentMenu)
+            <div>
+                <h3 class="font-semibold mb-4 text-white">{{ $parentMenu->name }}</h3>
+                @if ($footer->where('parent_id', $parentMenu->id)->isNotEmpty())
+                    <ul class="space-y-2">
+                        @foreach ($footer->where('parent_id', $parentMenu->id) as $childMenu)
+                            <li>
+                                <a href="{{ $childMenu->link && $childMenu->link != '#' ? route($childMenu->link) : '#' }}"
+                                        class="hover:underline">{{ $childMenu->name }}</a>
+                                @if ($footer->where('parent_id', $childMenu->id)->isNotEmpty())
+                                    <ul class="pl-4 mt-1 space-y-1">
+                                        @foreach ($footer->where('parent_id', $childMenu->id) as $grandChildMenu)
+                                            <li><a href="{{ $grandChildMenu->link && $grandChildMenu->link != '#' ? route($grandChildMenu->link) : '#' }}"
+                                                    class="hover:underline text-gray-400 text-xs">{{ $grandChildMenu->name }}</a></li>
+                                        @endforeach
+                                    </ul>
+                                @endif
+                            </li>
+                        @endforeach
+                    </ul>
+                @endif
+            </div>
+        @endforeach
 
     </div>
 
