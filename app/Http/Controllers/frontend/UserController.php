@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -15,14 +15,17 @@ class UserController extends Controller
     {
         return view('layouts.frontend.pages.user.login');
     }
+
     public function signup()
     {
         return view('layouts.frontend.pages.user.signup');
     }
+
     public function forgot()
     {
         return view('layouts.frontend.pages.user.forgotpass');
     }
+
     public function doLogin(Request $request)
     {
         $username = $request->username;
@@ -74,10 +77,10 @@ class UserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'status' => 1,
-            'phone'=> $request->phone,
+            'phone' => $request->phone,
         ]);
 
-        return redirect()->route('site.user.login')->with('success', 'Đăng ký thành công. Vui lòng đăng nhập.');
+        return redirect()->route('login')->with('success', 'Đăng ký thành công. Vui lòng đăng nhập.');
     }
 
     public function logout(Request $request)
@@ -85,7 +88,7 @@ class UserController extends Controller
         Auth::logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
-        session()->forget('user_site'); // Also remove custom session flag if you use it anywhere else
+        session()->forget('user_site');
 
         return redirect()->route('site.home')->with('success', 'Đăng xuất thành công');
     }

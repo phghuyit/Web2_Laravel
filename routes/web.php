@@ -1,6 +1,7 @@
 <?php
 
 // BackEndImports
+use App\Http\Controllers\backend\AuthController;
 use App\Http\Controllers\backend\BannerController;
 use App\Http\Controllers\backend\BrandController;
 use App\Http\Controllers\backend\CategoriesController;
@@ -9,8 +10,8 @@ use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\MenuController;
 use App\Http\Controllers\backend\OrderController;
 use App\Http\Controllers\backend\PostController;
-use App\Http\Controllers\backend\ProductAdminController;
 // FrontEndImports
+use App\Http\Controllers\backend\ProductAdminController;
 use App\Http\Controllers\backend\TopicController;
 use App\Http\Controllers\backend\UserController as UserAdminController;
 use App\Http\Controllers\frontend\CartController;
@@ -18,7 +19,7 @@ use App\Http\Controllers\frontend\ContactController;
 use App\Http\Controllers\frontend\HomeController;
 use App\Http\Controllers\frontend\ProductController;
 use App\Http\Controllers\frontend\UserController;
-use App\Http\Controllers\backend\AuthController as BackendAuthController;
+use App\Http\Middleware\LoginAdmin;
 use Illuminate\Support\Facades\Route;
 
 // FrontEndRoutes
@@ -47,7 +48,7 @@ Route::group([], function () {
     });
 
     // Login - Đăng nhập
-    Route::get('login', [UserController::class, 'index'])->name('site.user.login');
+    Route::get('login', [UserController::class, 'index'])->name('login');
     Route::post('login', [UserController::class, 'doLogin'])->name('site.user.dologin');
     Route::get('register', [UserController::class, 'signup'])->name('site.user.register');
     Route::post('register', [UserController::class, 'doRegister'])->name('site.user.doregister');
@@ -67,13 +68,13 @@ Route::group([], function () {
 
 // BackendAdmin-Quản lý admin
 Route::prefix('admin')->group(function () {
-    Route::get('login', [BackendAuthController::class, 'login'])->name('admin.login');
-    Route::post('login', [BackendAuthController::class, 'doLogin'])->name('admin.dologin');
+    Route::get('login', [AuthController::class, 'login'])->name('admin.login');
+    Route::post('login', [AuthController::class, 'doLogin'])->name('admin.doLogin');
 });
 
-Route::prefix('admin')->middleware('auth:admin')->group(function () {
+Route::prefix('admin')->middleware(LoginAdmin::class)->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
-    Route::post('logout', [BackendAuthController::class, 'logout'])->name('admin.logout');
+    Route::post('logout', [AuthController::class, 'logout'])->name('admin.logout');
     Route::prefix('product')->group(function () {
         Route::get('edit/{id}', [ProductAdminController::class, 'edit'])->name('admin.product.edit');
         Route::get('/trash', [ProductAdminController::class, 'trash'])->name('product.trash');
@@ -156,6 +157,5 @@ Route::prefix('admin')->middleware('auth:admin')->group(function () {
         Route::delete('delete/{id}', [BannerController::class, 'delete'])->name('banner.del');
     });
     Route::resource('banner', BannerController::class);
-
 
 });

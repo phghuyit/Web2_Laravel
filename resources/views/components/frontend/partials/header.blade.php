@@ -60,7 +60,7 @@
                 </div>
             @else
                 <div class="cursor-pointer hover:underline">
-                    <a href="{{ route('site.user.login') }}">
+                    <a href="{{ route('login') }}">
                         <p class="text-xs">Hello, Sign in</p>
                         <p class="font-semibold">Account & Lists</p>
                     </a>
